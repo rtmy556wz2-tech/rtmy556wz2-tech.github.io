@@ -1,0 +1,1314 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Personalized bedtime stories starring your child, created around their name, interests, favourite people, and preferred language.">
+  <meta name="theme-color" content="#f8f3ea">
+  <title>LunaTale — The bedtime story starring your child</title>
+  <style>
+    :root {
+      --ink: #37312d;
+      --muted: #756b63;
+      --cream: #f8f3ea;
+      --paper: #fffdf8;
+      --sand: #e9ddcd;
+      --peach: #e7c4a7;
+      --rose: #b77e6b;
+      --night: #443d47;
+      --line: rgba(75, 61, 51, 0.12);
+      --shadow: 0 24px 70px rgba(85, 65, 50, 0.1);
+      --radius: 2rem;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 7%, rgba(255, 255, 255, 0.92), transparent 25rem),
+        var(--cream);
+      font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      position: fixed;
+      z-index: 20;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      content: "";
+      background: linear-gradient(90deg, var(--peach), #d9b6b1, var(--sand));
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      color: inherit;
+    }
+
+    .shell {
+      width: min(1120px, calc(100% - 2rem));
+      margin-inline: auto;
+    }
+
+    .serif {
+      font-family: Iowan Old Style, Baskerville, "Times New Roman", serif;
+      font-weight: 400;
+      letter-spacing: -0.04em;
+    }
+
+    .eyebrow {
+      margin: 0 0 1rem;
+      color: var(--rose);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .section {
+      padding: 6.5rem 0;
+    }
+
+    .section-heading {
+      max-width: 13ch;
+      margin: 0;
+      font-size: clamp(2.5rem, 8vw, 4.8rem);
+      line-height: 1;
+    }
+
+    .section-intro {
+      max-width: 43rem;
+      margin: 1.35rem 0 0;
+      color: var(--muted);
+      font-size: 1.03rem;
+      line-height: 1.78;
+    }
+
+    .fade {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .fade.is-visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    .site-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 5.5rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--ink);
+      font-family: Iowan Old Style, Baskerville, "Times New Roman", serif;
+      font-size: 1.45rem;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      position: relative;
+      display: inline-block;
+      width: 1.15rem;
+      height: 1.15rem;
+      border-radius: 50%;
+      background: var(--rose);
+    }
+
+    .brand-mark::after {
+      position: absolute;
+      top: -0.12rem;
+      left: 0.34rem;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      content: "";
+      background: var(--cream);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.1rem;
+    }
+
+    .language-switcher {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.25rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 253, 248, 0.55);
+    }
+
+    .language-switcher button {
+      min-width: 2.5rem;
+      padding: 0.42rem 0.55rem;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      cursor: pointer;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      transition: color 0.2s ease, background 0.2s ease;
+    }
+
+    .language-switcher button[aria-pressed="true"] {
+      color: #fffaf4;
+      background: var(--night);
+    }
+
+    .header-link {
+      padding-bottom: 0.2rem;
+      border-bottom: 1px solid rgba(55, 49, 45, 0.35);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .hero {
+      display: grid;
+      min-height: calc(100svh - 5.5rem);
+      align-items: center;
+      gap: 3rem;
+      padding: 3rem 0 7rem;
+    }
+
+    .hero-copy {
+      max-width: 43rem;
+    }
+
+    h1 {
+      max-width: 10ch;
+      margin: 0;
+      font-size: clamp(3.4rem, 11vw, 7rem);
+      line-height: 0.92;
+    }
+
+    .hero-subtext {
+      max-width: 39rem;
+      margin: 1.65rem 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.16rem);
+      line-height: 1.7;
+    }
+
+    .hero-support {
+      max-width: 35rem;
+      margin: 0.8rem 0 0;
+      color: var(--ink);
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    .waitlist-form {
+      display: flex;
+      max-width: 33rem;
+      margin-top: 1.8rem;
+      padding: 0.38rem;
+      border: 1px solid rgba(77, 62, 52, 0.1);
+      border-radius: 999px;
+      background: var(--paper);
+      box-shadow: 0 10px 35px rgba(90, 69, 54, 0.09);
+    }
+
+    .waitlist-form input {
+      min-width: 0;
+      flex: 1;
+      padding: 0.9rem 0.7rem 0.9rem 1.2rem;
+      border: 0;
+      outline: 0;
+      color: var(--ink);
+      background: transparent;
+      font-size: 0.9rem;
+    }
+
+    .waitlist-form input::placeholder {
+      color: #9b918a;
+    }
+
+    .waitlist-form:focus-within {
+      outline: 2px solid rgba(183, 126, 107, 0.4);
+      outline-offset: 3px;
+    }
+
+    .waitlist-form button {
+      flex: none;
+      padding: 0.95rem 1.3rem;
+      border: 0;
+      border-radius: 999px;
+      color: #fffaf4;
+      background: var(--night);
+      cursor: pointer;
+      font-size: 0.79rem;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .waitlist-form button:hover {
+      background: #564d59;
+      transform: translateY(-1px);
+    }
+
+    .waitlist-form button:disabled {
+      cursor: default;
+      opacity: 0.9;
+      transform: none;
+    }
+
+    .form-note,
+    .form-success {
+      min-height: 1.4rem;
+      margin: 0.7rem 0 0 1rem;
+      color: var(--muted);
+      font-size: 0.74rem;
+    }
+
+    .form-success {
+      display: none;
+      color: #72594f;
+      font-weight: 600;
+    }
+
+    .hero-art {
+      position: relative;
+      width: min(100%, 31rem);
+      aspect-ratio: 1 / 0.92;
+      justify-self: center;
+    }
+
+    .moon {
+      position: absolute;
+      top: 3%;
+      right: 9%;
+      width: 53%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: #eed9bd;
+      box-shadow: 0 0 0 1rem rgba(255, 255, 255, 0.2), 0 0 5rem rgba(213, 180, 145, 0.3);
+    }
+
+    .moon::after {
+      position: absolute;
+      top: -9%;
+      right: -13%;
+      width: 95%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      content: "";
+      background: var(--cream);
+    }
+
+    .book {
+      position: absolute;
+      bottom: 10%;
+      left: 9%;
+      width: 83%;
+      height: 39%;
+      filter: drop-shadow(0 2rem 1.4rem rgba(87, 66, 55, 0.14));
+    }
+
+    .page {
+      position: absolute;
+      bottom: 0;
+      width: 52%;
+      height: 100%;
+      background: #fffaf1;
+    }
+
+    .page-left {
+      left: 0;
+      border-radius: 80% 12% 15% 13% / 22% 10% 8% 15%;
+      transform: skewY(7deg);
+    }
+
+    .page-right {
+      right: 0;
+      border-radius: 12% 80% 13% 15% / 10% 22% 15% 8%;
+      transform: skewY(-7deg);
+    }
+
+    .book::after {
+      position: absolute;
+      z-index: 2;
+      bottom: 7%;
+      left: 50%;
+      width: 1px;
+      height: 78%;
+      content: "";
+      background: rgba(106, 84, 69, 0.18);
+    }
+
+    .star {
+      position: absolute;
+      width: 0.35rem;
+      height: 0.35rem;
+      border-radius: 50%;
+      background: var(--rose);
+      box-shadow: 0 0 1rem rgba(183, 126, 107, 0.4);
+    }
+
+    .star::before,
+    .star::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      content: "";
+      background: inherit;
+      transform: translate(-50%, -50%);
+    }
+
+    .star::before {
+      width: 1.3rem;
+      height: 1px;
+    }
+
+    .star::after {
+      width: 1px;
+      height: 1.3rem;
+    }
+
+    .star-one {
+      top: 18%;
+      left: 12%;
+    }
+
+    .star-two {
+      top: 7%;
+      left: 42%;
+      transform: scale(0.55);
+    }
+
+    .star-three {
+      top: 42%;
+      right: 5%;
+      transform: scale(0.75);
+    }
+
+    .story-line {
+      position: absolute;
+      z-index: 3;
+      bottom: 27%;
+      left: 28%;
+      width: 12%;
+      height: 1px;
+      background: rgba(98, 78, 65, 0.22);
+      box-shadow: 0 0.55rem rgba(98, 78, 65, 0.16), 0 1.1rem rgba(98, 78, 65, 0.12);
+      transform: rotate(7deg);
+    }
+
+    .about {
+      display: grid;
+      gap: 2.5rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .about-copy {
+      max-width: 42rem;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1.02rem, 2.1vw, 1.27rem);
+      line-height: 1.78;
+    }
+
+    .how {
+      padding-top: 3rem;
+    }
+
+    .how-grid,
+    .benefit-grid {
+      display: grid;
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .step-card,
+    .benefit-card {
+      padding: 1.7rem;
+      border: 1px solid var(--line);
+      border-radius: 1.6rem;
+      background: rgba(255, 253, 248, 0.55);
+      transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .step-card:hover,
+    .benefit-card:hover {
+      background: rgba(255, 253, 248, 0.9);
+      box-shadow: 0 18px 50px rgba(85, 65, 50, 0.07);
+      transform: translateY(-4px);
+    }
+
+    .step-card {
+      min-height: 18rem;
+    }
+
+    .step-number {
+      display: grid;
+      width: 2.35rem;
+      height: 2.35rem;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--rose);
+      background: rgba(231, 196, 167, 0.3);
+      font-family: Iowan Old Style, Baskerville, serif;
+      font-style: italic;
+    }
+
+    .step-card h3 {
+      margin: 4rem 0 0.75rem;
+      font-family: Iowan Old Style, Baskerville, "Times New Roman", serif;
+      font-size: 1.7rem;
+      font-weight: 400;
+      letter-spacing: -0.025em;
+    }
+
+    .step-card p,
+    .benefit-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.68;
+    }
+
+    .language {
+      display: grid;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .language-visual {
+      position: relative;
+      overflow: hidden;
+      min-height: 28rem;
+      border-radius: var(--radius);
+      background:
+        radial-gradient(circle at 65% 30%, rgba(255, 253, 248, 0.95) 0 8%, transparent 8.5%),
+        linear-gradient(145deg, #ead7c3, #d8b9ad);
+      box-shadow: var(--shadow);
+    }
+
+    .language-visual::before {
+      position: absolute;
+      bottom: -12%;
+      left: -5%;
+      width: 83%;
+      aspect-ratio: 1;
+      border: 1px solid rgba(255, 253, 248, 0.5);
+      border-radius: 50%;
+      content: "";
+      box-shadow: 0 0 0 3rem rgba(255, 253, 248, 0.08), 0 0 0 7rem rgba(255, 253, 248, 0.06);
+    }
+
+    .word-card {
+      position: absolute;
+      display: grid;
+      width: 11rem;
+      min-height: 7rem;
+      padding: 1.2rem;
+      place-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      border-radius: 1.3rem;
+      background: rgba(255, 253, 248, 0.83);
+      box-shadow: 0 18px 45px rgba(85, 65, 50, 0.1);
+      text-align: center;
+      backdrop-filter: blur(8px);
+    }
+
+    .word-card strong {
+      font-family: Iowan Old Style, Baskerville, serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+    }
+
+    .word-card span {
+      margin-top: 0.3rem;
+      color: var(--muted);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .word-one {
+      top: 14%;
+      left: 9%;
+      transform: rotate(-4deg);
+    }
+
+    .word-two {
+      top: 38%;
+      right: 7%;
+      transform: rotate(4deg);
+    }
+
+    .word-three {
+      bottom: 8%;
+      left: 18%;
+      transform: rotate(2deg);
+    }
+
+    .language-copy .section-heading {
+      max-width: 11ch;
+    }
+
+    .benefits {
+      border-top: 1px solid var(--line);
+    }
+
+    .benefit-card {
+      min-height: 16rem;
+    }
+
+    .benefit-icon {
+      display: grid;
+      width: 2.5rem;
+      height: 2.5rem;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--rose);
+      background: rgba(231, 196, 167, 0.28);
+      font-family: Iowan Old Style, Baskerville, serif;
+      font-size: 1.2rem;
+    }
+
+    .benefit-card h3 {
+      margin: 3rem 0 0.75rem;
+      font-family: Iowan Old Style, Baskerville, "Times New Roman", serif;
+      font-size: 1.55rem;
+      font-weight: 400;
+      letter-spacing: -0.025em;
+    }
+
+    .research-note {
+      max-width: 52rem;
+      margin: 2rem 0 0;
+      padding-left: 1.1rem;
+      border-left: 2px solid var(--peach);
+      color: var(--muted);
+      font-size: 0.8rem;
+      line-height: 1.65;
+    }
+
+    .trust-panel {
+      display: grid;
+      gap: 3rem;
+      padding: 3rem 1.5rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255, 253, 248, 0.58);
+    }
+
+    .trust-list {
+      display: grid;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .trust-list li {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .trust-list li:last-child {
+      border-bottom: 0;
+    }
+
+    .check {
+      display: grid;
+      width: 1.6rem;
+      height: 1.6rem;
+      flex: none;
+      place-items: center;
+      border-radius: 50%;
+      color: #fffaf4;
+      background: var(--rose);
+      font-size: 0.68rem;
+    }
+
+    .vision {
+      padding-top: 3rem;
+    }
+
+    .vision-inner {
+      display: grid;
+      min-height: 30rem;
+      align-items: end;
+      padding: 2.5rem 1.5rem;
+      border-radius: var(--radius);
+      color: #fff9f0;
+      background:
+        radial-gradient(circle at 75% 24%, rgba(231, 196, 167, 0.5) 0 7%, transparent 7.5%),
+        radial-gradient(circle at 75% 24%, transparent 0 13%, rgba(255, 255, 255, 0.04) 13.2% 13.5%, transparent 13.7%),
+        linear-gradient(145deg, #514953, var(--night));
+      box-shadow: var(--shadow);
+    }
+
+    .vision-copy {
+      max-width: 47rem;
+    }
+
+    .vision .eyebrow {
+      color: var(--peach);
+    }
+
+    .vision .section-heading {
+      max-width: 12ch;
+    }
+
+    .vision .section-intro {
+      color: rgba(255, 249, 240, 0.7);
+    }
+
+    .signup {
+      padding: 6.5rem 0 7rem;
+    }
+
+    .signup-panel {
+      position: relative;
+      overflow: hidden;
+      padding: 4.5rem 1.25rem;
+      border-radius: var(--radius);
+      color: #fff9f0;
+      background: var(--night);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .signup-panel::before {
+      position: absolute;
+      top: -12rem;
+      right: -10rem;
+      width: 26rem;
+      height: 26rem;
+      border: 1px solid rgba(255, 250, 244, 0.12);
+      border-radius: 50%;
+      content: "";
+      box-shadow: 0 0 0 3rem rgba(255, 250, 244, 0.025), 0 0 0 7rem rgba(255, 250, 244, 0.02);
+    }
+
+    .signup-panel .eyebrow {
+      position: relative;
+      color: var(--peach);
+    }
+
+    .signup-panel h2 {
+      position: relative;
+      max-width: 13ch;
+      margin: 0 auto;
+      font-size: clamp(2.6rem, 8vw, 5rem);
+      line-height: 0.98;
+    }
+
+    .signup-panel > p:not(.eyebrow, .form-note, .form-success) {
+      position: relative;
+      max-width: 34rem;
+      margin: 1.2rem auto 0;
+      color: rgba(255, 249, 240, 0.7);
+      line-height: 1.7;
+    }
+
+    .signup-panel .waitlist-form {
+      position: relative;
+      margin-inline: auto;
+    }
+
+    .signup-panel .form-note,
+    .signup-panel .form-success {
+      position: relative;
+      color: rgba(255, 249, 240, 0.64);
+      text-align: center;
+    }
+
+    .signup-panel .form-success {
+      color: #f0d5c2;
+    }
+
+    .signup-panel .waitlist-form button {
+      background: var(--rose);
+    }
+
+    .footer {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 2rem 0 3rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.76rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.4rem;
+    }
+
+    .footer-links a {
+      text-underline-offset: 0.25rem;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--rose);
+      outline-offset: 4px;
+    }
+
+    @media (min-width: 720px) {
+      .shell {
+        width: min(1120px, calc(100% - 4rem));
+      }
+
+      .section {
+        padding: 8rem 0;
+      }
+
+      .hero {
+        grid-template-columns: 1.15fr 0.85fr;
+      }
+
+      .about {
+        grid-template-columns: 0.9fr 1.1fr;
+        align-items: start;
+      }
+
+      .how-grid,
+      .benefit-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .language {
+        grid-template-columns: 0.9fr 1.1fr;
+      }
+
+      .trust-panel {
+        grid-template-columns: 0.8fr 1.2fr;
+        align-items: center;
+        padding: 4rem;
+      }
+
+      .trust-list {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 2rem;
+      }
+
+      .vision-inner {
+        min-height: 35rem;
+        padding: 4rem;
+      }
+
+      .signup-panel {
+        padding: 6.5rem 2rem;
+      }
+
+      .footer {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+
+    @media (max-width: 719px) {
+      .header-actions {
+        gap: 0.65rem;
+      }
+
+      .header-link {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 2.5rem;
+      }
+
+      .hero-art {
+        width: min(100%, 24rem);
+      }
+
+      .waitlist-form {
+        border-radius: 1.2rem;
+      }
+
+      .waitlist-form input {
+        width: 100%;
+        padding-left: 0.85rem;
+      }
+
+      .waitlist-form button {
+        padding-inline: 1rem;
+      }
+
+      .language {
+        display: flex;
+        flex-direction: column-reverse;
+      }
+
+      .language-visual {
+        width: 100%;
+        min-height: 24rem;
+      }
+
+      .word-card {
+        width: 9.5rem;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .waitlist-form {
+        display: grid;
+        gap: 0.35rem;
+        padding: 0.4rem;
+      }
+
+      .waitlist-form input,
+      .waitlist-form button {
+        width: 100%;
+        min-height: 3rem;
+      }
+
+      .waitlist-form input {
+        text-align: center;
+      }
+
+      .form-note,
+      .form-success {
+        margin-left: 0;
+        text-align: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .fade {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+
+      * {
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header shell" data-i18n-aria-label="navLabel" aria-label="Main navigation">
+    <a class="brand" href="#top" data-i18n-aria-label="homeLabel" aria-label="LunaTale home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      LunaTale
+    </a>
+    <div class="header-actions">
+      <div class="language-switcher" data-i18n-aria-label="languageLabel" aria-label="Choose language">
+        <button type="button" data-language="en" aria-pressed="true">English</button>
+        <button type="button" data-language="pl" aria-pressed="false">Polski</button>
+      </div>
+      <a class="header-link" href="#join" data-i18n="navCta">Join the waitlist</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="hero-copy fade">
+        <p class="eyebrow" data-i18n="heroEyebrow">Made for your family</p>
+        <h1 class="serif" id="hero-title" data-i18n="heroTitle">The bedtime story starring your child.</h1>
+        <p class="hero-subtext" data-i18n="heroSubtitle">Personalized bedtime stories created around your child’s name, interests, favourite people, and preferred language.</p>
+        <p class="hero-support" data-i18n="heroSupport">Turn bedtime into a meaningful nightly ritual with stories uniquely crafted for your child in seconds.</p>
+        <form class="waitlist-form" data-waitlist-form>
+          <label for="hero-email" class="sr-only" data-i18n="emailLabel" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Email address</label>
+          <input id="hero-email" type="email" name="email" autocomplete="email" placeholder="Your email address" data-i18n-placeholder="emailPlaceholder" required>
+          <button type="submit" data-i18n="heroCta">Reserve early access</button>
+        </form>
+        <p class="form-note" data-form-note data-i18n="heroNote">Be among the first families to try LunaTale. No spam.</p>
+        <p class="form-success" data-form-success data-i18n="heroSuccess" role="status">You’re on the list. A more magical bedtime is ahead.</p>
+      </div>
+
+      <div class="hero-art fade" aria-hidden="true">
+        <div class="moon"></div>
+        <span class="star star-one"></span>
+        <span class="star star-two"></span>
+        <span class="star star-three"></span>
+        <div class="book">
+          <div class="page page-left"></div>
+          <div class="page page-right"></div>
+          <span class="story-line"></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about shell fade" id="about" aria-labelledby="about-title">
+      <div>
+        <p class="eyebrow" data-i18n="aboutEyebrow">Made personally</p>
+        <h2 class="section-heading serif" id="about-title" data-i18n="aboutTitle">Every adventure begins with them.</h2>
+      </div>
+      <p class="about-copy" data-i18n="aboutCopy">LunaTale creates personalized bedtime stories that place your child at the center of every adventure. Parents can customize stories using their child’s name, age, interests, favourite topics, and preferred language, then receive unique, age-appropriate stories designed to make bedtime more engaging and meaningful. By combining storytelling with gentle language exposure, LunaTale helps families create enjoyable reading moments while introducing new vocabulary naturally through imaginative bedtime adventures.</p>
+    </section>
+
+    <section class="section how shell" id="how-it-works" aria-labelledby="how-title">
+      <div class="fade">
+        <p class="eyebrow" data-i18n="howEyebrow">Simple from the start</p>
+        <h2 class="section-heading serif" id="how-title" data-i18n="howTitle">How it works.</h2>
+      </div>
+      <div class="how-grid">
+        <article class="step-card fade">
+          <span class="step-number" aria-hidden="true">01</span>
+          <h3 data-i18n="stepOneTitle">Tell us about your child</h3>
+          <p data-i18n="stepOneCopy">Name, age, interests, favourite characters, and favourite topics.</p>
+        </article>
+        <article class="step-card fade">
+          <span class="step-number" aria-hidden="true">02</span>
+          <h3 data-i18n="stepTwoTitle">Choose story preferences</h3>
+          <p data-i18n="stepTwoCopy">Length, mood, language, and an optional educational focus.</p>
+        </article>
+        <article class="step-card fade">
+          <span class="step-number" aria-hidden="true">03</span>
+          <h3 data-i18n="stepThreeTitle">Receive their bedtime story</h3>
+          <p data-i18n="stepThreeCopy">A unique, age-appropriate story generated specifically for your child.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section language shell" id="language" aria-labelledby="language-title">
+      <div class="language-visual fade" aria-hidden="true">
+        <div class="word-card word-one">
+          <strong>moon</strong>
+          <span>księżyc</span>
+        </div>
+        <div class="word-card word-two">
+          <strong>dream</strong>
+          <span>sen</span>
+        </div>
+        <div class="word-card word-three">
+          <strong>friend</strong>
+          <span>przyjaciel</span>
+        </div>
+      </div>
+      <div class="language-copy fade">
+        <p class="eyebrow" data-i18n="languageEyebrow">Words inside wonder</p>
+        <h2 class="section-heading serif" id="language-title" data-i18n="languageTitle">A softer way to introduce a new language.</h2>
+        <p class="section-intro" data-i18n="languageCopy">LunaTale can naturally include simple foreign-language vocabulary inside familiar bedtime adventures. This gentle exposure supports curiosity and can help children encounter new words in a calm, enjoyable context, without turning bedtime into a lesson.</p>
+      </div>
+    </section>
+
+    <section class="section benefits shell" id="benefits" aria-labelledby="benefits-title">
+      <div class="fade">
+        <p class="eyebrow" data-i18n="benefitsEyebrow">Why shared stories matter</p>
+        <h2 class="section-heading serif" id="benefits-title" data-i18n="benefitsTitle">Small rituals, meaningful benefits.</h2>
+        <p class="section-intro" data-i18n="benefitsIntro">Research has consistently shown that shared reading supports children’s language development, strengthens parent-child bonds, and helps build positive bedtime routines. LunaTale combines these proven benefits with personalized storytelling designed around each child.</p>
+      </div>
+      <div class="benefit-grid">
+        <article class="benefit-card fade">
+          <span class="benefit-icon" aria-hidden="true">Aa</span>
+          <h3 data-i18n="benefitOneTitle">Encourages More Reading</h3>
+          <p data-i18n="benefitOneCopy">Personalized stories can make bedtime reading feel fresh and engaging, helping families maintain a regular reading habit.</p>
+        </article>
+        <article class="benefit-card fade">
+          <span class="benefit-icon" aria-hidden="true">♡</span>
+          <h3 data-i18n="benefitTwoTitle">Creates Meaningful Bedtime Moments</h3>
+          <p data-i18n="benefitTwoCopy">Shared reading helps strengthen parent-child connections and creates calm, positive bedtime routines.</p>
+        </article>
+        <article class="benefit-card fade">
+          <span class="benefit-icon" aria-hidden="true">A·Ą</span>
+          <h3 data-i18n="benefitThreeTitle">Gentle Language Exposure</h3>
+          <p data-i18n="benefitThreeCopy">Stories can naturally introduce simple words from another language, allowing children to encounter new vocabulary in a relaxed and enjoyable context.</p>
+        </article>
+      </div>
+      <p class="research-note fade" data-i18n="researchNote">Research from organizations such as the American Academy of Pediatrics suggests that reading aloud from an early age supports language development, literacy skills, and family bonding.</p>
+    </section>
+
+    <section class="section shell fade" id="parents" aria-labelledby="parents-title">
+      <div class="trust-panel">
+        <div>
+          <p class="eyebrow" data-i18n="parentsEyebrow">A thoughtful experience</p>
+          <h2 class="section-heading serif" id="parents-title" data-i18n="parentsTitle">Designed for Parents.</h2>
+          <p class="section-intro" data-i18n="parentsCopy">A calm, simple experience that keeps families in control and bedtime focused on connection.</p>
+        </div>
+        <ul class="trust-list">
+          <li><span class="check" aria-hidden="true">✓</span><span data-i18n="trustAds">No ads</span></li>
+          <li><span class="check" aria-hidden="true">✓</span><span data-i18n="trustCalm">No overstimulating content</span></li>
+          <li><span class="check" aria-hidden="true">✓</span><span data-i18n="trustControl">Parent-controlled experience</span></li>
+          <li><span class="check" aria-hidden="true">✓</span><span data-i18n="trustDesign">Calm bedtime-focused design</span></li>
+          <li><span class="check" aria-hidden="true">✓</span><span data-i18n="trustAge">Age-appropriate stories</span></li>
+          <li><span class="check" aria-hidden="true">✓</span><span data-i18n="trustPrivacy">Privacy-first approach</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="vision shell fade" id="vision" aria-labelledby="vision-title">
+      <div class="vision-inner">
+        <div class="vision-copy">
+          <p class="eyebrow" data-i18n="visionEyebrow">What comes next</p>
+          <h2 class="section-heading serif" id="vision-title" data-i18n="visionTitle">The Future of Bedtime.</h2>
+          <p class="section-intro" data-i18n="visionCopy">We’re building a new kind of bedtime experience where every child becomes the hero of their own stories, strengthening family connection while nurturing imagination and curiosity.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="signup shell fade" id="join" aria-labelledby="signup-title">
+      <div class="signup-panel">
+        <p class="eyebrow" data-i18n="signupEyebrow">The first chapter</p>
+        <h2 class="serif" id="signup-title" data-i18n="signupTitle">Make their next bedtime story truly theirs.</h2>
+        <p data-i18n="signupCopy">Join the waitlist to reserve early access and help shape LunaTale for families like yours.</p>
+        <form class="waitlist-form" data-waitlist-form>
+          <label for="signup-email" class="sr-only" data-i18n="emailLabel" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Email address</label>
+          <input id="signup-email" type="email" name="email" autocomplete="email" placeholder="Your email address" data-i18n-placeholder="emailPlaceholder" required>
+          <button type="submit" data-i18n="signupCta">Join the waitlist</button>
+        </form>
+        <p class="form-note" data-form-note data-i18n="signupNote">Early access updates only. Unsubscribe anytime.</p>
+        <p class="form-success" data-form-success data-i18n="signupSuccess" role="status">You’re on the list. We’re glad your family is here.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer shell">
+    <span>© <span id="year"></span> LunaTale. <span data-i18n="footerCopy">Made for more meaningful bedtimes.</span></span>
+    <nav class="footer-links" data-i18n-aria-label="socialLabel" aria-label="Social links">
+      <a href="#" data-i18n-aria-label="instagramLabel" aria-label="LunaTale on Instagram">Instagram</a>
+      <a href="#" data-i18n-aria-label="pinterestLabel" aria-label="LunaTale on Pinterest">Pinterest</a>
+      <a href="mailto:hello@lunatale.com" data-i18n="emailLink">Email</a>
+    </nav>
+  </footer>
+
+  <script>
+    const translations = {
+      en: {
+        pageTitle: "LunaTale — The bedtime story starring your child",
+        pageDescription: "Personalized bedtime stories starring your child, created around their name, interests, favourite people, and preferred language.",
+        navLabel: "Main navigation",
+        homeLabel: "LunaTale home",
+        languageLabel: "Choose language",
+        navCta: "Join the waitlist",
+        heroEyebrow: "Made for your family",
+        heroTitle: "The bedtime story starring your child.",
+        heroSubtitle: "Personalized bedtime stories created around your child’s name, interests, favourite people, and preferred language.",
+        heroSupport: "Turn bedtime into a meaningful nightly ritual with stories uniquely crafted for your child in seconds.",
+        heroCta: "Reserve early access",
+        heroNote: "Be among the first families to try LunaTale. No spam.",
+        heroSuccess: "You’re on the list. A more magical bedtime is ahead.",
+        emailLabel: "Email address",
+        emailPlaceholder: "Your email address",
+        submittedButton: "You’re in",
+        aboutEyebrow: "Made personally",
+        aboutTitle: "Every adventure begins with them.",
+        aboutCopy: "LunaTale creates personalized bedtime stories that place your child at the center of every adventure. Parents can customize stories using their child’s name, age, interests, favourite topics, and preferred language, then receive unique, age-appropriate stories designed to make bedtime more engaging and meaningful. By combining storytelling with gentle language exposure, LunaTale helps families create enjoyable reading moments while introducing new vocabulary naturally through imaginative bedtime adventures.",
+        howEyebrow: "Simple from the start",
+        howTitle: "How it works.",
+        stepOneTitle: "Tell us about your child",
+        stepOneCopy: "Name, age, interests, favourite characters, and favourite topics.",
+        stepTwoTitle: "Choose story preferences",
+        stepTwoCopy: "Length, mood, language, and an optional educational focus.",
+        stepThreeTitle: "Receive their bedtime story",
+        stepThreeCopy: "A unique, age-appropriate story generated specifically for your child.",
+        languageEyebrow: "Words inside wonder",
+        languageTitle: "A softer way to introduce a new language.",
+        languageCopy: "LunaTale can naturally include simple foreign-language vocabulary inside familiar bedtime adventures. This gentle exposure supports curiosity and can help children encounter new words in a calm, enjoyable context, without turning bedtime into a lesson.",
+        benefitsEyebrow: "Why shared stories matter",
+        benefitsTitle: "Small rituals, meaningful benefits.",
+        benefitsIntro: "Research has consistently shown that shared reading supports children’s language development, strengthens parent-child bonds, and helps build positive bedtime routines. LunaTale combines these proven benefits with personalized storytelling designed around each child.",
+        benefitOneTitle: "Encourages More Reading",
+        benefitOneCopy: "Personalized stories can make bedtime reading feel fresh and engaging, helping families maintain a regular reading habit.",
+        benefitTwoTitle: "Creates Meaningful Bedtime Moments",
+        benefitTwoCopy: "Shared reading helps strengthen parent-child connections and creates calm, positive bedtime routines.",
+        benefitThreeTitle: "Gentle Language Exposure",
+        benefitThreeCopy: "Stories can naturally introduce simple words from another language, allowing children to encounter new vocabulary in a relaxed and enjoyable context.",
+        researchNote: "Research from organizations such as the American Academy of Pediatrics suggests that reading aloud from an early age supports language development, literacy skills, and family bonding.",
+        parentsEyebrow: "A thoughtful experience",
+        parentsTitle: "Designed for Parents.",
+        parentsCopy: "A calm, simple experience that keeps families in control and bedtime focused on connection.",
+        trustAds: "No ads",
+        trustCalm: "No overstimulating content",
+        trustControl: "Parent-controlled experience",
+        trustDesign: "Calm bedtime-focused design",
+        trustAge: "Age-appropriate stories",
+        trustPrivacy: "Privacy-first approach",
+        visionEyebrow: "What comes next",
+        visionTitle: "The Future of Bedtime.",
+        visionCopy: "We’re building a new kind of bedtime experience where every child becomes the hero of their own stories, strengthening family connection while nurturing imagination and curiosity.",
+        signupEyebrow: "The first chapter",
+        signupTitle: "Make their next bedtime story truly theirs.",
+        signupCopy: "Join the waitlist to reserve early access and help shape LunaTale for families like yours.",
+        signupCta: "Join the waitlist",
+        signupNote: "Early access updates only. Unsubscribe anytime.",
+        signupSuccess: "You’re on the list. We’re glad your family is here.",
+        footerCopy: "Made for more meaningful bedtimes.",
+        socialLabel: "Social links",
+        instagramLabel: "LunaTale on Instagram",
+        pinterestLabel: "LunaTale on Pinterest",
+        emailLink: "Email"
+      },
+      pl: {
+        pageTitle: "LunaTale — Bajka na dobranoc, w której główną rolę gra Twoje dziecko",
+        pageDescription: "Spersonalizowane bajki na dobranoc tworzone na podstawie imienia, zainteresowań, bliskich osób i wybranego języka Twojego dziecka.",
+        navLabel: "Główna nawigacja",
+        homeLabel: "Strona główna LunaTale",
+        languageLabel: "Wybierz język",
+        navCta: "Dołącz do listy",
+        heroEyebrow: "Stworzone dla Twojej rodziny",
+        heroTitle: "Bajka na dobranoc, w której główną rolę gra Twoje dziecko.",
+        heroSubtitle: "Spersonalizowane bajki tworzone na podstawie imienia, zainteresowań, bliskich osób i wybranego języka Twojego dziecka.",
+        heroSupport: "Zamień wieczorne czytanie w wyjątkowy rytuał dzięki bajkom tworzonym specjalnie dla Twojego dziecka w kilka chwil.",
+        heroCta: "Zarezerwuj wczesny dostęp",
+        heroNote: "Bądź wśród pierwszych rodzin, które wypróbują LunaTale. Bez spamu.",
+        heroSuccess: "Jesteś na liście. Przed Wami bardziej magiczne wieczory.",
+        emailLabel: "Adres e-mail",
+        emailPlaceholder: "Twój adres e-mail",
+        submittedButton: "Gotowe",
+        aboutEyebrow: "Naprawdę osobiste",
+        aboutTitle: "Każda przygoda zaczyna się od Twojego dziecka.",
+        aboutCopy: "LunaTale tworzy spersonalizowane bajki na dobranoc, w których Twoje dziecko znajduje się w centrum każdej przygody. Rodzice wybierają imię, wiek, zainteresowania, ulubione tematy i język, a następnie otrzymują wyjątkową, dopasowaną do wieku historię, która sprawia, że wieczorne czytanie staje się bardziej angażujące i znaczące. Łącząc opowieści z delikatnym kontaktem z językiem, LunaTale pomaga rodzinom tworzyć przyjemne chwile z książką i naturalnie poznawać nowe słowa podczas pełnych wyobraźni przygód.",
+        howEyebrow: "Prosto od początku",
+        howTitle: "Jak to działa.",
+        stepOneTitle: "Opowiedz nam o swoim dziecku",
+        stepOneCopy: "Imię, wiek, zainteresowania, ulubione postacie i tematy.",
+        stepTwoTitle: "Wybierz charakter bajki",
+        stepTwoCopy: "Długość, nastrój, język i opcjonalny motyw edukacyjny.",
+        stepThreeTitle: "Otrzymaj bajkę na dobranoc",
+        stepThreeCopy: "Wyjątkową, dopasowaną do wieku historię stworzoną specjalnie dla Twojego dziecka.",
+        languageEyebrow: "Słowa ukryte w opowieści",
+        languageTitle: "Łagodniejszy sposób na poznawanie nowego języka.",
+        languageCopy: "LunaTale może naturalnie wplatać proste słowa z języka obcego w znajome przygody na dobranoc. Taki łagodny kontakt wspiera ciekawość i może pomóc dziecku poznawać nowe słownictwo w spokojnym, przyjemnym kontekście, bez zamieniania wieczoru w lekcję.",
+        benefitsEyebrow: "Dlaczego wspólne czytanie ma znaczenie",
+        benefitsTitle: "Małe rytuały, ważne korzyści.",
+        benefitsIntro: "Badania konsekwentnie pokazują, że wspólne czytanie wspiera rozwój językowy dzieci, wzmacnia więź między rodzicem a dzieckiem i pomaga budować dobre wieczorne rytuały. LunaTale łączy te sprawdzone korzyści z opowieściami tworzonymi wokół każdego dziecka.",
+        benefitOneTitle: "Zachęca do częstszego czytania",
+        benefitOneCopy: "Spersonalizowane historie mogą sprawić, że wieczorne czytanie pozostaje świeże i angażujące, pomagając rodzinom utrzymać regularny rytuał.",
+        benefitTwoTitle: "Tworzy ważne chwile przed snem",
+        benefitTwoCopy: "Wspólne czytanie pomaga wzmacniać więź rodzica z dzieckiem i budować spokojną, pozytywną rutynę przed snem.",
+        benefitThreeTitle: "Łagodny kontakt z językiem",
+        benefitThreeCopy: "Bajki mogą naturalnie przedstawiać proste słowa z innego języka, pozwalając dziecku poznawać nowe słownictwo w swobodnym i przyjemnym kontekście.",
+        researchNote: "Badania organizacji takich jak Amerykańska Akademia Pediatrii wskazują, że czytanie na głos od najmłodszych lat wspiera rozwój języka, umiejętności czytania i pisania oraz więzi rodzinne.",
+        parentsEyebrow: "Przemyślane doświadczenie",
+        parentsTitle: "Zaprojektowane dla rodziców.",
+        parentsCopy: "Spokojne i proste doświadczenie, które pozostawia kontrolę w rękach rodziny i pomaga skupić wieczór na bliskości.",
+        trustAds: "Bez reklam",
+        trustCalm: "Bez nadmiernie pobudzających treści",
+        trustControl: "Doświadczenie kontrolowane przez rodzica",
+        trustDesign: "Spokojny design stworzony z myślą o wieczorze",
+        trustAge: "Historie dopasowane do wieku",
+        trustPrivacy: "Prywatność od samego początku",
+        visionEyebrow: "Co przed nami",
+        visionTitle: "Przyszłość wieczornych opowieści.",
+        visionCopy: "Tworzymy nowy rodzaj doświadczenia na dobranoc, w którym każde dziecko staje się bohaterem własnych historii, wzmacniając rodzinne więzi oraz rozwijając wyobraźnię i ciekawość.",
+        signupEyebrow: "Pierwszy rozdział",
+        signupTitle: "Niech kolejna bajka będzie naprawdę ich własna.",
+        signupCopy: "Dołącz do listy, zarezerwuj wczesny dostęp i pomóż nam tworzyć LunaTale dla rodzin takich jak Twoja.",
+        signupCta: "Dołącz do listy",
+        signupNote: "Tylko informacje o wczesnym dostępie. Możesz zrezygnować w każdej chwili.",
+        signupSuccess: "Jesteś na liście. Cieszymy się, że jest z nami Twoja rodzina.",
+        footerCopy: "Stworzone dla bardziej wyjątkowych wieczorów.",
+        socialLabel: "Linki społecznościowe",
+        instagramLabel: "LunaTale na Instagramie",
+        pinterestLabel: "LunaTale na Pintereście",
+        emailLink: "E-mail"
+      }
+    };
+
+    let currentLanguage = localStorage.getItem("lunatale-language") || "en";
+
+    function setLanguage(language) {
+      const copy = translations[language] || translations.en;
+      currentLanguage = language;
+      document.documentElement.lang = language;
+      document.title = copy.pageTitle;
+      document.querySelector('meta[name="description"]').setAttribute("content", copy.pageDescription);
+
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.dataset.i18n;
+        if (copy[key]) element.textContent = copy[key];
+      });
+
+      document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
+        const key = element.dataset.i18nPlaceholder;
+        if (copy[key]) element.placeholder = copy[key];
+      });
+
+      document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+        const key = element.dataset.i18nAriaLabel;
+        if (copy[key]) element.setAttribute("aria-label", copy[key]);
+      });
+
+      document.querySelectorAll("[data-language]").forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.language === language));
+      });
+
+      document.querySelectorAll("[data-waitlist-form]").forEach((form) => {
+        const button = form.querySelector("button");
+        if (button.disabled) button.textContent = copy.submittedButton;
+      });
+
+      localStorage.setItem("lunatale-language", language);
+    }
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    document.querySelectorAll("[data-language]").forEach((button) => {
+      button.addEventListener("click", () => setLanguage(button.dataset.language));
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll(".fade").forEach((element) => observer.observe(element));
+
+    document.querySelectorAll("[data-waitlist-form]").forEach((form) => {
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        const note = form.parentElement.querySelector("[data-form-note]");
+        const success = form.parentElement.querySelector("[data-form-success]");
+        const button = form.querySelector("button");
+        const input = form.querySelector("input");
+
+        button.textContent = translations[currentLanguage].submittedButton;
+        button.disabled = true;
+        input.disabled = true;
+        note.style.display = "none";
+        success.style.display = "block";
+      });
+    });
+
+    setLanguage(currentLanguage);
+  </script>
+</body>
+</html>
