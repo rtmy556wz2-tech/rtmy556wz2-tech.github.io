@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Personalized bedtime stories starring your child, created around their name, interests, favourite people, and preferred language.">
-  <meta name="theme-color" content="#f8f3ea">
-  <title>LunaTale — The bedtime story starring your child</title>
+  <meta name="description" content="MoonTale helps children learn new languages naturally through personalized bedtime stories based on their name, interests, family memories, and photos.">
+  <meta name="theme-color" content="#f7efe3">
+  <title>MoonTale — Language learning through bedtime stories</title>
   <style>
     :root {
-      --ink: #37312d;
+      --ink: #2b2118;
       --muted: #756b63;
-      --cream: #f8f3ea;
-      --paper: #fffdf8;
+      --cream: #f7efe3;
+      --paper: #fff7ed;
       --sand: #e9ddcd;
       --peach: #e7c4a7;
       --rose: #b77e6b;
@@ -205,10 +205,10 @@
     }
 
     h1 {
-      max-width: 10ch;
+      max-width: 12ch;
       margin: 0;
-      font-size: clamp(3.4rem, 11vw, 7rem);
-      line-height: 0.92;
+      font-size: clamp(3rem, 7vw, 4.9rem);
+      line-height: 0.94;
     }
 
     .hero-subtext {
@@ -225,6 +225,31 @@
       color: var(--ink);
       font-size: 0.92rem;
       line-height: 1.65;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.8rem;
+    }
+
+    .hero-actions .waitlist-form {
+      width: min(100%, 24rem);
+      margin-top: 0;
+    }
+
+    .secondary-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 3.4rem;
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid rgba(43, 33, 24, 0.4);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-decoration: none;
     }
 
     .waitlist-form {
@@ -448,6 +473,139 @@
       margin-top: 3rem;
     }
 
+    .photo-story {
+      display: grid;
+      align-items: center;
+      gap: 3rem;
+    }
+
+    .photo-visual {
+      position: relative;
+      overflow: hidden;
+      min-height: 29rem;
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, transparent 55%, rgba(81, 59, 43, 0.12)),
+        linear-gradient(145deg, #ead5bc, #d9b5a4);
+      box-shadow: var(--shadow);
+    }
+
+    .photo-frame {
+      position: absolute;
+      top: 11%;
+      left: 12%;
+      width: 62%;
+      aspect-ratio: 4 / 3;
+      padding: 0.65rem 0.65rem 2.2rem;
+      border-radius: 0.45rem;
+      background: var(--paper);
+      box-shadow: 0 24px 60px rgba(85, 65, 50, 0.18);
+      transform: rotate(-6deg);
+    }
+
+    .photo-scene {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(circle at 75% 22%, #fff5d8 0 8%, transparent 8.5%),
+        linear-gradient(180deg, #cfddd5 0 55%, #cdb58d 55%);
+    }
+
+    .photo-scene::before,
+    .photo-scene::after {
+      position: absolute;
+      bottom: -18%;
+      width: 65%;
+      height: 68%;
+      border-radius: 50% 50% 0 0;
+      content: "";
+      background: #798d75;
+    }
+
+    .photo-scene::before {
+      left: -12%;
+    }
+
+    .photo-scene::after {
+      right: -22%;
+      background: #667b68;
+    }
+
+    .magic-card {
+      position: absolute;
+      right: 8%;
+      bottom: 10%;
+      width: 48%;
+      padding: 1.2rem;
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      border-radius: 1.3rem;
+      background: rgba(255, 247, 237, 0.9);
+      box-shadow: 0 18px 45px rgba(85, 65, 50, 0.13);
+      transform: rotate(4deg);
+    }
+
+    .magic-card span {
+      color: var(--rose);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .magic-card strong {
+      display: block;
+      margin-top: 0.55rem;
+      font-family: Iowan Old Style, Baskerville, serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+      line-height: 1.15;
+    }
+
+    .preview-card {
+      position: relative;
+      overflow: hidden;
+      padding: 3rem 1.5rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .preview-card::after {
+      position: absolute;
+      top: -8rem;
+      right: -7rem;
+      width: 19rem;
+      height: 19rem;
+      border-radius: 50%;
+      content: "";
+      background: rgba(231, 196, 167, 0.24);
+    }
+
+    .preview-copy {
+      position: relative;
+      z-index: 1;
+      max-width: 49rem;
+    }
+
+    .preview-words {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 1.5rem;
+    }
+
+    .preview-words span {
+      padding: 0.55rem 0.8rem;
+      border-radius: 999px;
+      color: #6d4e43;
+      background: rgba(231, 196, 167, 0.35);
+      font-family: Iowan Old Style, Baskerville, serif;
+      font-style: italic;
+    }
+
     .step-card,
     .benefit-card {
       padding: 1.7rem;
@@ -623,6 +781,11 @@
       background: rgba(255, 253, 248, 0.58);
     }
 
+    #why .trust-panel {
+      display: block;
+      margin-top: 3rem;
+    }
+
     .trust-list {
       display: grid;
       gap: 0;
@@ -667,11 +830,11 @@
       align-items: end;
       padding: 2.5rem 1.5rem;
       border-radius: var(--radius);
-      color: #fff9f0;
+      color: var(--ink);
       background:
-        radial-gradient(circle at 75% 24%, rgba(231, 196, 167, 0.5) 0 7%, transparent 7.5%),
-        radial-gradient(circle at 75% 24%, transparent 0 13%, rgba(255, 255, 255, 0.04) 13.2% 13.5%, transparent 13.7%),
-        linear-gradient(145deg, #514953, var(--night));
+        radial-gradient(circle at 75% 24%, rgba(231, 196, 167, 0.6) 0 7%, transparent 7.5%),
+        radial-gradient(circle at 75% 24%, transparent 0 13%, rgba(183, 126, 107, 0.11) 13.2% 13.5%, transparent 13.7%),
+        linear-gradient(145deg, #fff7ed, #ead9c7);
       box-shadow: var(--shadow);
     }
 
@@ -680,7 +843,7 @@
     }
 
     .vision .eyebrow {
-      color: var(--peach);
+      color: var(--rose);
     }
 
     .vision .section-heading {
@@ -688,7 +851,7 @@
     }
 
     .vision .section-intro {
-      color: rgba(255, 249, 240, 0.7);
+      color: var(--muted);
     }
 
     .signup {
@@ -700,8 +863,8 @@
       overflow: hidden;
       padding: 4.5rem 1.25rem;
       border-radius: var(--radius);
-      color: #fff9f0;
-      background: var(--night);
+      color: var(--ink);
+      background: var(--paper);
       box-shadow: var(--shadow);
       text-align: center;
     }
@@ -712,15 +875,15 @@
       right: -10rem;
       width: 26rem;
       height: 26rem;
-      border: 1px solid rgba(255, 250, 244, 0.12);
+      border: 1px solid rgba(183, 126, 107, 0.16);
       border-radius: 50%;
       content: "";
-      box-shadow: 0 0 0 3rem rgba(255, 250, 244, 0.025), 0 0 0 7rem rgba(255, 250, 244, 0.02);
+      box-shadow: 0 0 0 3rem rgba(231, 196, 167, 0.08), 0 0 0 7rem rgba(231, 196, 167, 0.05);
     }
 
     .signup-panel .eyebrow {
       position: relative;
-      color: var(--peach);
+      color: var(--rose);
     }
 
     .signup-panel h2 {
@@ -735,7 +898,7 @@
       position: relative;
       max-width: 34rem;
       margin: 1.2rem auto 0;
-      color: rgba(255, 249, 240, 0.7);
+      color: var(--muted);
       line-height: 1.7;
     }
 
@@ -747,16 +910,16 @@
     .signup-panel .form-note,
     .signup-panel .form-success {
       position: relative;
-      color: rgba(255, 249, 240, 0.64);
+      color: var(--muted);
       text-align: center;
     }
 
     .signup-panel .form-success {
-      color: #f0d5c2;
+      color: #72594f;
     }
 
     .signup-panel .waitlist-form button {
-      background: var(--rose);
+      background: var(--night);
     }
 
     .footer {
@@ -806,8 +969,16 @@
         grid-template-columns: repeat(3, 1fr);
       }
 
+      .how-grid.four-steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
       .language {
         grid-template-columns: 0.9fr 1.1fr;
+      }
+
+      .photo-story {
+        grid-template-columns: 1fr 1fr;
       }
 
       .trust-panel {
@@ -921,37 +1092,92 @@
         transition-duration: 0.01ms !important;
       }
     }
+
+    @media print {
+      body {
+        background: #f7efe3 !important;
+        color: #2b2118 !important;
+      }
+
+      .box,
+      .step-card,
+      .benefit-card,
+      .preview-card,
+      .trust-panel,
+      .signup-panel,
+      .vision-inner {
+        background: #fff7ed !important;
+        color: #2b2118 !important;
+        box-shadow: none !important;
+      }
+
+      .site-header,
+      .hero-art,
+      .photo-visual,
+      .language-switcher,
+      .header-link,
+      .waitlist-form,
+      .form-note,
+      .footer-links {
+        display: none !important;
+      }
+
+      .fade {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .section,
+      .signup {
+        padding: 2.5rem 0;
+      }
+
+      .step-card,
+      .benefit-card,
+      .preview-card,
+      .trust-panel,
+      .vision-inner,
+      .signup-panel {
+        break-inside: avoid;
+      }
+    }
   </style>
 </head>
 <body>
   <header class="site-header shell" data-i18n-aria-label="navLabel" aria-label="Main navigation">
-    <a class="brand" href="#top" data-i18n-aria-label="homeLabel" aria-label="LunaTale home">
+    <a class="brand" href="#top" data-i18n-aria-label="homeLabel" aria-label="MoonTale home">
       <span class="brand-mark" aria-hidden="true"></span>
-      LunaTale
+      MoonTale
     </a>
     <div class="header-actions">
       <div class="language-switcher" data-i18n-aria-label="languageLabel" aria-label="Choose language">
         <button type="button" data-language="en" aria-pressed="true">English</button>
         <button type="button" data-language="pl" aria-pressed="false">Polski</button>
       </div>
-      <a class="header-link" href="#join" data-i18n="navCta">Join the waitlist</a>
+      <a class="header-link" href="#join" data-i18n="navCta">Get Early Access</a>
     </div>
   </header>
 
   <main id="top">
     <section class="hero shell" aria-labelledby="hero-title">
       <div class="hero-copy fade">
-        <p class="eyebrow" data-i18n="heroEyebrow">Made for your family</p>
-        <h1 class="serif" id="hero-title" data-i18n="heroTitle">The bedtime story starring your child.</h1>
-        <p class="hero-subtext" data-i18n="heroSubtitle">Personalized bedtime stories created around your child’s name, interests, favourite people, and preferred language.</p>
-        <p class="hero-support" data-i18n="heroSupport">Turn bedtime into a meaningful nightly ritual with stories uniquely crafted for your child in seconds.</p>
-        <form class="waitlist-form" data-waitlist-form>
-          <label for="hero-email" class="sr-only" data-i18n="emailLabel" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Email address</label>
-          <input id="hero-email" type="email" name="email" autocomplete="email" placeholder="Your email address" data-i18n-placeholder="emailPlaceholder" required>
-          <button type="submit" data-i18n="heroCta">Reserve early access</button>
-        </form>
-        <p class="form-note" data-form-note data-i18n="heroNote">Be among the first families to try LunaTale. No spam.</p>
-        <p class="form-success" data-form-success data-i18n="heroSuccess" role="status">You’re on the list. A more magical bedtime is ahead.</p>
+        <p class="eyebrow" data-i18n="heroEyebrow">Language learning, made magical</p>
+        <h1 class="serif" id="hero-title" data-i18n="heroTitle">Help your child learn a new language through bedtime stories they love.</h1>
+        <p class="hero-subtext" data-i18n="heroSubtitle">MoonTale creates personalized bedtime adventures using your child’s name, interests, favourite themes, and uploaded family photos while gently introducing new vocabulary in another language.</p>
+        <div class="hero-actions">
+          <form class="waitlist-form" data-waitlist-form>
+            <label for="hero-email" class="sr-only" data-i18n="emailLabel" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Email address</label>
+            <input id="hero-email" type="email" name="email" autocomplete="email" placeholder="Your email address" data-i18n-placeholder="emailPlaceholder" required>
+            <button type="submit" data-i18n="heroCta">Get Early Access</button>
+          </form>
+          <a class="secondary-cta" href="#sample" data-i18n="secondaryCta">See a Sample Story</a>
+        </div>
+        <p class="form-note" data-form-note data-i18n="heroNote">Be among the first families to try MoonTale. No spam.</p>
+        <p class="form-success" data-form-success data-i18n="heroSuccess" role="status">You’re on the list. Welcome to MoonTale.</p>
       </div>
 
       <div class="hero-art fade" aria-hidden="true">
@@ -969,272 +1195,253 @@
 
     <section class="section about shell fade" id="about" aria-labelledby="about-title">
       <div>
-        <p class="eyebrow" data-i18n="aboutEyebrow">Made personally</p>
-        <h2 class="section-heading serif" id="about-title" data-i18n="aboutTitle">Every adventure begins with them.</h2>
+        <p class="eyebrow" data-i18n="aboutEyebrow">Stories with a purpose</p>
+        <h2 class="section-heading serif" id="about-title" data-i18n="aboutTitle">What is MoonTale?</h2>
       </div>
-      <p class="about-copy" data-i18n="aboutCopy">LunaTale creates personalized bedtime stories that place your child at the center of every adventure. Parents can customize stories using their child’s name, age, interests, favourite topics, and preferred language, then receive unique, age-appropriate stories designed to make bedtime more engaging and meaningful. By combining storytelling with gentle language exposure, LunaTale helps families create enjoyable reading moments while introducing new vocabulary naturally through imaginative bedtime adventures.</p>
+      <p class="about-copy" data-i18n="aboutCopy">MoonTale is a personalized bedtime storytelling platform that helps children discover new languages naturally. Parents can create stories based on their child’s name, age, interests, learning goals, and even uploaded family photos. Instead of making language learning feel like homework, MoonTale turns it into a calm, magical bedtime routine.</p>
     </section>
 
-    <section class="section how shell" id="how-it-works" aria-labelledby="how-title">
+    <section class="section benefits shell" id="why" aria-labelledby="why-title">
       <div class="fade">
-        <p class="eyebrow" data-i18n="howEyebrow">Simple from the start</p>
-        <h2 class="section-heading serif" id="how-title" data-i18n="howTitle">How it works.</h2>
+        <p class="eyebrow" data-i18n="whyEyebrow">Built around real family life</p>
+        <h2 class="section-heading serif" id="why-title" data-i18n="whyTitle">Why should parents care?</h2>
+        <p class="section-intro" data-i18n="whyIntro">MoonTale brings language learning into a moment families already share, making new vocabulary feel meaningful, familiar, and pressure-free.</p>
       </div>
-      <div class="how-grid">
-        <article class="step-card fade">
-          <span class="step-number" aria-hidden="true">01</span>
-          <h3 data-i18n="stepOneTitle">Tell us about your child</h3>
-          <p data-i18n="stepOneCopy">Name, age, interests, favourite characters, and favourite topics.</p>
-        </article>
-        <article class="step-card fade">
-          <span class="step-number" aria-hidden="true">02</span>
-          <h3 data-i18n="stepTwoTitle">Choose story preferences</h3>
-          <p data-i18n="stepTwoCopy">Length, mood, language, and an optional educational focus.</p>
-        </article>
-        <article class="step-card fade">
-          <span class="step-number" aria-hidden="true">03</span>
-          <h3 data-i18n="stepThreeTitle">Receive their bedtime story</h3>
-          <p data-i18n="stepThreeCopy">A unique, age-appropriate story generated specifically for your child.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section language shell" id="language" aria-labelledby="language-title">
-      <div class="language-visual fade" aria-hidden="true">
-        <div class="word-card word-one">
-          <strong>moon</strong>
-          <span>księżyc</span>
-        </div>
-        <div class="word-card word-two">
-          <strong>dream</strong>
-          <span>sen</span>
-        </div>
-        <div class="word-card word-three">
-          <strong>friend</strong>
-          <span>przyjaciel</span>
-        </div>
-      </div>
-      <div class="language-copy fade">
-        <p class="eyebrow" data-i18n="languageEyebrow">Words inside wonder</p>
-        <h2 class="section-heading serif" id="language-title" data-i18n="languageTitle">A softer way to introduce a new language.</h2>
-        <p class="section-intro" data-i18n="languageCopy">LunaTale can naturally include simple foreign-language vocabulary inside familiar bedtime adventures. This gentle exposure supports curiosity and can help children encounter new words in a calm, enjoyable context, without turning bedtime into a lesson.</p>
-      </div>
-    </section>
-
-    <section class="section benefits shell" id="benefits" aria-labelledby="benefits-title">
-      <div class="fade">
-        <p class="eyebrow" data-i18n="benefitsEyebrow">Why shared stories matter</p>
-        <h2 class="section-heading serif" id="benefits-title" data-i18n="benefitsTitle">Small rituals, meaningful benefits.</h2>
-        <p class="section-intro" data-i18n="benefitsIntro">Research has consistently shown that shared reading supports children’s language development, strengthens parent-child bonds, and helps build positive bedtime routines. LunaTale combines these proven benefits with personalized storytelling designed around each child.</p>
-      </div>
-      <div class="benefit-grid">
-        <article class="benefit-card fade">
-          <span class="benefit-icon" aria-hidden="true">Aa</span>
-          <h3 data-i18n="benefitOneTitle">Encourages More Reading</h3>
-          <p data-i18n="benefitOneCopy">Personalized stories can make bedtime reading feel fresh and engaging, helping families maintain a regular reading habit.</p>
-        </article>
-        <article class="benefit-card fade">
-          <span class="benefit-icon" aria-hidden="true">♡</span>
-          <h3 data-i18n="benefitTwoTitle">Creates Meaningful Bedtime Moments</h3>
-          <p data-i18n="benefitTwoCopy">Shared reading helps strengthen parent-child connections and creates calm, positive bedtime routines.</p>
-        </article>
-        <article class="benefit-card fade">
-          <span class="benefit-icon" aria-hidden="true">A·Ą</span>
-          <h3 data-i18n="benefitThreeTitle">Gentle Language Exposure</h3>
-          <p data-i18n="benefitThreeCopy">Stories can naturally introduce simple words from another language, allowing children to encounter new vocabulary in a relaxed and enjoyable context.</p>
-        </article>
-      </div>
-      <p class="research-note fade" data-i18n="researchNote">Research from organizations such as the American Academy of Pediatrics suggests that reading aloud from an early age supports language development, literacy skills, and family bonding.</p>
-    </section>
-
-    <section class="section shell fade" id="parents" aria-labelledby="parents-title">
-      <div class="trust-panel">
-        <div>
-          <p class="eyebrow" data-i18n="parentsEyebrow">A thoughtful experience</p>
-          <h2 class="section-heading serif" id="parents-title" data-i18n="parentsTitle">Designed for Parents.</h2>
-          <p class="section-intro" data-i18n="parentsCopy">A calm, simple experience that keeps families in control and bedtime focused on connection.</p>
-        </div>
+      <div class="trust-panel fade">
         <ul class="trust-list">
-          <li><span class="check" aria-hidden="true">✓</span><span data-i18n="trustAds">No ads</span></li>
-          <li><span class="check" aria-hidden="true">✓</span><span data-i18n="trustCalm">No overstimulating content</span></li>
-          <li><span class="check" aria-hidden="true">✓</span><span data-i18n="trustControl">Parent-controlled experience</span></li>
-          <li><span class="check" aria-hidden="true">✓</span><span data-i18n="trustDesign">Calm bedtime-focused design</span></li>
-          <li><span class="check" aria-hidden="true">✓</span><span data-i18n="trustAge">Age-appropriate stories</span></li>
-          <li><span class="check" aria-hidden="true">✓</span><span data-i18n="trustPrivacy">Privacy-first approach</span></li>
+          <li><span class="check" aria-hidden="true">✓</span><span data-i18n="whyOne">Children learn better when new words appear in meaningful stories.</span></li>
+          <li><span class="check" aria-hidden="true">✓</span><span data-i18n="whyTwo">Bedtime is already a repeated family habit.</span></li>
+          <li><span class="check" aria-hidden="true">✓</span><span data-i18n="whyThree">Stories introduce vocabulary gently, without pressure or exercises.</span></li>
+          <li><span class="check" aria-hidden="true">✓</span><span data-i18n="whyFour">Personalized stories help children feel more engaged.</span></li>
+          <li><span class="check" aria-hidden="true">✓</span><span data-i18n="whyFive">Uploaded photos turn real family moments into magical stories.</span></li>
+          <li><span class="check" aria-hidden="true">✓</span><span data-i18n="whySix">Parents support language learning while building a calm bedtime routine.</span></li>
         </ul>
       </div>
     </section>
 
+    <section class="section how shell" id="how-it-works" aria-labelledby="how-title">
+      <div class="fade">
+        <p class="eyebrow" data-i18n="howEyebrow">From your family to their story</p>
+        <h2 class="section-heading serif" id="how-title" data-i18n="howTitle">How it works.</h2>
+      </div>
+      <div class="how-grid four-steps">
+        <article class="step-card fade">
+          <span class="step-number" aria-hidden="true">01</span>
+          <h3 data-i18n="stepOneTitle">Add your child’s profile</h3>
+          <p data-i18n="stepOneCopy">Enter their name, age, interests, and favourite themes.</p>
+        </article>
+        <article class="step-card fade">
+          <span class="step-number" aria-hidden="true">02</span>
+          <h3 data-i18n="stepTwoTitle">Choose a language goal</h3>
+          <p data-i18n="stepTwoCopy">Choose a language such as English, Spanish, French, German, or Polish.</p>
+        </article>
+        <article class="step-card fade">
+          <span class="step-number" aria-hidden="true">03</span>
+          <h3 data-i18n="stepThreeTitle">Upload a family photo or memory</h3>
+          <p data-i18n="stepThreeCopy">Add a trip, birthday, pet, toy, or family moment to inspire the adventure.</p>
+        </article>
+        <article class="step-card fade">
+          <span class="step-number" aria-hidden="true">04</span>
+          <h3 data-i18n="stepFourTitle">Receive a personalized story</h3>
+          <p data-i18n="stepFourCopy">Get a calm story with familiar details, gentle vocabulary, and a relaxing ending.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section photo-story shell" id="photos" aria-labelledby="photos-title">
+      <div class="photo-visual fade box" aria-hidden="true">
+        <div class="photo-frame"><div class="photo-scene"></div></div>
+        <div class="magic-card">
+          <span data-i18n="photoMagicLabel">A family memory becomes</span>
+          <strong data-i18n="photoMagicTitle">The Secret Island Adventure</strong>
+        </div>
+      </div>
+      <div class="fade">
+        <p class="eyebrow" data-i18n="photoEyebrow">Photo to story</p>
+        <h2 class="section-heading serif" id="photos-title" data-i18n="photoTitle">Turn family photos into magical bedtime stories.</h2>
+        <p class="section-intro" data-i18n="photoCopy">MoonTale can transform uploaded family photos into personalized adventures. A beach photo can become a pirate journey, a picture with a pet can become a forest quest, and a birthday memory can become a magical celebration story. This makes every story feel personal, emotional, and unique to the family.</p>
+      </div>
+    </section>
+
+    <section class="section shell fade" id="sample" aria-labelledby="sample-title">
+      <div class="preview-card box">
+        <div class="preview-copy">
+          <p class="eyebrow" data-i18n="sampleEyebrow">A glimpse inside</p>
+          <h2 class="section-heading serif" id="sample-title" data-i18n="sampleTitle">Tonight’s story preview.</h2>
+          <p class="section-intro" data-i18n="sampleCopy">Tonight, Emma and her teddy Milo travel through a sleepy moon forest while learning the Spanish words luna, estrella, and bosque. The words appear naturally in the story, with gentle repetition and simple meaning from context.</p>
+          <div class="preview-words" aria-hidden="true">
+            <span>luna · moon</span>
+            <span>estrella · star</span>
+            <span>bosque · forest</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="vision shell fade" id="vision" aria-labelledby="vision-title">
-      <div class="vision-inner">
+      <div class="vision-inner box">
         <div class="vision-copy">
-          <p class="eyebrow" data-i18n="visionEyebrow">What comes next</p>
-          <h2 class="section-heading serif" id="vision-title" data-i18n="visionTitle">The Future of Bedtime.</h2>
-          <p class="section-intro" data-i18n="visionCopy">We’re building a new kind of bedtime experience where every child becomes the hero of their own stories, strengthening family connection while nurturing imagination and curiosity.</p>
+          <p class="eyebrow" data-i18n="visionEyebrow">Our purpose</p>
+          <h2 class="section-heading serif" id="vision-title" data-i18n="visionTitle">Brand Mission.</h2>
+          <p class="section-intro" data-i18n="visionCopy">MoonTale’s mission is to help families make language learning feel natural, emotional, and joyful. We believe children should discover new words through stories, imagination, and meaningful family moments — not only through lessons, apps, or flashcards.</p>
         </div>
       </div>
     </section>
 
     <section class="signup shell fade" id="join" aria-labelledby="signup-title">
-      <div class="signup-panel">
-        <p class="eyebrow" data-i18n="signupEyebrow">The first chapter</p>
-        <h2 class="serif" id="signup-title" data-i18n="signupTitle">Make their next bedtime story truly theirs.</h2>
-        <p data-i18n="signupCopy">Join the waitlist to reserve early access and help shape LunaTale for families like yours.</p>
+      <div class="signup-panel box">
+        <p class="eyebrow" data-i18n="signupEyebrow">Build it with us</p>
+        <h2 class="serif" id="signup-title" data-i18n="signupTitle">Help shape MoonTale.</h2>
+        <p data-i18n="signupCopy">MoonTale is currently in early development. Join the early access list to receive updates, test the first version, and help build a better way for children to learn languages through bedtime stories.</p>
         <form class="waitlist-form" data-waitlist-form>
           <label for="signup-email" class="sr-only" data-i18n="emailLabel" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;">Email address</label>
           <input id="signup-email" type="email" name="email" autocomplete="email" placeholder="Your email address" data-i18n-placeholder="emailPlaceholder" required>
-          <button type="submit" data-i18n="signupCta">Join the waitlist</button>
+          <button type="submit" data-i18n="signupCta">Join Early Access</button>
         </form>
         <p class="form-note" data-form-note data-i18n="signupNote">Early access updates only. Unsubscribe anytime.</p>
-        <p class="form-success" data-form-success data-i18n="signupSuccess" role="status">You’re on the list. We’re glad your family is here.</p>
+        <p class="form-success" data-form-success data-i18n="signupSuccess" role="status">You’re on the early access list. Thank you for helping shape MoonTale.</p>
       </div>
     </section>
   </main>
 
   <footer class="footer shell">
-    <span>© <span id="year"></span> LunaTale. <span data-i18n="footerCopy">Made for more meaningful bedtimes.</span></span>
+    <span>© <span id="year"></span> MoonTale. <span data-i18n="footerCopy">Language learning through stories families love.</span></span>
     <nav class="footer-links" data-i18n-aria-label="socialLabel" aria-label="Social links">
-      <a href="#" data-i18n-aria-label="instagramLabel" aria-label="LunaTale on Instagram">Instagram</a>
-      <a href="#" data-i18n-aria-label="pinterestLabel" aria-label="LunaTale on Pinterest">Pinterest</a>
-      <a href="mailto:hello@lunatale.com" data-i18n="emailLink">Email</a>
+      <a href="#" data-i18n-aria-label="instagramLabel" aria-label="MoonTale on Instagram">Instagram</a>
+      <a href="#" data-i18n-aria-label="pinterestLabel" aria-label="MoonTale on Pinterest">Pinterest</a>
+      <a href="mailto:hello@moontale.com" data-i18n="emailLink">Email</a>
     </nav>
   </footer>
 
   <script>
     const translations = {
       en: {
-        pageTitle: "LunaTale — The bedtime story starring your child",
-        pageDescription: "Personalized bedtime stories starring your child, created around their name, interests, favourite people, and preferred language.",
+        pageTitle: "MoonTale — Language learning through bedtime stories",
+        pageDescription: "MoonTale helps children learn new languages naturally through personalized bedtime stories based on their name, interests, family memories, and photos.",
         navLabel: "Main navigation",
-        homeLabel: "LunaTale home",
+        homeLabel: "MoonTale home",
         languageLabel: "Choose language",
-        navCta: "Join the waitlist",
-        heroEyebrow: "Made for your family",
-        heroTitle: "The bedtime story starring your child.",
-        heroSubtitle: "Personalized bedtime stories created around your child’s name, interests, favourite people, and preferred language.",
-        heroSupport: "Turn bedtime into a meaningful nightly ritual with stories uniquely crafted for your child in seconds.",
-        heroCta: "Reserve early access",
-        heroNote: "Be among the first families to try LunaTale. No spam.",
-        heroSuccess: "You’re on the list. A more magical bedtime is ahead.",
+        navCta: "Get Early Access",
+        heroEyebrow: "Language learning, made magical",
+        heroTitle: "Help your child learn a new language through bedtime stories they love.",
+        heroSubtitle: "MoonTale creates personalized bedtime adventures using your child’s name, interests, favourite themes, and uploaded family photos while gently introducing new vocabulary in another language.",
+        heroCta: "Get Early Access",
+        secondaryCta: "See a Sample Story",
+        heroNote: "Be among the first families to try MoonTale. No spam.",
+        heroSuccess: "You’re on the list. Welcome to MoonTale.",
         emailLabel: "Email address",
         emailPlaceholder: "Your email address",
         submittedButton: "You’re in",
-        aboutEyebrow: "Made personally",
-        aboutTitle: "Every adventure begins with them.",
-        aboutCopy: "LunaTale creates personalized bedtime stories that place your child at the center of every adventure. Parents can customize stories using their child’s name, age, interests, favourite topics, and preferred language, then receive unique, age-appropriate stories designed to make bedtime more engaging and meaningful. By combining storytelling with gentle language exposure, LunaTale helps families create enjoyable reading moments while introducing new vocabulary naturally through imaginative bedtime adventures.",
-        howEyebrow: "Simple from the start",
+        aboutEyebrow: "Stories with a purpose",
+        aboutTitle: "What is MoonTale?",
+        aboutCopy: "MoonTale is a personalized bedtime storytelling platform that helps children discover new languages naturally. Parents can create stories based on their child’s name, age, interests, learning goals, and even uploaded family photos. Instead of making language learning feel like homework, MoonTale turns it into a calm, magical bedtime routine.",
+        whyEyebrow: "Built around real family life",
+        whyTitle: "Why should parents care?",
+        whyIntro: "MoonTale brings language learning into a moment families already share, making new vocabulary feel meaningful, familiar, and pressure-free.",
+        whyOne: "Children learn better when new words appear in meaningful stories.",
+        whyTwo: "Bedtime is already a repeated family habit.",
+        whyThree: "Stories introduce vocabulary gently, without pressure or exercises.",
+        whyFour: "Personalized stories help children feel more engaged.",
+        whyFive: "Uploaded photos turn real family moments into magical stories.",
+        whySix: "Parents support language learning while building a calm bedtime routine.",
+        howEyebrow: "From your family to their story",
         howTitle: "How it works.",
-        stepOneTitle: "Tell us about your child",
-        stepOneCopy: "Name, age, interests, favourite characters, and favourite topics.",
-        stepTwoTitle: "Choose story preferences",
-        stepTwoCopy: "Length, mood, language, and an optional educational focus.",
-        stepThreeTitle: "Receive their bedtime story",
-        stepThreeCopy: "A unique, age-appropriate story generated specifically for your child.",
-        languageEyebrow: "Words inside wonder",
-        languageTitle: "A softer way to introduce a new language.",
-        languageCopy: "LunaTale can naturally include simple foreign-language vocabulary inside familiar bedtime adventures. This gentle exposure supports curiosity and can help children encounter new words in a calm, enjoyable context, without turning bedtime into a lesson.",
-        benefitsEyebrow: "Why shared stories matter",
-        benefitsTitle: "Small rituals, meaningful benefits.",
-        benefitsIntro: "Research has consistently shown that shared reading supports children’s language development, strengthens parent-child bonds, and helps build positive bedtime routines. LunaTale combines these proven benefits with personalized storytelling designed around each child.",
-        benefitOneTitle: "Encourages More Reading",
-        benefitOneCopy: "Personalized stories can make bedtime reading feel fresh and engaging, helping families maintain a regular reading habit.",
-        benefitTwoTitle: "Creates Meaningful Bedtime Moments",
-        benefitTwoCopy: "Shared reading helps strengthen parent-child connections and creates calm, positive bedtime routines.",
-        benefitThreeTitle: "Gentle Language Exposure",
-        benefitThreeCopy: "Stories can naturally introduce simple words from another language, allowing children to encounter new vocabulary in a relaxed and enjoyable context.",
-        researchNote: "Research from organizations such as the American Academy of Pediatrics suggests that reading aloud from an early age supports language development, literacy skills, and family bonding.",
-        parentsEyebrow: "A thoughtful experience",
-        parentsTitle: "Designed for Parents.",
-        parentsCopy: "A calm, simple experience that keeps families in control and bedtime focused on connection.",
-        trustAds: "No ads",
-        trustCalm: "No overstimulating content",
-        trustControl: "Parent-controlled experience",
-        trustDesign: "Calm bedtime-focused design",
-        trustAge: "Age-appropriate stories",
-        trustPrivacy: "Privacy-first approach",
-        visionEyebrow: "What comes next",
-        visionTitle: "The Future of Bedtime.",
-        visionCopy: "We’re building a new kind of bedtime experience where every child becomes the hero of their own stories, strengthening family connection while nurturing imagination and curiosity.",
-        signupEyebrow: "The first chapter",
-        signupTitle: "Make their next bedtime story truly theirs.",
-        signupCopy: "Join the waitlist to reserve early access and help shape LunaTale for families like yours.",
-        signupCta: "Join the waitlist",
+        stepOneTitle: "Add your child’s profile",
+        stepOneCopy: "Enter their name, age, interests, and favourite themes.",
+        stepTwoTitle: "Choose a language goal",
+        stepTwoCopy: "Choose a language such as English, Spanish, French, German, or Polish.",
+        stepThreeTitle: "Upload a family photo or memory",
+        stepThreeCopy: "Add a trip, birthday, pet, toy, or family moment to inspire the adventure.",
+        stepFourTitle: "Receive a personalized story",
+        stepFourCopy: "Get a calm story with familiar details, gentle vocabulary, and a relaxing ending.",
+        photoMagicLabel: "A family memory becomes",
+        photoMagicTitle: "The Secret Island Adventure",
+        photoEyebrow: "Photo to story",
+        photoTitle: "Turn family photos into magical bedtime stories.",
+        photoCopy: "MoonTale can transform uploaded family photos into personalized adventures. A beach photo can become a pirate journey, a picture with a pet can become a forest quest, and a birthday memory can become a magical celebration story. This makes every story feel personal, emotional, and unique to the family.",
+        sampleEyebrow: "A glimpse inside",
+        sampleTitle: "Tonight’s story preview.",
+        sampleCopy: "Tonight, Emma and her teddy Milo travel through a sleepy moon forest while learning the Spanish words luna, estrella, and bosque. The words appear naturally in the story, with gentle repetition and simple meaning from context.",
+        visionEyebrow: "Our purpose",
+        visionTitle: "Brand Mission.",
+        visionCopy: "MoonTale’s mission is to help families make language learning feel natural, emotional, and joyful. We believe children should discover new words through stories, imagination, and meaningful family moments — not only through lessons, apps, or flashcards.",
+        signupEyebrow: "Build it with us",
+        signupTitle: "Help shape MoonTale.",
+        signupCopy: "MoonTale is currently in early development. Join the early access list to receive updates, test the first version, and help build a better way for children to learn languages through bedtime stories.",
+        signupCta: "Join Early Access",
         signupNote: "Early access updates only. Unsubscribe anytime.",
-        signupSuccess: "You’re on the list. We’re glad your family is here.",
-        footerCopy: "Made for more meaningful bedtimes.",
+        signupSuccess: "You’re on the early access list. Thank you for helping shape MoonTale.",
+        footerCopy: "Language learning through stories families love.",
         socialLabel: "Social links",
-        instagramLabel: "LunaTale on Instagram",
-        pinterestLabel: "LunaTale on Pinterest",
+        instagramLabel: "MoonTale on Instagram",
+        pinterestLabel: "MoonTale on Pinterest",
         emailLink: "Email"
       },
       pl: {
-        pageTitle: "LunaTale — Bajka na dobranoc, w której główną rolę gra Twoje dziecko",
-        pageDescription: "Spersonalizowane bajki na dobranoc tworzone na podstawie imienia, zainteresowań, bliskich osób i wybranego języka Twojego dziecka.",
+        pageTitle: "MoonTale — Nauka języków przez bajki na dobranoc",
+        pageDescription: "MoonTale pomaga dzieciom naturalnie poznawać nowe języki dzięki spersonalizowanym bajkom opartym na ich imieniu, zainteresowaniach, rodzinnych wspomnieniach i zdjęciach.",
         navLabel: "Główna nawigacja",
-        homeLabel: "Strona główna LunaTale",
+        homeLabel: "Strona główna MoonTale",
         languageLabel: "Wybierz język",
-        navCta: "Dołącz do listy",
-        heroEyebrow: "Stworzone dla Twojej rodziny",
-        heroTitle: "Bajka na dobranoc, w której główną rolę gra Twoje dziecko.",
-        heroSubtitle: "Spersonalizowane bajki tworzone na podstawie imienia, zainteresowań, bliskich osób i wybranego języka Twojego dziecka.",
-        heroSupport: "Zamień wieczorne czytanie w wyjątkowy rytuał dzięki bajkom tworzonym specjalnie dla Twojego dziecka w kilka chwil.",
-        heroCta: "Zarezerwuj wczesny dostęp",
-        heroNote: "Bądź wśród pierwszych rodzin, które wypróbują LunaTale. Bez spamu.",
-        heroSuccess: "Jesteś na liście. Przed Wami bardziej magiczne wieczory.",
+        navCta: "Uzyskaj wczesny dostęp",
+        heroEyebrow: "Magiczna nauka języka",
+        heroTitle: "Pomóż dziecku poznawać nowy język przez bajki na dobranoc, które pokocha.",
+        heroSubtitle: "MoonTale tworzy spersonalizowane przygody na podstawie imienia, zainteresowań, ulubionych tematów i rodzinnych zdjęć dziecka, delikatnie wprowadzając słownictwo w nowym języku.",
+        heroCta: "Uzyskaj wczesny dostęp",
+        secondaryCta: "Zobacz przykładową bajkę",
+        heroNote: "Bądź wśród pierwszych rodzin, które wypróbują MoonTale. Bez spamu.",
+        heroSuccess: "Jesteś na liście. Witamy w MoonTale.",
         emailLabel: "Adres e-mail",
         emailPlaceholder: "Twój adres e-mail",
         submittedButton: "Gotowe",
-        aboutEyebrow: "Naprawdę osobiste",
-        aboutTitle: "Każda przygoda zaczyna się od Twojego dziecka.",
-        aboutCopy: "LunaTale tworzy spersonalizowane bajki na dobranoc, w których Twoje dziecko znajduje się w centrum każdej przygody. Rodzice wybierają imię, wiek, zainteresowania, ulubione tematy i język, a następnie otrzymują wyjątkową, dopasowaną do wieku historię, która sprawia, że wieczorne czytanie staje się bardziej angażujące i znaczące. Łącząc opowieści z delikatnym kontaktem z językiem, LunaTale pomaga rodzinom tworzyć przyjemne chwile z książką i naturalnie poznawać nowe słowa podczas pełnych wyobraźni przygód.",
-        howEyebrow: "Prosto od początku",
+        aboutEyebrow: "Opowieści z celem",
+        aboutTitle: "Czym jest MoonTale?",
+        aboutCopy: "MoonTale to platforma spersonalizowanych bajek na dobranoc, która pomaga dzieciom naturalnie odkrywać nowe języki. Rodzice mogą tworzyć historie na podstawie imienia, wieku, zainteresowań, celów językowych, a nawet rodzinnych zdjęć dziecka. Zamiast zamieniać naukę języka w pracę domową, MoonTale wplata ją w spokojny, magiczny rytuał przed snem.",
+        whyEyebrow: "Dopasowane do życia rodziny",
+        whyTitle: "Dlaczego warto?",
+        whyIntro: "MoonTale przenosi naukę języka do chwili, którą rodziny już dzielą, dzięki czemu nowe słowa stają się znaczące, znajome i wolne od presji.",
+        whyOne: "Dzieci lepiej uczą się nowych słów, gdy pojawiają się one w znaczących opowieściach.",
+        whyTwo: "Wieczorne czytanie jest już powtarzalnym rodzinnym rytuałem.",
+        whyThree: "Bajki wprowadzają słownictwo łagodnie, bez presji i ćwiczeń.",
+        whyFour: "Spersonalizowane historie bardziej angażują dzieci.",
+        whyFive: "Przesłane zdjęcia zmieniają prawdziwe rodzinne chwile w magiczne opowieści.",
+        whySix: "Rodzice wspierają naukę języka, budując jednocześnie spokojną rutynę przed snem.",
+        howEyebrow: "Od Waszej rodziny do ich opowieści",
         howTitle: "Jak to działa.",
-        stepOneTitle: "Opowiedz nam o swoim dziecku",
-        stepOneCopy: "Imię, wiek, zainteresowania, ulubione postacie i tematy.",
-        stepTwoTitle: "Wybierz charakter bajki",
-        stepTwoCopy: "Długość, nastrój, język i opcjonalny motyw edukacyjny.",
-        stepThreeTitle: "Otrzymaj bajkę na dobranoc",
-        stepThreeCopy: "Wyjątkową, dopasowaną do wieku historię stworzoną specjalnie dla Twojego dziecka.",
-        languageEyebrow: "Słowa ukryte w opowieści",
-        languageTitle: "Łagodniejszy sposób na poznawanie nowego języka.",
-        languageCopy: "LunaTale może naturalnie wplatać proste słowa z języka obcego w znajome przygody na dobranoc. Taki łagodny kontakt wspiera ciekawość i może pomóc dziecku poznawać nowe słownictwo w spokojnym, przyjemnym kontekście, bez zamieniania wieczoru w lekcję.",
-        benefitsEyebrow: "Dlaczego wspólne czytanie ma znaczenie",
-        benefitsTitle: "Małe rytuały, ważne korzyści.",
-        benefitsIntro: "Badania konsekwentnie pokazują, że wspólne czytanie wspiera rozwój językowy dzieci, wzmacnia więź między rodzicem a dzieckiem i pomaga budować dobre wieczorne rytuały. LunaTale łączy te sprawdzone korzyści z opowieściami tworzonymi wokół każdego dziecka.",
-        benefitOneTitle: "Zachęca do częstszego czytania",
-        benefitOneCopy: "Spersonalizowane historie mogą sprawić, że wieczorne czytanie pozostaje świeże i angażujące, pomagając rodzinom utrzymać regularny rytuał.",
-        benefitTwoTitle: "Tworzy ważne chwile przed snem",
-        benefitTwoCopy: "Wspólne czytanie pomaga wzmacniać więź rodzica z dzieckiem i budować spokojną, pozytywną rutynę przed snem.",
-        benefitThreeTitle: "Łagodny kontakt z językiem",
-        benefitThreeCopy: "Bajki mogą naturalnie przedstawiać proste słowa z innego języka, pozwalając dziecku poznawać nowe słownictwo w swobodnym i przyjemnym kontekście.",
-        researchNote: "Badania organizacji takich jak Amerykańska Akademia Pediatrii wskazują, że czytanie na głos od najmłodszych lat wspiera rozwój języka, umiejętności czytania i pisania oraz więzi rodzinne.",
-        parentsEyebrow: "Przemyślane doświadczenie",
-        parentsTitle: "Zaprojektowane dla rodziców.",
-        parentsCopy: "Spokojne i proste doświadczenie, które pozostawia kontrolę w rękach rodziny i pomaga skupić wieczór na bliskości.",
-        trustAds: "Bez reklam",
-        trustCalm: "Bez nadmiernie pobudzających treści",
-        trustControl: "Doświadczenie kontrolowane przez rodzica",
-        trustDesign: "Spokojny design stworzony z myślą o wieczorze",
-        trustAge: "Historie dopasowane do wieku",
-        trustPrivacy: "Prywatność od samego początku",
-        visionEyebrow: "Co przed nami",
-        visionTitle: "Przyszłość wieczornych opowieści.",
-        visionCopy: "Tworzymy nowy rodzaj doświadczenia na dobranoc, w którym każde dziecko staje się bohaterem własnych historii, wzmacniając rodzinne więzi oraz rozwijając wyobraźnię i ciekawość.",
-        signupEyebrow: "Pierwszy rozdział",
-        signupTitle: "Niech kolejna bajka będzie naprawdę ich własna.",
-        signupCopy: "Dołącz do listy, zarezerwuj wczesny dostęp i pomóż nam tworzyć LunaTale dla rodzin takich jak Twoja.",
-        signupCta: "Dołącz do listy",
+        stepOneTitle: "Dodaj profil dziecka",
+        stepOneCopy: "Podaj imię, wiek, zainteresowania i ulubione tematy.",
+        stepTwoTitle: "Wybierz cel językowy",
+        stepTwoCopy: "Wybierz język, na przykład angielski, hiszpański, francuski, niemiecki lub polski.",
+        stepThreeTitle: "Dodaj rodzinne zdjęcie lub wspomnienie",
+        stepThreeCopy: "Wybierz podróż, urodziny, zwierzaka, zabawkę lub rodzinną chwilę jako inspirację.",
+        stepFourTitle: "Otrzymaj spersonalizowaną bajkę",
+        stepFourCopy: "Dziecko otrzyma spokojną historię ze znajomymi szczegółami, nowym słownictwem i łagodnym zakończeniem.",
+        photoMagicLabel: "Rodzinne wspomnienie zmienia się w",
+        photoMagicTitle: "Przygodę na Tajemniczej Wyspie",
+        photoEyebrow: "Ze zdjęcia do opowieści",
+        photoTitle: "Zamień rodzinne zdjęcia w magiczne bajki na dobranoc.",
+        photoCopy: "MoonTale może zmieniać rodzinne zdjęcia w spersonalizowane przygody. Zdjęcie z plaży może stać się piracką wyprawą, fotografia ze zwierzakiem leśną misją, a wspomnienie urodzin magiczną opowieścią o świętowaniu. Dzięki temu każda historia jest osobista, emocjonalna i wyjątkowa dla rodziny.",
+        sampleEyebrow: "Zajrzyj do środka",
+        sampleTitle: "Podgląd dzisiejszej bajki.",
+        sampleCopy: "Dziś wieczorem Emma i jej miś Milo wędrują przez senny księżycowy las, poznając hiszpańskie słowa luna, estrella i bosque. Słowa pojawiają się naturalnie, są łagodnie powtarzane, a ich znaczenie wynika z kontekstu.",
+        visionEyebrow: "Nasz cel",
+        visionTitle: "Misja marki.",
+        visionCopy: "Misją MoonTale jest pomaganie rodzinom w tym, by nauka języka była naturalna, emocjonalna i radosna. Wierzymy, że dzieci powinny odkrywać nowe słowa przez historie, wyobraźnię i ważne rodzinne chwile — nie tylko przez lekcje, aplikacje czy fiszki.",
+        signupEyebrow: "Twórz razem z nami",
+        signupTitle: "Pomóż kształtować MoonTale.",
+        signupCopy: "MoonTale jest obecnie na wczesnym etapie rozwoju. Dołącz do listy, aby otrzymywać aktualności, przetestować pierwszą wersję i pomóc stworzyć lepszy sposób nauki języków przez bajki na dobranoc.",
+        signupCta: "Dołącz do wczesnego dostępu",
         signupNote: "Tylko informacje o wczesnym dostępie. Możesz zrezygnować w każdej chwili.",
-        signupSuccess: "Jesteś na liście. Cieszymy się, że jest z nami Twoja rodzina.",
-        footerCopy: "Stworzone dla bardziej wyjątkowych wieczorów.",
+        signupSuccess: "Jesteś na liście. Dziękujemy, że pomagasz tworzyć MoonTale.",
+        footerCopy: "Nauka języka przez historie, które kochają rodziny.",
         socialLabel: "Linki społecznościowe",
-        instagramLabel: "LunaTale na Instagramie",
-        pinterestLabel: "LunaTale na Pintereście",
+        instagramLabel: "MoonTale na Instagramie",
+        pinterestLabel: "MoonTale na Pintereście",
         emailLink: "E-mail"
       }
     };
 
-    let currentLanguage = localStorage.getItem("lunatale-language") || "en";
+    let currentLanguage = localStorage.getItem("moontale-language") || "en";
 
     function setLanguage(language) {
       const copy = translations[language] || translations.en;
@@ -1267,7 +1474,7 @@
         if (button.disabled) button.textContent = copy.submittedButton;
       });
 
-      localStorage.setItem("lunatale-language", language);
+      localStorage.setItem("moontale-language", language);
     }
 
     document.getElementById("year").textContent = new Date().getFullYear();
@@ -1295,8 +1502,9 @@
           return;
         }
 
-        const note = form.parentElement.querySelector("[data-form-note]");
-        const success = form.parentElement.querySelector("[data-form-success]");
+        const container = form.closest(".hero-copy, .signup-panel");
+        const note = container.querySelector("[data-form-note]");
+        const success = container.querySelector("[data-form-success]");
         const button = form.querySelector("button");
         const input = form.querySelector("input");
 
