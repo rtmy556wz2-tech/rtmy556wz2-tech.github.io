@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Read your personalized MoonTale bedtime story preview."
+    />
+    <title>Your Bedtime Story — MoonTale</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="app-page story-page" data-page="story">
+    <a class="skip-link" href="#main">Skip to story</a>
+
+    <header class="app-header shell">
+      <a class="brand serif" href="./index.html" aria-label="MoonTale home">
+        <span class="brand-moon" aria-hidden="true">☾</span>
+        <span>MoonTale</span>
+      </a>
+      <a class="text-link" href="./story-builder.html">Create another story</a>
+    </header>
+
+    <main id="main">
+      <section class="story-hero shell">
+        <div class="story-heading">
+          <p class="eyebrow">Tonight's MoonTale</p>
+          <h1 class="serif" id="story-title">Your magical bedtime story</h1>
+          <div class="story-meta">
+            <span id="story-reading-time">5 minute read</span>
+            <span id="story-language">3 new words</span>
+            <span>Guided by Milo</span>
+          </div>
+        </div>
+        <div class="story-milo-scene">
+          <span class="story-star story-star-one" aria-hidden="true">✦</span>
+          <span class="story-star story-star-two" aria-hidden="true">✧</span>
+          <img
+            src="./assets/milo-moonbear.png"
+            alt="Milo the Moonbear, tonight's storytelling guide"
+            width="900"
+            height="900"
+          />
+        </div>
+      </section>
+
+      <article class="story-layout shell">
+        <div class="story-paper">
+          <div class="story-opening-mark" aria-hidden="true">☾</div>
+          <div id="story-content" class="story-content"></div>
+          <p class="story-ending serif">And under the quiet moon, everyone slept peacefully.</p>
+        </div>
+
+        <aside class="story-sidebar">
+          <section class="story-insight vocabulary-card" aria-labelledby="words-title">
+            <p class="card-kicker">Language discovery</p>
+            <h2 class="serif" id="words-title">Tonight's New Words</h2>
+            <p id="vocabulary-language" class="insight-intro"></p>
+            <dl id="vocabulary-list" class="vocabulary-list"></dl>
+          </section>
+
+          <section class="story-insight" aria-labelledby="goal-title">
+            <p class="card-kicker">A gentle intention</p>
+            <h2 class="serif" id="goal-title">Tonight's Learning Goal</h2>
+            <p id="learning-goal"></p>
+          </section>
+
+          <section class="story-insight parent-tip" aria-labelledby="tip-title">
+            <p class="card-kicker">For grown-ups</p>
+            <h2 class="serif" id="tip-title">Parent Bedtime Tip</h2>
+            <p id="parent-tip"></p>
+          </section>
+        </aside>
+      </article>
+
+      <section class="story-actions shell">
+        <div>
+          <p class="eyebrow">Make tonight your own</p>
+          <h2 class="serif">Try another magical combination.</h2>
+        </div>
+        <a class="button button-secondary" href="./story-builder.html">Create Another Story</a>
+      </section>
+
+      <section class="prototype-waitlist" aria-labelledby="waitlist-title">
+        <div class="shell waitlist-card">
+          <div>
+            <p class="eyebrow">The story can continue</p>
+            <h2 class="serif" id="waitlist-title">Want a personalized bedtime story every night?</h2>
+            <p>
+              Join the MoonTale waitlist for early access, product updates, and invitations to test new
+              family storytelling features.
+            </p>
+          </div>
+
+          <!-- Replace the action value below with your Formspree endpoint.
+               Destination reference: contact@moontaleapp.com
+               Example: https://formspree.io/f/your-form-id -->
+          <form
+            class="waitlist-form"
+            id="waitlist-form"
+            action="REPLACE_WITH_FORMSPREE_ENDPOINT"
+            method="POST"
+          >
+            <label class="field">
+              <span>Parent email</span>
+              <input id="waitlist-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+            </label>
+            <input type="hidden" name="_subject" value="MoonTale MVP Waitlist" />
+            <input type="hidden" name="source" value="personalized-story-preview" />
+            <button class="button button-primary button-waitlist" type="submit">Join the Waitlist</button>
+            <p class="waitlist-status" id="waitlist-status" role="status" aria-live="polite"></p>
+            <p class="microcopy">
+              Form submissions require a Formspree endpoint. Until configured, the button opens an email
+              to contact@moontaleapp.com.
+            </p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer shell">
+      <a class="brand serif" href="./index.html">
+        <span class="brand-moon" aria-hidden="true">☾</span><span>MoonTale</span>
+      </a>
+      <p>A personalized learning and bedtime companion for children.</p>
+    </footer>
+
+    <script src="./stories.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
