@@ -5,6 +5,9 @@
   const FORM_ENDPOINT_PLACEHOLDER = "REPLACE_WITH_FORMSPREE_ENDPOINT";
 
   function trackEvent(eventName, details) {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", eventName, details || {});
+    }
     console.log(`[MoonTale analytics] ${eventName}`, details || {});
   }
 
