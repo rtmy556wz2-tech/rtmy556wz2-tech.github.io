@@ -2,7 +2,6 @@
   "use strict";
 
   const STORAGE_KEY = "moontaleStoryProfile";
-  const FORM_ENDPOINT_PLACEHOLDER = "REPLACE_WITH_FORMSPREE_ENDPOINT";
 
   function trackEvent(eventName, details) {
     if (typeof window.gtag === "function") {
@@ -301,20 +300,37 @@
     if (!form) return;
 
     const status = document.querySelector("#waitlist-status");
-    form.addEventListener("submit", (event) => {
-      const email = form.elements.email.value.trim();
-      if (!form.checkValidity()) return;
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
 
-      window.trackWaitlistSubmission();
+      const submitButton = form.querySelector("button[type='submit']");
+      const originalButtonText = submitButton.textContent;
+      submitButton.disabled = true;
+      submitButton.textContent = "Joining...";
+      status.textContent = "";
 
-      if (form.action.includes(FORM_ENDPOINT_PLACEHOLDER)) {
-        event.preventDefault();
-        status.textContent = "Opening your email app to complete the waitlist request.";
-        const subject = encodeURIComponent("MoonTale Waitlist");
-        const body = encodeURIComponent(
-          `Hi, I would like to join the MoonTale waitlist.\n\nEmail: ${email}\nChild's story language: ${profile.targetLanguage || ""}`,
-        );
-        window.location.href = `mailto:contact@moontaleapp.com?subject=${subject}&body=${body}`;
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          body: new FormData(form),
+          headers: {
+            Accept: "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Formspree rejected the submission.");
+        }
+
+        window.trackWaitlistSubmission();
+        form.reset();
+        status.textContent = "Thank you! You're on the MoonTale waitlist.";
+      } catch (error) {
+        status.textContent = "Something went wrong. Please try again.";
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
       }
     });
   }
