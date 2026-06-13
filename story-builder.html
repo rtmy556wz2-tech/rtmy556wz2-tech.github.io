@@ -59,7 +59,14 @@
           </div>
         </div>
 
-        <form id="story-builder-form" novalidate>
+        <form
+          id="story-builder-form"
+          action="https://formspree.io/f/xdavpbyd"
+          method="POST"
+          novalidate
+        >
+          <input type="hidden" name="source" value="story-builder" />
+          <input type="hidden" name="_subject" value="MoonTale Story Builder Signup" />
           <h2 class="sr-only" id="builder-title">MoonTale story builder</h2>
 
           <fieldset class="wizard-step is-active" data-step="1">
@@ -191,7 +198,7 @@
 
               <label class="field">
                 <span>Parent email</span>
-                <input name="parentEmail" type="email" autocomplete="email" placeholder="you@example.com" required />
+                <input type="email" name="email" required autocomplete="email" placeholder="you@example.com" />
                 <small class="field-error"></small>
               </label>
             </div>

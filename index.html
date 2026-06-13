@@ -363,13 +363,21 @@
               MoonTale is in early development. Join the waitlist to receive updates, test the first
               version, and help build a better way for children to learn through bedtime stories.
             </p>
-            <a
-              class="button button-primary button-waitlist"
-              href="mailto:contact@moontaleapp.com?subject=MoonTale%20Waitlist&body=Hi%2C%20I%20would%20like%20to%20join%20the%20MoonTale%20waitlist."
+            <form
+              class="homepage-waitlist-form formspree-form"
+              action="https://formspree.io/f/xdavpbyd"
+              method="POST"
             >
-              Join the Waitlist
-            </a>
-            <p class="microcopy">Opens your email app with a ready-to-send waitlist message.</p>
+              <label class="field">
+                <span>Parent email</span>
+                <input type="email" name="email" required autocomplete="email" placeholder="you@example.com" />
+              </label>
+              <input type="hidden" name="source" value="homepage" />
+              <input type="hidden" name="_subject" value="MoonTale Homepage Waitlist" />
+              <button class="button button-primary button-waitlist" type="submit">Join the Waitlist</button>
+              <p class="waitlist-status" role="status" aria-live="polite"></p>
+              <p class="microcopy">Early access updates only. Unsubscribe anytime.</p>
+            </form>
           </div>
         </div>
       </section>

@@ -28,8 +28,8 @@
     });
   };
 
-  window.trackWaitlistSubmission = function () {
-    trackEvent("waitlist_submission", { location: "story_preview" });
+  window.trackWaitlistSubmission = function (source) {
+    trackEvent("waitlist_submission", { location: source || "story-preview" });
   };
 
   function initializeRevealElements() {
@@ -100,8 +100,52 @@
       interest: formData.get("interest"),
       goal: formData.get("goal"),
       readingTime: formData.get("readingTime"),
-      parentEmail: formData.get("parentEmail"),
+      parentEmail: formData.get("email"),
     };
+  }
+
+  async function postFormToFormspree(form) {
+    const response = await fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: {
+        Accept: "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error("Formspree rejected the submission.");
+    }
+  }
+
+  function initializeFormspreeForms() {
+    document.querySelectorAll(".formspree-form").forEach((form) => {
+      const status = form.querySelector(".waitlist-status");
+      const submitButton = form.querySelector("button[type='submit']");
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (!form.reportValidity()) return;
+
+        const originalButtonText = submitButton.textContent;
+        submitButton.disabled = true;
+        submitButton.textContent = "Joining...";
+        status.textContent = "";
+
+        try {
+          await postFormToFormspree(form);
+          const source = form.elements.source ? form.elements.source.value : "waitlist";
+          window.trackWaitlistSubmission(source);
+          form.reset();
+          status.textContent = "Thank you! You're on the MoonTale waitlist.";
+        } catch (error) {
+          status.textContent = "Something went wrong. Please try again.";
+        } finally {
+          submitButton.disabled = false;
+          submitButton.textContent = originalButtonText;
+        }
+      });
+    });
   }
 
   function setFieldError(field, message) {
@@ -180,7 +224,7 @@
     const previousProfile = readStoredProfile();
     if (previousProfile) {
       Object.entries(previousProfile).forEach(([name, value]) => {
-        const field = form.elements[name];
+        const field = form.elements[name === "parentEmail" ? "email" : name];
         if (!field || value === undefined || value === null) return;
 
         if (field instanceof RadioNodeList) {
@@ -229,21 +273,32 @@
       }
     });
 
-    form.addEventListener("submit", (event) => {
+    form.addEventListener("submit", async (event) => {
       event.preventDefault();
       if (!validateStep(steps[currentStep])) return;
 
       const profile = getFormProfile(form);
-      writeStoredProfile(profile);
-      window.trackStoryGenerated(profile);
-      formStatus.textContent = "Milo is opening the storybook...";
       generateButton.disabled = true;
-      generateButton.textContent = "Creating your story...";
+      generateButton.textContent = "Joining...";
+      formStatus.textContent = "";
 
-      const encodedProfile = encodeProfile(profile);
-      window.setTimeout(() => {
-        window.location.href = `./story.html?story=${encodeURIComponent(encodedProfile)}`;
-      }, 650);
+      try {
+        await postFormToFormspree(form);
+        window.trackWaitlistSubmission("story-builder");
+        writeStoredProfile(profile);
+        window.trackStoryGenerated(profile);
+        form.reset();
+        formStatus.textContent = "Thank you! You're on the MoonTale waitlist.";
+
+        const encodedProfile = encodeProfile(profile);
+        window.setTimeout(() => {
+          window.location.href = `./story.html?story=${encodeURIComponent(encodedProfile)}`;
+        }, 1100);
+      } catch (error) {
+        formStatus.textContent = "Something went wrong. Please try again.";
+        generateButton.disabled = false;
+        generateButton.textContent = "Create Tonight's Story";
+      }
     });
 
     showStep(0);
@@ -292,52 +347,12 @@
     const waitlistEmail = document.querySelector("#waitlist-email");
     if (waitlistEmail && profile.parentEmail) waitlistEmail.value = profile.parentEmail;
 
-    initializeWaitlistForm(profile);
-  }
-
-  function initializeWaitlistForm(profile) {
-    const form = document.querySelector("#waitlist-form");
-    if (!form) return;
-
-    const status = document.querySelector("#waitlist-status");
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      if (!form.reportValidity()) return;
-
-      const submitButton = form.querySelector("button[type='submit']");
-      const originalButtonText = submitButton.textContent;
-      submitButton.disabled = true;
-      submitButton.textContent = "Joining...";
-      status.textContent = "";
-
-      try {
-        const response = await fetch(form.action, {
-          method: "POST",
-          body: new FormData(form),
-          headers: {
-            Accept: "application/json",
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error("Formspree rejected the submission.");
-        }
-
-        window.trackWaitlistSubmission();
-        form.reset();
-        status.textContent = "Thank you! You're on the MoonTale waitlist.";
-      } catch (error) {
-        status.textContent = "Something went wrong. Please try again.";
-      } finally {
-        submitButton.disabled = false;
-        submitButton.textContent = originalButtonText;
-      }
-    });
   }
 
   document.addEventListener("DOMContentLoaded", () => {
     initializeRevealElements();
     initializeLandingPage();
+    initializeFormspreeForms();
 
     const page = document.body.dataset.page;
     if (page === "builder") initializeBuilderPage();

@@ -103,17 +103,17 @@
           </div>
 
           <form
-            class="waitlist-form"
+            class="waitlist-form formspree-form"
             id="waitlist-form"
             action="https://formspree.io/f/xdavpbyd"
             method="POST"
           >
             <label class="field">
               <span>Parent email</span>
-              <input id="waitlist-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+              <input type="email" name="email" required id="waitlist-email" autocomplete="email" placeholder="you@example.com" />
             </label>
             <input type="hidden" name="_subject" value="MoonTale MVP Waitlist" />
-            <input type="hidden" name="source" value="personalized-story-preview" />
+            <input type="hidden" name="source" value="story-preview" />
             <button class="button button-primary button-waitlist" type="submit">Join the Waitlist</button>
             <p class="waitlist-status" id="waitlist-status" role="status" aria-live="polite"></p>
             <p class="microcopy">

@@ -972,6 +972,26 @@ blockquote {
   filter: drop-shadow(0 20px 24px rgba(52, 40, 34, 0.11));
 }
 
+.homepage-waitlist-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 12px;
+  max-width: 620px;
+  margin-top: 25px;
+}
+
+.homepage-waitlist-form .button {
+  min-height: 56px;
+}
+
+.homepage-waitlist-form .waitlist-status,
+.homepage-waitlist-form .microcopy {
+  grid-column: 1 / -1;
+  margin: 0;
+  text-align: left;
+}
+
 .site-footer {
   min-height: 130px;
   display: grid;
@@ -1252,6 +1272,10 @@ blockquote {
 
   .join-section .button-waitlist {
     width: 100%;
+  }
+
+  .homepage-waitlist-form {
+    grid-template-columns: 1fr;
   }
 
   .site-footer {
