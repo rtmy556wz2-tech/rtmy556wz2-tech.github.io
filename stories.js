@@ -107,7 +107,11 @@ function getThemesForCharacter(characterName) {
     Animal: ["Animals", "Nature", "Friends"],
     Robot: ["Space", "Actions", "Colours"],
   };
-  function getThemesForMood(moodName) {
+
+  return themeMap[characterName] || ["Nature", "Friends", "Bedtime"];
+}
+
+function getThemesForMood(moodName) {
   const moodMap = {
     Calm: ["Bedtime", "Nature", "Feelings"],
     Magical: ["Magic", "Space", "Colours"],
@@ -116,9 +120,6 @@ function getThemesForCharacter(characterName) {
   };
 
   return moodMap[moodName] || ["Nature", "Friends"];
-}
-
-  return themeMap[characterName] || ["Nature", "Friends", "Bedtime"];
 }
 
 function getWordsForStory(languageVocabulary, profile, wordCount) {
@@ -155,7 +156,7 @@ const wordCount = Math.min(
 
 const words = getWordsForStory(
   allWords,
-  profile.character,
+  profile,
   wordCount
 );
 
