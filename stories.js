@@ -91,7 +91,21 @@
     "5": { label: "5 minute read", extraParagraphs: 1 },
     "8": { label: "8 minute read", extraParagraphs: 2 },
   };
+const storyOpenings = [
+  "Just as {name} was getting ready for bed, a warm pearl-colored glow appeared beside the window. It was Milo the Moonbear, waving from inside his round glass helmet.",
+  "As {name} tucked the blanket under their chin, a tiny silver star floated into the bedroom and opened like a tiny door.",
+  "The moon shone brighter than usual tonight. Suddenly, Milo knocked gently on the window with one soft paw.",
+  "A sleepy owl landed on the windowsill carrying a glowing invitation addressed to {name}.",
+  "Just before bedtime, the bedroom filled with sparkling moon dust, and Milo appeared with a smile."
+];
 
+function fillTemplate(template, values) {
+  return template.replace(/\{(\w+)\}/g, (_, key) => values[key] || "");
+}
+
+function pickRandom(items) {
+  return items[Math.floor(Math.random() * items.length)];
+}
   function safeText(value, fallback) {
     return String(value || fallback).replace(/[<>]/g, "").trim();
   }
