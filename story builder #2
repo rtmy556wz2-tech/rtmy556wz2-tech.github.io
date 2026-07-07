@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Create a personalized MoonTale bedtime story for your child."
+    />
+    <title>Create a Story — MoonTale</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-716GP23C93"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-716GP23C93");
+    </script>
+  </head>
+
+  <body class="app-page" data-page="builder">
+    <a class="skip-link" href="#main">Skip to story builder</a>
+
+    <header class="app-header shell">
+      <a class="brand serif" href="./index.html" aria-label="MoonTale home">
+        <span class="brand-moon" aria-hidden="true">☾</span>
+        <span>MoonTale</span>
+      </a>
+      <p class="app-header-note">A bedtime story made for your child</p>
+    </header>
+
+    <main class="builder-main shell" id="main">
+      <section class="builder-intro">
+        <div>
+          <p class="eyebrow">Create tonight's adventure</p>
+          <h1 class="serif">Tell Milo a little about your child.</h1>
+          <p>
+            In three short steps, MoonTale will create a warm story preview with gentle language learning
+            woven into the adventure.
+          </p>
+        </div>
+        <img
+          src="./assets/milo-moonbear.png"
+          alt="Milo the Moonbear waving"
+          width="900"
+          height="900"
+        />
+      </section>
+
+      <section class="wizard-card" aria-labelledby="builder-title">
+        <div class="wizard-progress" aria-label="Story builder progress">
+          <div class="progress-track"><span id="progress-fill"></span></div>
+          <div class="progress-labels">
+            <span class="is-current">Child</span>
+            <span>Story</span>
+            <span>Goal</span>
+          </div>
+        </div>
+
+        <form
+          id="story-builder-form"
+          action="https://formspree.io/f/xdavpbyd"
+          method="POST"
+          novalidate
+        >
+          <input type="hidden" name="source" value="story-builder" />
+          <input type="hidden" name="_subject" value="MoonTale Story Builder Signup" />
+          <h2 class="sr-only" id="builder-title">MoonTale story builder</h2>
+
+          <fieldset class="wizard-step is-active" data-step="1">
+            <legend>
+              <span class="step-label">Step 1 of 3</span>
+              <span class="serif">Who is tonight's story for?</span>
+            </legend>
+            <p class="step-description">These details help Milo make the adventure feel familiar.</p>
+
+            <div class="form-grid">
+              <label class="field">
+                <span>Child's name</span>
+                <input name="childName" type="text" autocomplete="off" maxlength="30" placeholder="e.g. Emma" required />
+                <small class="field-error"></small>
+              </label>
+
+              <label class="field">
+                <span>Child's age</span>
+                <select name="childAge" required>
+                  <option value="">Choose age</option>
+                  <option value="3">3 years old</option>
+                  <option value="4">4 years old</option>
+                  <option value="5">5 years old</option>
+                  <option value="6">6 years old</option>
+                  <option value="7">7 years old</option>
+                  <option value="8">8 years old</option>
+                  <option value="9">9 years old</option>
+                  <option value="10">10 years old</option>
+                </select>
+                <small class="field-error"></small>
+              </label>
+
+              <label class="field">
+                <span>Current language</span>
+                <select name="currentLanguage" required>
+                  <option value="">Choose language</option>
+                  <option value="English">English</option>
+                  <option value="Polish">Polish</option>
+                  <option value="Spanish">Spanish</option>
+                  <option value="French">French</option>
+                  <option value="German">German</option>
+                </select>
+                <small class="field-error"></small>
+              </label>
+
+              <label class="field">
+                <span>Language to learn</span>
+                <select name="targetLanguage" required>
+                  <option value="">Choose language</option>
+                  <option value="Spanish">Spanish</option>
+                  <option value="French">French</option>
+                  <option value="German">German</option>
+                  <option value="Polish">Polish</option>
+                  <option value="English">English</option>
+                </select>
+                <small class="field-error"></small>
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="wizard-step" data-step="2">
+            <legend>
+              <span class="step-label">Step 2 of 3</span>
+              <span class="serif">What kind of adventure will they love?</span>
+            </legend>
+            <p class="step-description">Choose the ingredients for tonight's magical world.</p>
+
+            <div class="choice-group">
+              <span class="choice-title">Favorite character</span>
+              <div class="choice-grid character-grid">
+                <label class="choice-card"><input type="radio" name="character" value="Astronaut" required /><span>🚀</span><strong>Astronaut</strong></label>
+                <label class="choice-card"><input type="radio" name="character" value="Dinosaur" required /><span>🦕</span><strong>Dinosaur</strong></label>
+                <label class="choice-card"><input type="radio" name="character" value="Princess" required /><span>♕</span><strong>Princess</strong></label>
+                <label class="choice-card"><input type="radio" name="character" value="Animal" required /><span>🐾</span><strong>Animal</strong></label>
+                <label class="choice-card"><input type="radio" name="character" value="Robot" required /><span>⚙</span><strong>Robot</strong></label>
+              </div>
+              <small class="group-error" data-error-for="character"></small>
+            </div>
+
+            <div class="choice-group">
+              <span class="choice-title">Story mood</span>
+              <div class="choice-grid mood-grid">
+                <label class="choice-card"><input type="radio" name="mood" value="Calm" required /><span>☾</span><strong>Calm</strong></label>
+                <label class="choice-card"><input type="radio" name="mood" value="Magical" required /><span>✦</span><strong>Magical</strong></label>
+                <label class="choice-card"><input type="radio" name="mood" value="Funny" required /><span>☺</span><strong>Funny</strong></label>
+                <label class="choice-card"><input type="radio" name="mood" value="Adventurous" required /><span>⌁</span><strong>Adventurous</strong></label>
+              </div>
+              <small class="group-error" data-error-for="mood"></small>
+            </div>
+
+            <label class="field field-wide">
+              <span>Favorite interest</span>
+              <input name="interest" type="text" maxlength="50" placeholder="e.g. stars, trains, butterflies" required />
+              <small class="field-error"></small>
+            </label>
+          </fieldset>
+
+          <fieldset class="wizard-step" data-step="3">
+            <legend>
+              <span class="step-label">Step 3 of 3</span>
+              <span class="serif">What should tonight's story nurture?</span>
+            </legend>
+            <p class="step-description">Milo will gently shape the ending around your goal.</p>
+
+            <div class="choice-group">
+              <span class="choice-title">Parent goal</span>
+              <div class="choice-grid goal-grid">
+                <label class="choice-pill"><input type="radio" name="goal" value="Language learning" required /><span>Language learning</span></label>
+                <label class="choice-pill"><input type="radio" name="goal" value="Build reading habit" required /><span>Build reading habit</span></label>
+                <label class="choice-pill"><input type="radio" name="goal" value="Improve bedtime routine" required /><span>Improve bedtime routine</span></label>
+                <label class="choice-pill"><input type="radio" name="goal" value="Confidence" required /><span>Confidence</span></label>
+                <label class="choice-pill"><input type="radio" name="goal" value="Courage" required /><span>Courage</span></label>
+                <label class="choice-pill"><input type="radio" name="goal" value="Kindness" required /><span>Kindness</span></label>
+              </div>
+              <small class="group-error" data-error-for="goal"></small>
+            </div>
+
+            <div class="form-grid">
+              <label class="field">
+                <span>Number of new words</span>
+                <select name="newWordsCount" required>
+                  <option value="">Choose number</option>
+                  <option value="1">1 new word</option>
+                  <option value="2">2 new words</option>
+                  <option value="3">3 new words</option>
+                  <option value="4">4 new words</option>
+                  <option value="5">5 new words</option>
+                </select>
+                <small class="field-error"></small>
+              </label>
+
+              <label class="field">
+                <span>Reading time</span>
+                <select name="readingTime" required>
+                  <option value="">Choose length</option>
+                  <option value="3">3 min</option>
+                  <option value="5">5 min</option>
+                  <option value="8">8 min</option>
+                </select>
+                <small class="field-error"></small>
+              </label>
+
+              <label class="field">
+                <span>Parent email</span>
+                <input type="email" name="email" required autocomplete="email" placeholder="you@example.com" />
+                <small class="field-error"></small>
+              </label>
+            </div>
+
+            <label class="consent-row">
+              <input name="consent" type="checkbox" required />
+              <span>I agree to store these details in this browser to create the preview.</span>
+            </label>
+            <small class="group-error" data-error-for="consent"></small>
+          </fieldset>
+
+          <div class="wizard-actions">
+            <button class="button button-secondary wizard-back" type="button" hidden>Back</button>
+            <button class="button button-primary wizard-next" type="button">Continue</button>
+            <button class="button button-primary wizard-generate" type="submit" hidden>
+              Create Tonight's Story
+            </button>
+          </div>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="app-footer shell">
+      <p>Made for calm family moments. Your builder details stay in this browser.</p>
+      <a href="mailto:contact@moontaleapp.com">contact@moontaleapp.com</a>
+    </footer>
+
+    <script src="./stories.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
