@@ -2,44 +2,12 @@
   "use strict";
 
   const vocabulary = {
-  Spanish: [
-  { word: "luna", meaning: "moon" },
-  { word: "bosque", meaning: "forest" },
-  { word: "valiente", meaning: "brave" },
-  { word: "estrella", meaning: "star" },
-  { word: "amigo", meaning: "friend" },
-],
-
-   French: [
-  { word: "lune", meaning: "moon" },
-  { word: "forêt", meaning: "forest" },
-  { word: "courageux", meaning: "brave" },
-  { word: "étoile", meaning: "star" },
-  { word: "ami", meaning: "friend" },
-],
-    German: [
-  { word: "Mond", meaning: "moon" },
-  { word: "Wald", meaning: "forest" },
-  { word: "mutig", meaning: "brave" },
-  { word: "Stern", meaning: "star" },
-  { word: "Freund", meaning: "friend" },
-],
-    Polish: [
-  { word: "księżyc", meaning: "moon" },
-  { word: "las", meaning: "forest" },
-  { word: "odważny", meaning: "brave" },
-  { word: "gwiazda", meaning: "star" },
-  { word: "przyjaciel", meaning: "friend" },
-],
-    English: [
-  { word: "moon", meaning: "the glowing light in the night sky" },
-  { word: "forest", meaning: "a place filled with trees" },
-  { word: "brave", meaning: "ready to try even when something feels new" },
-  { word: "star", meaning: "a bright object in the night sky" },
-  { word: "friend", meaning: "someone who cares about you" },
-],
-  };
-
+  Spanish: window.SpanishVocabulary || [],
+  French: window.FrenchVocabulary || [],
+  German: window.GermanVocabulary || [],
+  Polish: window.PolishVocabulary || [],
+  English: window.EnglishVocabulary || [],
+};
   const characterDetails = {
     Astronaut: {
       friend: "Nova, a tiny astronaut with silver boots",
