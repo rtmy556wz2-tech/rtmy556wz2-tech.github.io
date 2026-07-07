@@ -92,7 +92,7 @@
   };
 
   const goalDetails = {
-    "Learn 3 new words": {
+    "Language learning": {
       lesson: "Notice how new words can feel familiar when they live inside a story.",
       tip: "Ask: Which new word would you like to use in a sentence tomorrow?",
     },
