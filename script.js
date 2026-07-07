@@ -326,7 +326,8 @@
     document.title = `${story.title} — MoonTale`;
     document.querySelector("#story-title").textContent = story.title;
     document.querySelector("#story-reading-time").textContent = story.readingTime;
-    const newWordsCount = profile.newWordsCount || story.vocabulary.length || 3;
+   const newWordsCount = story.vocabulary.length;
+  
 document.querySelector("#story-language").textContent =
   `${story.language} · ${newWordsCount} new words`;
     document.querySelector("#vocabulary-language").textContent = story.language;
