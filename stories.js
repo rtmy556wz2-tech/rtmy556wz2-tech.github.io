@@ -2,31 +2,42 @@
   "use strict";
 
   const vocabulary = {
-    Spanish: [
-      { word: "luna", meaning: "moon" },
-      { word: "bosque", meaning: "forest" },
-      { word: "valiente", meaning: "brave" },
-    ],
-    French: [
-      { word: "lune", meaning: "moon" },
-      { word: "forêt", meaning: "forest" },
-      { word: "courageux", meaning: "brave" },
-    ],
+  Spanish: [
+  { word: "luna", meaning: "moon" },
+  { word: "bosque", meaning: "forest" },
+  { word: "valiente", meaning: "brave" },
+  { word: "estrella", meaning: "star" },
+  { word: "amigo", meaning: "friend" },
+],
+
+   French: [
+  { word: "lune", meaning: "moon" },
+  { word: "forêt", meaning: "forest" },
+  { word: "courageux", meaning: "brave" },
+  { word: "étoile", meaning: "star" },
+  { word: "ami", meaning: "friend" },
+],
     German: [
-      { word: "Mond", meaning: "moon" },
-      { word: "Wald", meaning: "forest" },
-      { word: "mutig", meaning: "brave" },
-    ],
+  { word: "Mond", meaning: "moon" },
+  { word: "Wald", meaning: "forest" },
+  { word: "mutig", meaning: "brave" },
+  { word: "Stern", meaning: "star" },
+  { word: "Freund", meaning: "friend" },
+],
     Polish: [
-      { word: "księżyc", meaning: "moon" },
-      { word: "las", meaning: "forest" },
-      { word: "odważny", meaning: "brave" },
-    ],
+  { word: "księżyc", meaning: "moon" },
+  { word: "las", meaning: "forest" },
+  { word: "odważny", meaning: "brave" },
+  { word: "gwiazda", meaning: "star" },
+  { word: "przyjaciel", meaning: "friend" },
+],
     English: [
-      { word: "moon", meaning: "the glowing light in the night sky" },
-      { word: "forest", meaning: "a place filled with trees" },
-      { word: "brave", meaning: "ready to try even when something feels new" },
-    ],
+  { word: "moon", meaning: "the glowing light in the night sky" },
+  { word: "forest", meaning: "a place filled with trees" },
+  { word: "brave", meaning: "ready to try even when something feels new" },
+  { word: "star", meaning: "a bright object in the night sky" },
+  { word: "friend", meaning: "someone who cares about you" },
+],
   };
 
   const characterDetails = {
@@ -122,7 +133,14 @@
     const interest = safeText(profile.interest, "the stars");
     const character = characterDetails[profile.character] || characterDetails.Animal;
     const mood = moodDetails[profile.mood] || moodDetails.Magical;
-    const words = vocabulary[profile.targetLanguage] || vocabulary.Spanish;
+   const allWords = vocabulary[profile.targetLanguage] || vocabulary.Spanish;
+
+const wordCount = Math.min(
+  Number(profile.newWordsCount) || 3,
+  allWords.length
+);
+
+const words = allWords.slice(0, wordCount);
     const goal = goalDetails[profile.goal] || goalDetails.Courage;
     const length = lengthDetails[String(profile.readingTime)] || lengthDetails["5"];
 
@@ -130,7 +148,7 @@
     const paragraphs = [
       `Just as ${name} was getting ready for bed, a warm pearl-colored glow appeared beside the window. It was Milo the Moonbear, waving from inside his round glass helmet. “Tonight,” Milo whispered, “the moon needs a little help from someone who loves ${interest}.”`,
       `${mood.sky} Milo opened his storybook, and its pages became a silver doorway. Together, ${name} and Milo stepped through and arrived in ${character.place}, where they met ${character.friend}.`,
-      `Their new friend was holding ${character.object}. It usually showed the way home, but tonight its light had faded. Milo pointed toward the sky and taught ${name} three special ${profile.targetLanguage || "Spanish"} words: “${words[0].word}” meant ${words[0].meaning}, “${words[1].word}” meant ${words[1].meaning}, and “${words[2].word}” meant ${words[2].meaning}. Each word made the little object glow a bit brighter.`,
+     `${character.friend.split(",")[0]} was holding ${character.object}. It usually showed the way home, but tonight its light had faded. Milo pointed toward the sky and taught ${name} ${wordCount} special ${profile.targetLanguage || "Spanish"} words: ${words.map(word => `“${word.word}” meant ${word.meaning}`).join(", ")}. Each new word made the little object glow a little brighter.`,
       `${mood.movement} Along the way, ${name} noticed something wonderful: the adventure was filled with ${interest}. It was as if the story had remembered exactly what made ${name}'s imagination wake up.`,
       `Soon they reached a fork in the path. One trail was bright but noisy. The other was dim, peaceful, and marked with a tiny crescent moon. ${name} thought about tonight's goal: ${String(profile.goal || "courage").toLowerCase()}. Then ${name} chose the quiet moon path and invited everyone to stay close.`,
     ];
