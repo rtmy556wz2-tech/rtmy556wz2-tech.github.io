@@ -92,11 +92,25 @@
     "8": { label: "8 minute read", extraParagraphs: 2 },
   };
 const storyOpenings = [
-  "OPENING 1",
-  "OPENING 2",
-  "OPENING 3",
-  "OPENING 4",
-  "OPENING 5"
+  "Just as {name} was getting ready for bed, a warm pearl-coloured glow appeared beside the window. It was Milo the Moonbear, waving from inside his round glass helmet.",
+
+  "As {name} snuggled beneath the blanket, a tiny silver star drifted through the bedroom window. It floated gently until it landed in Milo's waiting paws.",
+
+  "The moon seemed brighter than usual that evening. A soft knock sounded on the window, and there stood Milo with a friendly smile and a glowing lantern.",
+
+  "A sleepy little owl landed on the windowsill carrying a shimmering envelope. Across the front, written in sparkling letters, was {name}'s name.",
+
+  "Just before the bedtime story began, tiny moonbeams danced across the bedroom walls. They twirled together until Milo stepped out of the light.",
+
+  "The room became wonderfully quiet. Then a gentle breeze carried silver stardust through the open window, and Milo appeared with an excited grin.",
+
+  "As the first stars began to sparkle outside, a tiny golden key floated gently onto {name}'s pillow. Milo appeared moments later, whispering, 'I think tonight's adventure has found us.'",
+
+  "A soft glow spread across the ceiling like moonlight on water. Milo looked up, smiled at {name}, and said, 'The Moon has a very special mission for us tonight.'",
+
+  "The bedtime clock had only just chimed when a little shooting star zipped across the room, leaving behind a trail of glitter. Milo hurried after it with a cheerful laugh.",
+
+  "As {name} closed their eyes, the room filled with tiny floating lights. One by one they gathered together until they formed Milo, already holding tonight's magical storybook."
 ];
 
 function fillTemplate(template, values) {
