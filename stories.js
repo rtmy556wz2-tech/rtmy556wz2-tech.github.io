@@ -180,7 +180,7 @@ const words = getWordsForStory(
 
     const title = `${name} and the Moonlight Promise`;
     const paragraphs = [
-      `Just as ${name} was getting ready for bed, a warm pearl-colored glow appeared beside the window. It was Milo the Moonbear, waving from inside his round glass helmet. “Tonight,” Milo whispered, “the moon needs a little help from someone who loves ${interest}.”`,
+      `${fillTemplate(pickRandom(storyOpenings), { name })} “Tonight,” Milo whispered, “the moon needs a little help from someone who loves ${interest}.”`,
       `${mood.sky} Milo opened his storybook, and its pages became a silver doorway. Together, ${name} and Milo stepped through and arrived in ${character.place}, where they met ${character.friend}.`,
      `${character.friend.split(",")[0]} was holding ${character.object}. It usually showed the way home, but tonight its light had faded. Milo pointed toward the sky and taught ${name} ${wordCount} special ${profile.targetLanguage || "Spanish"} words: ${words.map(word => `“${word.word}” meant ${word.meaning}`).join(", ")}. Each new word made the little object glow a little brighter.`,
       `${mood.movement} Along the way, ${name} noticed something wonderful: the adventure was filled with ${interest}. It was as if the story had remembered exactly what made ${name}'s imagination wake up.`,
