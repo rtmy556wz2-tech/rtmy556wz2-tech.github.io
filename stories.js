@@ -121,8 +121,11 @@ function getThemesForCharacter(characterName) {
   return themeMap[characterName] || ["Nature", "Friends", "Bedtime"];
 }
 
-function getWordsForStory(languageVocabulary, characterName, wordCount) {
-  const themes = getThemesForCharacter(characterName);
+function getWordsForStory(languageVocabulary, profile, wordCount) {
+  const themes = [
+    ...getThemesForCharacter(profile.character),
+    ...getThemesForMood(profile.mood),
+  ];
 
   const themedWords = themes.flatMap(
     (theme) => languageVocabulary[theme] || []
