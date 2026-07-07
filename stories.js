@@ -112,7 +112,7 @@ const words = [...allWords]
   .sort(() => Math.random() - 0.5)
   .slice(0, wordCount);
 
-const words = allWords.slice(0, wordCount);
+
     const goal = goalDetails[profile.goal] || goalDetails.Courage;
     const length = lengthDetails[String(profile.readingTime)] || lengthDetails["5"];
 
