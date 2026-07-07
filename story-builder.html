@@ -181,31 +181,51 @@
                 <label class="choice-pill"><input type="radio" name="goal" value="Courage" required /><span>Courage</span></label>
                 <label class="choice-pill"><input type="radio" name="goal" value="Kindness" required /><span>Kindness</span></label>
               </div>
-              <small class="group-error" data-error-for="goal"></small>
-            </div>
+              <div class="choice-group">
+  <span class="choice-title">Parent goal</span>
+  <div class="choice-grid goal-grid">
+    <label class="choice-pill"><input type="radio" name="goal" value="Language learning" required /><span>Language learning</span></label>
+    <label class="choice-pill"><input type="radio" name="goal" value="Build reading habit" required /><span>Build reading habit</span></label>
+    <label class="choice-pill"><input type="radio" name="goal" value="Improve bedtime routine" required /><span>Improve bedtime routine</span></label>
+    <label class="choice-pill"><input type="radio" name="goal" value="Confidence" required /><span>Confidence</span></label>
+    <label class="choice-pill"><input type="radio" name="goal" value="Courage" required /><span>Courage</span></label>
+    <label class="choice-pill"><input type="radio" name="goal" value="Kindness" required /><span>Kindness</span></label>
+  </div>
+  <small class="group-error" data-error-for="goal"></small>
+</div>
 
-            <div class="form-grid">
-              <label class="field">
-                <span>Reading time</span>
-                <select name="readingTime" required>
-                  <option value="">Choose length</option>
-                  <option value="3">3 min</option>
-                  <option value="5">5 min</option>
-                  <option value="8">8 min</option>
-                </select>
-                <small class="field-error"></small>
-              </label>
+<div class="form-grid">
+  <label class="field">
+    <span>Number of new words</span>
+    <select name="newWordsCount" required>
+      <option value="">Choose number</option>
+      <option value="1">1 new word</option>
+      <option value="2">2 new words</option>
+      <option value="3">3 new words</option>
+      <option value="4">4 new words</option>
+      <option value="5">5 new words</option>
+    </select>
+    <small class="field-error"></small>
+  </label>
 
-              <label class="field">
-                <span>Parent email</span>
-                <input type="email" name="email" required autocomplete="email" placeholder="you@example.com" />
-                <small class="field-error"></small>
-              </label>
-            </div>
+  <label class="field">
+    <span>Reading time</span>
+    <select name="readingTime" required>
+      <option value="">Choose length</option>
+      <option value="3">3 min</option>
+      <option value="5">5 min</option>
+      <option value="8">8 min</option>
+    </select>
+    <small class="field-error"></small>
+  </label>
 
-            <label class="consent-row">
-              <input name="consent" type="checkbox" required />
-              <span>I agree to store these details in this browser to create the preview.</span>
+  <label class="field">
+    <span>Parent email</span>
+    <input type="email" name="email" required autocomplete="email" placeholder="you@example.com" />
+    <small class="field-error"></small>
+  </label>
+</div>
+              
             </label>
             <small class="group-error" data-error-for="consent"></small>
           </fieldset>
