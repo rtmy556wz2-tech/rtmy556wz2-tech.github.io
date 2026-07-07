@@ -107,6 +107,16 @@ function getThemesForCharacter(characterName) {
     Animal: ["Animals", "Nature", "Friends"],
     Robot: ["Space", "Actions", "Colours"],
   };
+  function getThemesForMood(moodName) {
+  const moodMap = {
+    Calm: ["Bedtime", "Nature", "Feelings"],
+    Magical: ["Magic", "Space", "Colours"],
+    Funny: ["Friends", "Animals", "Actions"],
+    Adventurous: ["Actions", "Nature", "Space"],
+  };
+
+  return moodMap[moodName] || ["Nature", "Friends"];
+}
 
   return themeMap[characterName] || ["Nature", "Friends", "Bedtime"];
 }
