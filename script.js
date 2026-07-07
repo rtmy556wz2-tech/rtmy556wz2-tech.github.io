@@ -25,6 +25,7 @@
       targetLanguage: profile.targetLanguage,
       goal: profile.goal,
       readingTime: profile.readingTime,
+      newWordsCount: profile.newWordsCount,
     });
   };
 
@@ -100,6 +101,7 @@
       interest: formData.get("interest"),
       goal: formData.get("goal"),
       readingTime: formData.get("readingTime"),
+      newWordsCount: formData.get("newWordsCount"),
       parentEmail: formData.get("email"),
     };
   }
@@ -324,7 +326,9 @@
     document.title = `${story.title} — MoonTale`;
     document.querySelector("#story-title").textContent = story.title;
     document.querySelector("#story-reading-time").textContent = story.readingTime;
-    document.querySelector("#story-language").textContent = `${story.language} · 3 new words`;
+    const newWordsCount = profile.newWordsCount || story.vocabulary.length || 3;
+document.querySelector("#story-language").textContent =
+  `${story.language} · ${newWordsCount} new words`;
     document.querySelector("#vocabulary-language").textContent = story.language;
     document.querySelector("#learning-goal").textContent = `${story.goal}: ${story.lesson}`;
     document.querySelector("#parent-tip").textContent = story.parentTip;
