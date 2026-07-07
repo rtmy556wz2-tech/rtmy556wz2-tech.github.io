@@ -95,6 +95,36 @@
   function safeText(value, fallback) {
     return String(value || fallback).replace(/[<>]/g, "").trim();
   }
+  function shuffleWords(words) {
+  return [...words].sort(() => Math.random() - 0.5);
+}
+
+function getThemesForCharacter(characterName) {
+  const themeMap = {
+    Astronaut: ["Space", "Actions", "Bedtime"],
+    Dinosaur: ["Animals", "Nature", "Actions"],
+    Princess: ["Magic", "Friends", "Colours"],
+    Animal: ["Animals", "Nature", "Friends"],
+    Robot: ["Space", "Actions", "Colours"],
+  };
+
+  return themeMap[characterName] || ["Nature", "Friends", "Bedtime"];
+}
+
+function getWordsForStory(languageVocabulary, characterName, wordCount) {
+  const themes = getThemesForCharacter(characterName);
+
+  const themedWords = themes.flatMap(
+    (theme) => languageVocabulary[theme] || []
+  );
+
+  const fallbackWords = Object.values(languageVocabulary).flat();
+
+  const availableWords =
+    themedWords.length > 0 ? themedWords : fallbackWords;
+
+  return shuffleWords(availableWords).slice(0, wordCount);
+}
 
   function generateStory(profile) {
     const name = safeText(profile.childName, "Your child");
@@ -103,14 +133,18 @@
     const mood = moodDetails[profile.mood] || moodDetails.Magical;
    const allWords = vocabulary[profile.targetLanguage] || vocabulary.Spanish;
 
+const totalWords = Object.values(allWords).flat().length;
+
 const wordCount = Math.min(
   Number(profile.newWordsCount) || 3,
-  allWords.length
+  totalWords
 );
 
-const words = [...allWords]
-  .sort(() => Math.random() - 0.5)
-  .slice(0, wordCount);
+const words = getWordsForStory(
+  allWords,
+  profile.character,
+  wordCount
+);
 
 
     const goal = goalDetails[profile.goal] || goalDetails.Courage;
