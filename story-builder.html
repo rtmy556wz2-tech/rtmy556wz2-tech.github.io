@@ -6,8 +6,9 @@
     <meta
       name="description"
       content="Create a personalized MoonTale bedtime story for your child."
+      data-i18n-content="meta.builder.description"
     />
-    <title>Create a Story — MoonTale</title>
+    <title>Create a Story - MoonTale</title>
     <link rel="stylesheet" href="./styles.css" />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-716GP23C93"></script>
@@ -21,22 +22,41 @@
     </script>
   </head>
   <body class="app-page" data-page="builder">
-    <a class="skip-link" href="#main">Skip to story builder</a>
+    <a class="skip-link" href="#main" data-i18n="builder.skip">Skip to story builder</a>
 
     <header class="app-header shell">
-      <a class="brand serif" href="./index.html" aria-label="MoonTale home">
+      <a class="brand serif" href="./index.html" aria-label="MoonTale home" data-i18n-aria-label="common.homeLabel">
         <span class="brand-moon" aria-hidden="true">☾</span>
         <span>MoonTale</span>
       </a>
-      <p class="app-header-note">A bedtime story made for your child</p>
+      <div class="app-header-actions">
+        <p class="app-header-note" data-i18n="builder.header.note">A bedtime story made for your child</p>
+        <div class="language-switch">
+          <label class="language-select-label">
+            <span class="sr-only" data-i18n="common.languageSelector">Choose language</span>
+            <select
+              class="language-select"
+              data-language-select
+              aria-label="Choose language"
+              data-i18n-aria-label="common.languageSelector"
+            >
+              <option value="en">English</option>
+              <option value="pl">Polski</option>
+              <option value="es">Español</option>
+              <option value="fr">Français</option>
+              <option value="de">Deutsch</option>
+            </select>
+          </label>
+        </div>
+      </div>
     </header>
 
     <main class="builder-main shell" id="main">
       <section class="builder-intro">
         <div>
-          <p class="eyebrow">Create tonight's adventure</p>
-          <h1 class="serif">Tell Milo a little about your child.</h1>
-          <p>
+          <p class="eyebrow" data-i18n="builder.intro.eyebrow">Create tonight's adventure</p>
+          <h1 class="serif" data-i18n="builder.intro.title">Tell Milo a little about your child.</h1>
+          <p data-i18n="builder.intro.body">
             In three short steps, MoonTale will create a warm story preview with gentle language learning
             woven into the adventure.
           </p>
@@ -44,18 +64,19 @@
         <img
           src="./assets/milo-moonbear.png"
           alt="Milo the Moonbear waving"
+          data-i18n-alt="builder.intro.miloAlt"
           width="900"
           height="900"
         />
       </section>
 
       <section class="wizard-card" aria-labelledby="builder-title">
-        <div class="wizard-progress" aria-label="Story builder progress">
+        <div class="wizard-progress" aria-label="Story builder progress" data-i18n-aria-label="builder.progress.label">
           <div class="progress-track"><span id="progress-fill"></span></div>
           <div class="progress-labels">
-            <span class="is-current">Child</span>
-            <span>Story</span>
-            <span>Goal</span>
+            <span class="is-current" data-i18n="builder.progress.child">Child</span>
+            <span data-i18n="builder.progress.story">Story</span>
+            <span data-i18n="builder.progress.goal">Goal</span>
           </div>
         </div>
 
@@ -67,60 +88,71 @@
         >
           <input type="hidden" name="source" value="story-builder" />
           <input type="hidden" name="_subject" value="MoonTale Story Builder Signup" />
-          <h2 class="sr-only" id="builder-title">MoonTale story builder</h2>
+          <input type="hidden" name="websiteLanguage" id="website-language-field" value="en" />
+          <h2 class="sr-only" id="builder-title" data-i18n="builder.form.title">MoonTale story builder</h2>
 
           <fieldset class="wizard-step is-active" data-step="1">
             <legend>
-              <span class="step-label">Step 1 of 3</span>
-              <span class="serif">Who is tonight's story for?</span>
+              <span class="step-label" data-i18n="builder.step1.label">Step 1 of 3</span>
+              <span class="serif" data-i18n="builder.step1.title">Who is tonight's story for?</span>
             </legend>
-            <p class="step-description">These details help Milo make the adventure feel familiar.</p>
+            <p class="step-description" data-i18n="builder.step1.description">
+              These details help Milo make the adventure feel familiar.
+            </p>
 
             <div class="form-grid">
               <label class="field">
-                <span>Child's name</span>
-                <input name="childName" type="text" autocomplete="off" maxlength="30" placeholder="e.g. Emma" required />
+                <span data-i18n="builder.fields.childName">Child's name</span>
+                <input
+                  name="childName"
+                  type="text"
+                  autocomplete="off"
+                  maxlength="30"
+                  placeholder="e.g. Emma"
+                  data-i18n-placeholder="builder.placeholders.childName"
+                  required
+                />
                 <small class="field-error"></small>
               </label>
 
               <label class="field">
-                <span>Child's age</span>
+                <span data-i18n="builder.fields.childAge">Child's age</span>
                 <select name="childAge" required>
-                  <option value="">Choose age</option>
-                  <option value="3">3 years old</option>
-                  <option value="4">4 years old</option>
-                  <option value="5">5 years old</option>
-                  <option value="6">6 years old</option>
-                  <option value="7">7 years old</option>
-                  <option value="8">8 years old</option>
-                  <option value="9">9 years old</option>
-                  <option value="10">10 years old</option>
+                  <option value="" data-i18n="builder.options.chooseAge">Choose age</option>
+                  <option value="3" data-i18n="builder.options.age3">3 years old</option>
+                  <option value="4" data-i18n="builder.options.age4">4 years old</option>
+                  <option value="5" data-i18n="builder.options.age5">5 years old</option>
+                  <option value="6" data-i18n="builder.options.age6">6 years old</option>
+                  <option value="7" data-i18n="builder.options.age7">7 years old</option>
+                  <option value="8" data-i18n="builder.options.age8">8 years old</option>
+                  <option value="9" data-i18n="builder.options.age9">9 years old</option>
+                  <option value="10" data-i18n="builder.options.age10">10 years old</option>
                 </select>
                 <small class="field-error"></small>
               </label>
 
               <label class="field">
-                <span>Current language</span>
+                <span data-i18n="builder.fields.currentLanguage">Current language</span>
                 <select name="currentLanguage" required>
-                  <option value="">Choose language</option>
-                  <option value="English">English</option>
-                  <option value="Polish">Polish</option>
-                  <option value="Spanish">Spanish</option>
-                  <option value="French">French</option>
-                  <option value="German">German</option>
+                  <option value="" data-i18n="builder.options.chooseLanguage">Choose language</option>
+                  <option value="English" data-i18n="language.English">English</option>
+                  <option value="Polish" data-i18n="language.Polish">Polish</option>
+                  <option value="Spanish" data-i18n="language.Spanish">Spanish</option>
+                  <option value="French" data-i18n="language.French">French</option>
+                  <option value="German" data-i18n="language.German">German</option>
                 </select>
                 <small class="field-error"></small>
               </label>
 
               <label class="field">
-                <span>Language to learn</span>
+                <span data-i18n="builder.fields.targetLanguage">Language to learn</span>
                 <select name="targetLanguage" required>
-                  <option value="">Choose language</option>
-                  <option value="Spanish">Spanish</option>
-                  <option value="French">French</option>
-                  <option value="German">German</option>
-                  <option value="Polish">Polish</option>
-                  <option value="English">English</option>
+                  <option value="" data-i18n="builder.options.chooseLanguage">Choose language</option>
+                  <option value="Spanish" data-i18n="language.Spanish">Spanish</option>
+                  <option value="French" data-i18n="language.French">French</option>
+                  <option value="German" data-i18n="language.German">German</option>
+                  <option value="Polish" data-i18n="language.Polish">Polish</option>
+                  <option value="English" data-i18n="language.English">English</option>
                 </select>
                 <small class="field-error"></small>
               </label>
@@ -129,143 +161,150 @@
 
           <fieldset class="wizard-step" data-step="2">
             <legend>
-              <span class="step-label">Step 2 of 3</span>
-              <span class="serif">What kind of adventure will they love?</span>
+              <span class="step-label" data-i18n="builder.step2.label">Step 2 of 3</span>
+              <span class="serif" data-i18n="builder.step2.title">What kind of adventure will they love?</span>
             </legend>
-            <p class="step-description">Choose the ingredients for tonight's magical world.</p>
+            <p class="step-description" data-i18n="builder.step2.description">
+              Choose the ingredients for tonight's magical world.
+            </p>
 
             <div class="choice-group">
-              <span class="choice-title">Favorite character</span>
+              <span class="choice-title" data-i18n="builder.fields.character">Favorite character</span>
               <div class="choice-grid character-grid">
-                <label class="choice-card"><input type="radio" name="character" value="Astronaut" required /><span>🚀</span><strong>Astronaut</strong></label>
-                <label class="choice-card"><input type="radio" name="character" value="Dinosaur" required /><span>🦕</span><strong>Dinosaur</strong></label>
-                <label class="choice-card"><input type="radio" name="character" value="Princess" required /><span>♕</span><strong>Princess</strong></label>
-                <label class="choice-card"><input type="radio" name="character" value="Animal" required /><span>🐾</span><strong>Animal</strong></label>
-                <label class="choice-card"><input type="radio" name="character" value="Robot" required /><span>⚙</span><strong>Robot</strong></label>
+                <label class="choice-card"><input type="radio" name="character" value="Astronaut" required /><span>🚀</span><strong data-i18n="option.character.Astronaut">Astronaut</strong></label>
+                <label class="choice-card"><input type="radio" name="character" value="Dinosaur" required /><span>🦕</span><strong data-i18n="option.character.Dinosaur">Dinosaur</strong></label>
+                <label class="choice-card"><input type="radio" name="character" value="Princess" required /><span>♕</span><strong data-i18n="option.character.Princess">Princess</strong></label>
+                <label class="choice-card"><input type="radio" name="character" value="Animal" required /><span>🐾</span><strong data-i18n="option.character.Animal">Animal</strong></label>
+                <label class="choice-card"><input type="radio" name="character" value="Robot" required /><span>⚙</span><strong data-i18n="option.character.Robot">Robot</strong></label>
               </div>
               <small class="group-error" data-error-for="character"></small>
             </div>
 
             <div class="choice-group">
-              <span class="choice-title">Story mood</span>
+              <span class="choice-title" data-i18n="builder.fields.mood">Story mood</span>
               <div class="choice-grid mood-grid">
-                <label class="choice-card"><input type="radio" name="mood" value="Calm" required /><span>☾</span><strong>Calm</strong></label>
-                <label class="choice-card"><input type="radio" name="mood" value="Magical" required /><span>✦</span><strong>Magical</strong></label>
-                <label class="choice-card"><input type="radio" name="mood" value="Funny" required /><span>☺</span><strong>Funny</strong></label>
-                <label class="choice-card"><input type="radio" name="mood" value="Adventurous" required /><span>⌁</span><strong>Adventurous</strong></label>
+                <label class="choice-card"><input type="radio" name="mood" value="Calm" required /><span>☾</span><strong data-i18n="option.mood.Calm">Calm</strong></label>
+                <label class="choice-card"><input type="radio" name="mood" value="Magical" required /><span>✦</span><strong data-i18n="option.mood.Magical">Magical</strong></label>
+                <label class="choice-card"><input type="radio" name="mood" value="Funny" required /><span>☺</span><strong data-i18n="option.mood.Funny">Funny</strong></label>
+                <label class="choice-card"><input type="radio" name="mood" value="Adventurous" required /><span>⌁</span><strong data-i18n="option.mood.Adventurous">Adventurous</strong></label>
               </div>
               <small class="group-error" data-error-for="mood"></small>
             </div>
 
             <label class="field field-wide">
-              <span>Favorite interest</span>
-              <input name="interest" type="text" maxlength="50" placeholder="e.g. stars, trains, butterflies" required />
+              <span data-i18n="builder.fields.interest">Favorite interest</span>
+              <input
+                name="interest"
+                type="text"
+                maxlength="50"
+                placeholder="e.g. stars, trains, butterflies"
+                data-i18n-placeholder="builder.placeholders.interest"
+                required
+              />
               <small class="field-error"></small>
             </label>
           </fieldset>
 
           <fieldset class="wizard-step" data-step="3">
-  <legend>
-    <span class="step-label">Step 3 of 3</span>
-    <span class="serif">What should tonight's story nurture?</span>
-  </legend>
+            <legend>
+              <span class="step-label" data-i18n="builder.step3.label">Step 3 of 3</span>
+              <span class="serif" data-i18n="builder.step3.title">What should tonight's story nurture?</span>
+            </legend>
 
-  <p class="step-description">
-    Milo will gently shape the ending around your goal.
-  </p>
+            <p class="step-description" data-i18n="builder.step3.description">
+              Milo will gently shape the ending around your goal.
+            </p>
 
-  <div class="choice-group">
-    <span class="choice-title">Parent goal</span>
+            <div class="choice-group">
+              <span class="choice-title" data-i18n="builder.fields.goal">Parent goal</span>
 
-    <div class="choice-grid goal-grid">
-      <label class="choice-pill">
-        <input type="radio" name="goal" value="Language learning" required />
-        <span>Language learning</span>
-      </label>
+              <div class="choice-grid goal-grid">
+                <label class="choice-pill">
+                  <input type="radio" name="goal" value="Language learning" required />
+                  <span data-i18n="option.goal.Language learning">Language learning</span>
+                </label>
 
-      <label class="choice-pill">
-        <input type="radio" name="goal" value="Build reading habit" required />
-        <span>Build reading habit</span>
-      </label>
+                <label class="choice-pill">
+                  <input type="radio" name="goal" value="Build reading habit" required />
+                  <span data-i18n="option.goal.Build reading habit">Build reading habit</span>
+                </label>
 
-      <label class="choice-pill">
-        <input type="radio" name="goal" value="Improve bedtime routine" required />
-        <span>Improve bedtime routine</span>
-      </label>
+                <label class="choice-pill">
+                  <input type="radio" name="goal" value="Improve bedtime routine" required />
+                  <span data-i18n="option.goal.Improve bedtime routine">Improve bedtime routine</span>
+                </label>
 
-      <label class="choice-pill">
-        <input type="radio" name="goal" value="Confidence" required />
-        <span>Confidence</span>
-      </label>
+                <label class="choice-pill">
+                  <input type="radio" name="goal" value="Confidence" required />
+                  <span data-i18n="option.goal.Confidence">Confidence</span>
+                </label>
 
-      <label class="choice-pill">
-        <input type="radio" name="goal" value="Courage" required />
-        <span>Courage</span>
-      </label>
+                <label class="choice-pill">
+                  <input type="radio" name="goal" value="Courage" required />
+                  <span data-i18n="option.goal.Courage">Courage</span>
+                </label>
 
-      <label class="choice-pill">
-        <input type="radio" name="goal" value="Kindness" required />
-        <span>Kindness</span>
-      </label>
-    </div>
+                <label class="choice-pill">
+                  <input type="radio" name="goal" value="Kindness" required />
+                  <span data-i18n="option.goal.Kindness">Kindness</span>
+                </label>
+              </div>
 
-    <small class="group-error" data-error-for="goal"></small>
-  </div>
+              <small class="group-error" data-error-for="goal"></small>
+            </div>
 
-  <div class="form-grid">
+            <div class="form-grid">
+              <label class="field">
+                <span data-i18n="builder.fields.newWordsCount">Number of new words</span>
+                <select name="newWordsCount" required>
+                  <option value="" data-i18n="builder.options.chooseNumber">Choose number</option>
+                  <option value="1" data-i18n="builder.options.oneWord">1 new word</option>
+                  <option value="2" data-i18n="builder.options.twoWords">2 new words</option>
+                  <option value="3" data-i18n="builder.options.threeWords">3 new words</option>
+                  <option value="4" data-i18n="builder.options.fourWords">4 new words</option>
+                  <option value="5" data-i18n="builder.options.fiveWords">5 new words</option>
+                </select>
+                <small class="field-error"></small>
+              </label>
 
-    <label class="field">
-      <span>Number of new words</span>
-      <select name="newWordsCount" required>
-        <option value="">Choose number</option>
-        <option value="1">1 new word</option>
-        <option value="2">2 new words</option>
-        <option value="3">3 new words</option>
-        <option value="4">4 new words</option>
-        <option value="5">5 new words</option>
-      </select>
-      <small class="field-error"></small>
-    </label>
+              <label class="field">
+                <span data-i18n="builder.fields.readingTime">Reading time</span>
+                <select name="readingTime" required>
+                  <option value="" data-i18n="builder.options.chooseLength">Choose length</option>
+                  <option value="3" data-i18n="builder.options.threeMin">3 min</option>
+                  <option value="5" data-i18n="builder.options.fiveMin">5 min</option>
+                  <option value="8" data-i18n="builder.options.eightMin">8 min</option>
+                </select>
+                <small class="field-error"></small>
+              </label>
 
-    <label class="field">
-      <span>Reading time</span>
-      <select name="readingTime" required>
-        <option value="">Choose length</option>
-        <option value="3">3 min</option>
-        <option value="5">5 min</option>
-        <option value="8">8 min</option>
-      </select>
-      <small class="field-error"></small>
-    </label>
+              <label class="field">
+                <span data-i18n="common.parentEmail">Parent email</span>
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  autocomplete="email"
+                  placeholder="you@example.com"
+                />
+                <small class="field-error"></small>
+              </label>
+            </div>
 
-    <label class="field">
-      <span>Parent email</span>
-      <input
-        type="email"
-        name="email"
-        required
-        autocomplete="email"
-        placeholder="you@example.com"
-      />
-      <small class="field-error"></small>
-    </label>
+            <label class="consent-row">
+              <input name="consent" type="checkbox" required />
+              <span data-i18n="builder.consent">
+                I agree to store these details in this browser to create the preview.
+              </span>
+            </label>
 
-  </div>
-
-  <label class="consent-row">
-    <input name="consent" type="checkbox" required />
-    <span>
-      I agree to store these details in this browser to create the preview.
-    </span>
-  </label>
-
-  <small class="group-error" data-error-for="consent"></small>
-</fieldset>
+            <small class="group-error" data-error-for="consent"></small>
+          </fieldset>
 
           <div class="wizard-actions">
-            <button class="button button-secondary wizard-back" type="button" hidden>Back</button>
-            <button class="button button-primary wizard-next" type="button">Continue</button>
-            <button class="button button-primary wizard-generate" type="submit" hidden>
+            <button class="button button-secondary wizard-back" type="button" hidden data-i18n="builder.buttons.back">Back</button>
+            <button class="button button-primary wizard-next" type="button" data-i18n="builder.buttons.continue">Continue</button>
+            <button class="button button-primary wizard-generate" type="submit" hidden data-i18n="builder.buttons.generate">
               Create Tonight's Story
             </button>
           </div>
@@ -275,17 +314,10 @@
     </main>
 
     <footer class="app-footer shell">
-      <p>Made for calm family moments. Your builder details stay in this browser.</p>
+      <p data-i18n="builder.footer.note">Made for calm family moments. Your builder details stay in this browser.</p>
       <a href="mailto:contact@moontaleapp.com">contact@moontaleapp.com</a>
     </footer>
 
-    <script src="./vocabulary/spanish.js"></script>
-<script src="./vocabulary/french.js"></script>
-<script src="./vocabulary/german.js"></script>
-<script src="./vocabulary/polish.js"></script>
-<script src="./vocabulary/english.js"></script>
-<script src="/stories.js?v=3"></script>
-<script src="/script.js?v=3"></script>
-    
+    <script src="./script.js"></script>
   </body>
 </html>

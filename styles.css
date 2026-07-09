@@ -119,10 +119,32 @@ a {
 
 .language-switch {
   display: flex;
+  align-items: center;
   padding: 3px;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.38);
+}
+
+.language-select-label {
+  display: flex;
+}
+
+.language-select {
+  min-width: 118px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font: 700 0.74rem/1 var(--sans);
+  letter-spacing: 0.02em;
+  padding: 9px 12px;
+}
+
+.language-select:focus-visible {
+  outline: 2px solid rgba(182, 121, 112, 0.62);
+  outline-offset: 2px;
 }
 
 .language-button {
@@ -1146,6 +1168,12 @@ blockquote {
     font-size: 0.66rem;
   }
 
+  .language-select {
+    min-width: 104px;
+    padding: 8px 9px;
+    font-size: 0.66rem;
+  }
+
   .hero {
     gap: 4px;
     padding-block: 20px 56px;
@@ -1316,6 +1344,12 @@ blockquote {
   justify-content: space-between;
   gap: 24px;
   border-top: 3px solid rgba(182, 121, 112, 0.42);
+}
+
+.app-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
 }
 
 .app-header-note {
@@ -2013,7 +2047,15 @@ blockquote {
     min-height: 74px;
   }
 
+  .app-header-actions {
+    gap: 8px;
+  }
+
   .app-header-note {
+    display: none;
+  }
+
+  .app-header .text-link {
     display: none;
   }
 

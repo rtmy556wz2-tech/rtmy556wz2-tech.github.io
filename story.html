@@ -6,8 +6,9 @@
     <meta
       name="description"
       content="Read your personalized MoonTale bedtime story preview."
+      data-i18n-content="meta.story.description"
     />
-    <title>Your Bedtime Story — MoonTale</title>
+    <title>Your Bedtime Story - MoonTale</title>
     <link rel="stylesheet" href="./styles.css" />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-716GP23C93"></script>
@@ -21,25 +22,44 @@
     </script>
   </head>
   <body class="app-page story-page" data-page="story">
-    <a class="skip-link" href="#main">Skip to story</a>
+    <a class="skip-link" href="#main" data-i18n="story.skip">Skip to story</a>
 
     <header class="app-header shell">
-      <a class="brand serif" href="./index.html" aria-label="MoonTale home">
+      <a class="brand serif" href="./index.html" aria-label="MoonTale home" data-i18n-aria-label="common.homeLabel">
         <span class="brand-moon" aria-hidden="true">☾</span>
         <span>MoonTale</span>
       </a>
-      <a class="text-link" href="./story-builder.html">Create another story</a>
+      <div class="app-header-actions">
+        <div class="language-switch">
+          <label class="language-select-label">
+            <span class="sr-only" data-i18n="common.languageSelector">Choose language</span>
+            <select
+              class="language-select"
+              data-language-select
+              aria-label="Choose language"
+              data-i18n-aria-label="common.languageSelector"
+            >
+              <option value="en">English</option>
+              <option value="pl">Polski</option>
+              <option value="es">Español</option>
+              <option value="fr">Français</option>
+              <option value="de">Deutsch</option>
+            </select>
+          </label>
+        </div>
+        <a class="text-link" href="./story-builder.html" data-i18n="story.header.createAnother">Create another story</a>
+      </div>
     </header>
 
     <main id="main">
       <section class="story-hero shell">
         <div class="story-heading">
-          <p class="eyebrow">Tonight's MoonTale</p>
-          <h1 class="serif" id="story-title">Your magical bedtime story</h1>
+          <p class="eyebrow" data-i18n="story.hero.eyebrow">Tonight's MoonTale</p>
+          <h1 class="serif" id="story-title" data-i18n="story.hero.defaultTitle">Your magical bedtime story</h1>
           <div class="story-meta">
-            <span id="story-reading-time">5 minute read</span>
-            <span id="story-language">3 new words</span>
-            <span>Guided by Milo</span>
+            <span id="story-reading-time" data-i18n="story.hero.defaultReadingTime">5 minute read</span>
+            <span id="story-language" data-i18n="story.hero.defaultWords">3 new words</span>
+            <span data-i18n="story.hero.guidedBy">Guided by Milo</span>
           </div>
         </div>
         <div class="story-milo-scene">
@@ -48,6 +68,7 @@
           <img
             src="./assets/milo-moonbear.png"
             alt="Milo the Moonbear, tonight's storytelling guide"
+            data-i18n-alt="story.hero.miloAlt"
             width="900"
             height="900"
           />
@@ -58,26 +79,28 @@
         <div class="story-paper">
           <div class="story-opening-mark" aria-hidden="true">☾</div>
           <div id="story-content" class="story-content"></div>
-          <p class="story-ending serif">And under the quiet moon, everyone slept peacefully.</p>
+          <p class="story-ending serif" data-i18n="story.ending">
+            And under the quiet moon, everyone slept peacefully.
+          </p>
         </div>
 
         <aside class="story-sidebar">
           <section class="story-insight vocabulary-card" aria-labelledby="words-title">
-            <p class="card-kicker">Language discovery</p>
-            <h2 class="serif" id="words-title">Tonight's New Words</h2>
+            <p class="card-kicker" data-i18n="story.sidebar.discovery">Language discovery</p>
+            <h2 class="serif" id="words-title" data-i18n="story.sidebar.wordsTitle">Tonight's New Words</h2>
             <p id="vocabulary-language" class="insight-intro"></p>
             <dl id="vocabulary-list" class="vocabulary-list"></dl>
           </section>
 
           <section class="story-insight" aria-labelledby="goal-title">
-            <p class="card-kicker">A gentle intention</p>
-            <h2 class="serif" id="goal-title">Tonight's Learning Goal</h2>
+            <p class="card-kicker" data-i18n="story.sidebar.intention">A gentle intention</p>
+            <h2 class="serif" id="goal-title" data-i18n="story.sidebar.goalTitle">Tonight's Learning Goal</h2>
             <p id="learning-goal"></p>
           </section>
 
           <section class="story-insight parent-tip" aria-labelledby="tip-title">
-            <p class="card-kicker">For grown-ups</p>
-            <h2 class="serif" id="tip-title">Parent Bedtime Tip</h2>
+            <p class="card-kicker" data-i18n="story.sidebar.grownups">For grown-ups</p>
+            <h2 class="serif" id="tip-title" data-i18n="story.sidebar.tipTitle">Parent Bedtime Tip</h2>
             <p id="parent-tip"></p>
           </section>
         </aside>
@@ -85,18 +108,20 @@
 
       <section class="story-actions shell">
         <div>
-          <p class="eyebrow">Make tonight your own</p>
-          <h2 class="serif">Try another magical combination.</h2>
+          <p class="eyebrow" data-i18n="story.actions.eyebrow">Make tonight your own</p>
+          <h2 class="serif" data-i18n="story.actions.title">Try another magical combination.</h2>
         </div>
-        <a class="button button-secondary" href="./story-builder.html">Create Another Story</a>
+        <a class="button button-secondary" href="./story-builder.html" data-i18n="story.actions.button">Create Another Story</a>
       </section>
 
       <section class="prototype-waitlist" aria-labelledby="waitlist-title">
         <div class="shell waitlist-card">
           <div>
-            <p class="eyebrow">The story can continue</p>
-            <h2 class="serif" id="waitlist-title">Want a personalized bedtime story every night?</h2>
-            <p>
+            <p class="eyebrow" data-i18n="story.waitlist.eyebrow">The story can continue</p>
+            <h2 class="serif" id="waitlist-title" data-i18n="story.waitlist.title">
+              Want a personalized bedtime story every night?
+            </h2>
+            <p data-i18n="story.waitlist.body">
               Join the MoonTale waitlist for early access, product updates, and invitations to test new
               family storytelling features.
             </p>
@@ -109,14 +134,16 @@
             method="POST"
           >
             <label class="field">
-              <span>Parent email</span>
+              <span data-i18n="common.parentEmail">Parent email</span>
               <input type="email" name="email" required id="waitlist-email" autocomplete="email" placeholder="you@example.com" />
             </label>
             <input type="hidden" name="_subject" value="MoonTale MVP Waitlist" />
             <input type="hidden" name="source" value="story-preview" />
-            <button class="button button-primary button-waitlist" type="submit">Join the Waitlist</button>
+            <button class="button button-primary button-waitlist" type="submit" data-i18n="common.joinWaitlist">
+              Join the Waitlist
+            </button>
             <p class="waitlist-status" id="waitlist-status" role="status" aria-live="polite"></p>
-            <p class="microcopy">
+            <p class="microcopy" data-i18n="common.waitlistMicrocopy">
               Early access updates only. Unsubscribe anytime.
             </p>
           </form>
@@ -128,15 +155,9 @@
       <a class="brand serif" href="./index.html">
         <span class="brand-moon" aria-hidden="true">☾</span><span>MoonTale</span>
       </a>
-      <p>A personalized learning and bedtime companion for children.</p>
+      <p data-i18n="story.footer.tagline">A personalized learning and bedtime companion for children.</p>
     </footer>
 
-  <script src="/vocabulary/spanish.js"></script>
-<script src="/vocabulary/french.js"></script>
-<script src="/vocabulary/german.js"></script>
-<script src="/vocabulary/polish.js"></script>
-<script src="/vocabulary/english.js"></script>
-<script src="/stories.js"></script>
-<script src="/script.js"></script>
+    <script src="./script.js"></script>
   </body>
 </html>

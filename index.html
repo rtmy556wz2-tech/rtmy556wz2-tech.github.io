@@ -6,8 +6,9 @@
     <meta
       name="description"
       content="MoonTale turns bedtime into a personalized language-learning adventure for children and their families."
+      data-i18n-content="meta.home.description"
     />
-    <title>MoonTale — Language learning through bedtime stories</title>
+    <title>MoonTale - Language learning through bedtime stories</title>
     <link rel="stylesheet" href="styles.css" />
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-716GP23C93"></script>
@@ -20,58 +21,74 @@
       gtag("config", "G-716GP23C93");
     </script>
   </head>
-  <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+  <body data-page="home">
+    <a class="skip-link" href="#main" data-i18n="common.skipContent">Skip to content</a>
 
-    <header class="site-header shell" aria-label="Main navigation">
-      <a class="brand serif" href="#top" aria-label="MoonTale home">
+    <header class="site-header shell" aria-label="Main navigation" data-i18n-aria-label="common.mainNavigation">
+      <a class="brand serif" href="#top" aria-label="MoonTale home" data-i18n-aria-label="common.homeLabel">
         <span class="brand-moon" aria-hidden="true">☾</span>
         <span>MoonTale</span>
       </a>
       <div class="header-actions">
-        <div class="language-switch" aria-label="Choose language">
-          <button class="language-button is-active" type="button" data-language="en" aria-pressed="true">
-            English
-          </button>
-          <button class="language-button" type="button" data-language="pl" aria-pressed="false">
-            Polski
-          </button>
+        <div class="language-switch">
+          <label class="language-select-label">
+            <span class="sr-only" data-i18n="common.languageSelector">Choose language</span>
+            <select
+              class="language-select"
+              data-language-select
+              aria-label="Choose language"
+              data-i18n-aria-label="common.languageSelector"
+            >
+              <option value="en">English</option>
+              <option value="pl">Polski</option>
+              <option value="es">Español</option>
+              <option value="fr">Français</option>
+              <option value="de">Deutsch</option>
+            </select>
+          </label>
         </div>
-        <a class="text-link" href="#join">Get Early Access</a>
+        <a class="text-link" href="#join" data-i18n="home.header.cta">Get Early Access</a>
       </div>
     </header>
 
     <main id="main">
       <section class="hero shell" id="top" aria-labelledby="hero-title">
         <div class="hero-copy reveal">
-          <p class="eyebrow">Language learning, made magical</p>
-          <h1 class="serif" id="hero-title">
+          <p class="eyebrow" data-i18n="home.hero.eyebrow">Language learning, made magical</p>
+          <h1 class="serif" id="hero-title" data-i18n="home.hero.title">
             Help your child learn a new language through bedtime stories they love.
           </h1>
-          <p class="hero-intro">
+          <p class="hero-intro" data-i18n="home.hero.intro">
             Personalized bedtime stories designed around your child's interests, helping make language
             learning natural, reading exciting, and bedtime a moment of connection.
           </p>
-          <ul class="benefit-list" aria-label="MoonTale benefits">
-            <li>Builds reading habits</li>
-            <li>Introduces a new language naturally</li>
-            <li>Creates calm, meaningful bedtime routines</li>
-            <li>Encourages imagination and curiosity</li>
+          <ul class="benefit-list" aria-label="MoonTale benefits" data-i18n-aria-label="home.hero.benefitsLabel">
+            <li data-i18n="home.hero.benefit1">Builds reading habits</li>
+            <li data-i18n="home.hero.benefit2">Introduces a new language naturally</li>
+            <li data-i18n="home.hero.benefit3">Creates calm, meaningful bedtime routines</li>
+            <li data-i18n="home.hero.benefit4">Encourages imagination and curiosity</li>
           </ul>
           <div class="hero-actions">
             <a
               class="button button-primary button-waitlist"
               href="./story-builder.html"
               data-track="cta"
+              data-i18n="home.hero.primaryCta"
             >
               Create a Free Bedtime Story
             </a>
-            <a class="button button-secondary" href="#sample">See a Sample Story</a>
+            <a class="button button-secondary" href="#sample" data-i18n="home.hero.secondaryCta">See a Sample Story</a>
           </div>
-          <p class="microcopy">No account needed. Create a personalized preview in about two minutes.</p>
+          <p class="microcopy" data-i18n="home.hero.microcopy">
+            No account needed. Create a personalized preview in about two minutes.
+          </p>
         </div>
 
-        <div class="hero-art reveal" aria-label="Milo beside a magical moon and open storybook">
+        <div
+          class="hero-art reveal"
+          aria-label="Milo beside a magical moon and open storybook"
+          data-i18n-aria-label="home.hero.artLabel"
+        >
           <div class="orbit orbit-one" aria-hidden="true"></div>
           <div class="orbit orbit-two" aria-hidden="true"></div>
           <span class="spark spark-one" aria-hidden="true">✦</span>
@@ -90,46 +107,49 @@
               class="milo"
               src="assets/milo-moonbear.png"
               alt="Milo the Moonbear, MoonTale's storytelling guide"
+              data-i18n-alt="home.hero.miloAlt"
               width="900"
               height="900"
             />
           </div>
           <p class="milo-bubble">
-            <span>Hi, I'm Milo the Moonbear.</span>
-            I'll guide your child through magical bedtime adventures while discovering new words, ideas,
-            and cultures.
+            <span data-i18n="home.hero.miloGreeting">Hi, I'm Milo the Moonbear.</span>
+            <span data-i18n="home.hero.miloText">
+              I'll guide your child through magical bedtime adventures while discovering new words, ideas,
+              and cultures.
+            </span>
           </p>
         </div>
       </section>
 
       <section class="section shell" aria-labelledby="problem-title">
         <div class="section-heading-wrap reveal">
-          <p class="eyebrow">Built around real family life</p>
-          <h2 class="serif" id="problem-title">The Problem</h2>
-          <p class="section-lead">
+          <p class="eyebrow" data-i18n="home.problem.eyebrow">Built around real family life</p>
+          <h2 class="serif" id="problem-title" data-i18n="home.problem.title">The Problem</h2>
+          <p class="section-lead" data-i18n="home.problem.lead">
             Parents want reading, learning, and bedtime to feel better. Today, they often have to choose
             between products that solve only one piece of the puzzle.
           </p>
         </div>
         <div class="problem-grid">
           <article class="soft-card reveal">
-            <p class="card-kicker">Parents want to</p>
+            <p class="card-kicker" data-i18n="home.problem.parentsWant">Parents want to</p>
             <ul class="check-list">
-              <li>Help their children read more</li>
-              <li>Introduce a second language early</li>
-              <li>Reduce passive screen time</li>
-              <li>Create calmer bedtime routines</li>
-              <li>Spend more meaningful time together</li>
+              <li data-i18n="home.problem.want1">Help their children read more</li>
+              <li data-i18n="home.problem.want2">Introduce a second language early</li>
+              <li data-i18n="home.problem.want3">Reduce passive screen time</li>
+              <li data-i18n="home.problem.want4">Create calmer bedtime routines</li>
+              <li data-i18n="home.problem.want5">Spend more meaningful time together</li>
             </ul>
           </article>
           <article class="soft-card reveal">
-            <p class="card-kicker">But most solutions are</p>
+            <p class="card-kicker" data-i18n="home.problem.solutionsAre">But most solutions are</p>
             <ul class="dash-list">
-              <li>Generic bedtime stories</li>
-              <li>Educational apps that feel like lessons</li>
-              <li>Entertainment that does not support learning</li>
+              <li data-i18n="home.problem.solution1">Generic bedtime stories</li>
+              <li data-i18n="home.problem.solution2">Educational apps that feel like lessons</li>
+              <li data-i18n="home.problem.solution3">Entertainment that does not support learning</li>
             </ul>
-            <p class="card-conclusion">
+            <p class="card-conclusion" data-i18n="home.problem.conclusion">
               MoonTale combines learning, imagination, and family connection in one experience.
             </p>
           </article>
@@ -139,29 +159,31 @@
       <section class="section section-tinted" aria-labelledby="transformation-title">
         <div class="shell">
           <div class="section-heading-wrap reveal">
-            <p class="eyebrow">A small ritual, transformed</p>
-            <h2 class="serif" id="transformation-title">Before and after MoonTale</h2>
+            <p class="eyebrow" data-i18n="home.transformation.eyebrow">A small ritual, transformed</p>
+            <h2 class="serif" id="transformation-title" data-i18n="home.transformation.title">
+              Before and after MoonTale
+            </h2>
           </div>
           <div class="comparison reveal">
             <article class="comparison-side before">
-              <p class="comparison-label">Before MoonTale</p>
+              <p class="comparison-label" data-i18n="home.transformation.before">Before MoonTale</p>
               <ul>
-                <li>Generic bedtime stories</li>
-                <li>Passive screen time</li>
-                <li>Children lose interest in reading</li>
-                <li>Language learning feels like homework</li>
-                <li>Bedtime can feel repetitive or stressful</li>
+                <li data-i18n="home.transformation.before1">Generic bedtime stories</li>
+                <li data-i18n="home.transformation.before2">Passive screen time</li>
+                <li data-i18n="home.transformation.before3">Children lose interest in reading</li>
+                <li data-i18n="home.transformation.before4">Language learning feels like homework</li>
+                <li data-i18n="home.transformation.before5">Bedtime can feel repetitive or stressful</li>
               </ul>
             </article>
             <div class="comparison-arrow" aria-hidden="true">→</div>
             <article class="comparison-side after">
-              <p class="comparison-label">After MoonTale</p>
+              <p class="comparison-label" data-i18n="home.transformation.after">After MoonTale</p>
               <ul>
-                <li>Stories shaped around your child's interests</li>
-                <li>Natural exposure to a new language</li>
-                <li>More excitement around reading</li>
-                <li>Calmer bedtime routines</li>
-                <li>Stronger parent-child connection</li>
+                <li data-i18n="home.transformation.after1">Stories shaped around your child's interests</li>
+                <li data-i18n="home.transformation.after2">Natural exposure to a new language</li>
+                <li data-i18n="home.transformation.after3">More excitement around reading</li>
+                <li data-i18n="home.transformation.after4">Calmer bedtime routines</li>
+                <li data-i18n="home.transformation.after5">Stronger parent-child connection</li>
               </ul>
             </article>
           </div>
@@ -170,9 +192,9 @@
 
       <section class="section shell" aria-labelledby="how-title">
         <div class="section-heading-wrap reveal">
-          <p class="eyebrow">From your family to their story</p>
-          <h2 class="serif" id="how-title">How it works.</h2>
-          <p class="section-lead">
+          <p class="eyebrow" data-i18n="home.how.eyebrow">From your family to their story</p>
+          <h2 class="serif" id="how-title" data-i18n="home.how.title">How it works.</h2>
+          <p class="section-lead" data-i18n="home.how.lead">
             A purpose-built bedtime flow that turns the things your child already loves into a gentle
             learning experience.
           </p>
@@ -180,23 +202,23 @@
         <div class="steps">
           <article class="step reveal">
             <span class="step-number">01</span>
-            <h3 class="serif">Add their world</h3>
-            <p>Share your child's name, age, interests, favorite themes, and reading level.</p>
+            <h3 class="serif" data-i18n="home.how.step1Title">Add their world</h3>
+            <p data-i18n="home.how.step1Text">Share your child's name, age, interests, favorite themes, and reading level.</p>
           </article>
           <article class="step reveal">
             <span class="step-number">02</span>
-            <h3 class="serif">Choose a language</h3>
-            <p>Select a goal such as English, Spanish, French, German, or Polish.</p>
+            <h3 class="serif" data-i18n="home.how.step2Title">Choose a language</h3>
+            <p data-i18n="home.how.step2Text">Select a goal such as English, Spanish, French, German, or Polish.</p>
           </article>
           <article class="step reveal">
             <span class="step-number">03</span>
-            <h3 class="serif">Add a memory</h3>
-            <p>Use a trip, pet, toy, or family photo as inspiration for tonight's adventure.</p>
+            <h3 class="serif" data-i18n="home.how.step3Title">Add a memory</h3>
+            <p data-i18n="home.how.step3Text">Use a trip, pet, toy, or family photo as inspiration for tonight's adventure.</p>
           </article>
           <article class="step reveal">
             <span class="step-number">04</span>
-            <h3 class="serif">Read together</h3>
-            <p>Enjoy a calm story with familiar details, gentle vocabulary, and a relaxing ending.</p>
+            <h3 class="serif" data-i18n="home.how.step4Title">Read together</h3>
+            <p data-i18n="home.how.step4Text">Enjoy a calm story with familiar details, gentle vocabulary, and a relaxing ending.</p>
           </article>
         </div>
       </section>
@@ -206,13 +228,13 @@
           <span class="memory-moon">☾</span>
           <span class="memory-star star-a">✦</span>
           <span class="memory-star star-b">✧</span>
-          <p>A family memory becomes</p>
-          <strong class="serif">The Secret Island Adventure</strong>
+          <p data-i18n="home.photo.memoryText">A family memory becomes</p>
+          <strong class="serif" data-i18n="home.photo.memoryTitle">The Secret Island Adventure</strong>
         </div>
         <div class="photo-copy reveal">
-          <p class="eyebrow">Photo to story</p>
-          <h2 class="serif" id="photo-title">Turn family photos into magical bedtime stories.</h2>
-          <p>
+          <p class="eyebrow" data-i18n="home.photo.eyebrow">Photo to story</p>
+          <h2 class="serif" id="photo-title" data-i18n="home.photo.title">Turn family photos into magical bedtime stories.</h2>
+          <p data-i18n="home.photo.body">
             A beach photo can become a pirate journey, a picture with a pet can become a forest quest,
             and a birthday memory can become a magical celebration. Every story feels personal,
             emotional, and unique to the family.
@@ -223,27 +245,39 @@
       <section class="section section-night" id="sample" aria-labelledby="sample-title">
         <div class="shell story-preview">
           <div class="story-copy reveal">
-            <p class="eyebrow">A glimpse inside</p>
-            <h2 class="serif" id="sample-title">Tonight's story preview.</h2>
+            <p class="eyebrow" data-i18n="home.sample.eyebrow">A glimpse inside</p>
+            <h2 class="serif" id="sample-title" data-i18n="home.sample.title">Tonight's story preview.</h2>
             <p>
-              Tonight, Emma and Milo travel through a sleepy moon forest while learning the Spanish words
-              <em>luna</em>, <em>estrella</em>, and <em>bosque</em>. The words appear naturally, with
-              gentle repetition and meaning from context.
+              <span data-i18n="home.sample.textBefore">
+                Tonight, Emma and Milo travel through a sleepy moon forest while learning the Spanish words
+              </span>
+              <em>luna</em>, <em>estrella</em>,
+              <span data-i18n="home.sample.textAnd">and</span>
+              <em>bosque</em>.
+              <span data-i18n="home.sample.textAfter">
+                The words appear naturally, with gentle repetition and meaning from context.
+              </span>
             </p>
           </div>
-          <div class="word-cards reveal" aria-label="Spanish vocabulary in the sample story">
-            <div><strong class="serif">luna</strong><span>moon</span></div>
-            <div><strong class="serif">estrella</strong><span>star</span></div>
-            <div><strong class="serif">bosque</strong><span>forest</span></div>
+          <div
+            class="word-cards reveal"
+            aria-label="Spanish vocabulary in the sample story"
+            data-i18n-aria-label="home.sample.vocabLabel"
+          >
+            <div><strong class="serif">luna</strong><span data-i18n="home.sample.wordMoon">moon</span></div>
+            <div><strong class="serif">estrella</strong><span data-i18n="home.sample.wordStar">star</span></div>
+            <div><strong class="serif">bosque</strong><span data-i18n="home.sample.wordForest">forest</span></div>
           </div>
         </div>
       </section>
 
       <section class="section shell" aria-labelledby="research-title">
         <div class="section-heading-wrap reveal">
-          <p class="eyebrow">Thoughtful by design</p>
-          <h2 class="serif" id="research-title">Backed by what we know about children's learning</h2>
-          <p class="section-lead">
+          <p class="eyebrow" data-i18n="home.research.eyebrow">Thoughtful by design</p>
+          <h2 class="serif" id="research-title" data-i18n="home.research.title">
+            Backed by what we know about children's learning
+          </h2>
+          <p class="section-lead" data-i18n="home.research.lead">
             MoonTale is informed by established guidance on shared reading, responsive interaction,
             early literacy, and consistent family routines. We use careful language because trust matters.
           </p>
@@ -256,8 +290,8 @@
             rel="noreferrer"
           >
             <span class="source-name">American Academy of Pediatrics</span>
-            <p>Evidence shows that shared reading supports language, literacy, and healthy relationships.</p>
-            <span class="source-link">View source ↗</span>
+            <p data-i18n="home.research.card1">Evidence shows that shared reading supports language, literacy, and healthy relationships.</p>
+            <span class="source-link" data-i18n="home.research.sourceLink">View source ↗</span>
           </a>
           <a
             class="research-card reveal"
@@ -266,8 +300,8 @@
             rel="noreferrer"
           >
             <span class="source-name">Harvard Center on the Developing Child</span>
-            <p>Research suggests responsive back-and-forth interaction helps build developing brains.</p>
-            <span class="source-link">View source ↗</span>
+            <p data-i18n="home.research.card2">Research suggests responsive back-and-forth interaction helps build developing brains.</p>
+            <span class="source-link" data-i18n="home.research.sourceLink">View source ↗</span>
           </a>
           <a
             class="research-card reveal"
@@ -276,8 +310,8 @@
             rel="noreferrer"
           >
             <span class="source-name">National Literacy Trust</span>
-            <p>Studies indicate that reading enjoyment and frequency are closely linked with literacy.</p>
-            <span class="source-link">View source ↗</span>
+            <p data-i18n="home.research.card3">Studies indicate that reading enjoyment and frequency are closely linked with literacy.</p>
+            <span class="source-link" data-i18n="home.research.sourceLink">View source ↗</span>
           </a>
           <a
             class="research-card reveal"
@@ -286,11 +320,11 @@
             rel="noreferrer"
           >
             <span class="source-name">NAEYC</span>
-            <p>Early literacy experiences can contribute to vocabulary and language growth.</p>
-            <span class="source-link">View source ↗</span>
+            <p data-i18n="home.research.card4">Early literacy experiences can contribute to vocabulary and language growth.</p>
+            <span class="source-link" data-i18n="home.research.sourceLink">View source ↗</span>
           </a>
         </div>
-        <p class="research-note reveal">
+        <p class="research-note reveal" data-i18n="home.research.note">
           MoonTale is an educational support tool, not a substitute for books, teachers, caregivers, or
           professional developmental advice.
         </p>
@@ -299,22 +333,22 @@
       <section class="section section-tinted" aria-labelledby="why-title">
         <div class="shell why-grid">
           <div class="why-copy reveal">
-            <p class="eyebrow">More than an AI prompt</p>
-            <h2 class="serif" id="why-title">Why MoonTale?</h2>
-            <p>
+            <p class="eyebrow" data-i18n="home.why.eyebrow">More than an AI prompt</p>
+            <h2 class="serif" id="why-title" data-i18n="home.why.title">Why MoonTale?</h2>
+            <p data-i18n="home.why.body">
               General AI can generate text. MoonTale is a personalized learning and bedtime companion,
               purpose-built around children, parents, and the rhythm of family life.
             </p>
           </div>
           <div class="feature-grid reveal">
-            <span>Age-appropriate storytelling</span>
-            <span>Child-safe content</span>
-            <span>Parent-controlled themes</span>
-            <span>Personalized adventures</span>
-            <span>Language-learning support</span>
-            <span>Bedtime-focused experience</span>
-            <span>Consistent story quality</span>
-            <span>Reading habit design</span>
+            <span data-i18n="home.why.feature1">Age-appropriate storytelling</span>
+            <span data-i18n="home.why.feature2">Child-safe content</span>
+            <span data-i18n="home.why.feature3">Parent-controlled themes</span>
+            <span data-i18n="home.why.feature4">Personalized adventures</span>
+            <span data-i18n="home.why.feature5">Language-learning support</span>
+            <span data-i18n="home.why.feature6">Bedtime-focused experience</span>
+            <span data-i18n="home.why.feature7">Consistent story quality</span>
+            <span data-i18n="home.why.feature8">Reading habit design</span>
           </div>
         </div>
       </section>
@@ -322,10 +356,12 @@
       <section class="section shell" aria-labelledby="platform-title">
         <div class="platform-card reveal">
           <div>
-            <p class="eyebrow">Starting with bedtime</p>
-            <h2 class="serif" id="platform-title">One ritual today. A learning companion for years.</h2>
+            <p class="eyebrow" data-i18n="home.platform.eyebrow">Starting with bedtime</p>
+            <h2 class="serif" id="platform-title" data-i18n="home.platform.title">
+              One ritual today. A learning companion for years.
+            </h2>
           </div>
-          <p>
+          <p data-i18n="home.platform.body">
             MoonTale begins with personalized bedtime stories, then grows with each child's interests,
             language goals, reading confidence, and family memories. The long-term opportunity is a trusted
             platform for stories, literacy, languages, and cultural discovery.
@@ -335,9 +371,9 @@
 
       <section class="section founder shell" aria-labelledby="founder-title">
         <div class="founder-copy reveal">
-          <p class="eyebrow">A personal mission</p>
-          <h2 class="serif" id="founder-title">Why I'm Building MoonTale</h2>
-          <blockquote>
+          <p class="eyebrow" data-i18n="home.founder.eyebrow">A personal mission</p>
+          <h2 class="serif" id="founder-title" data-i18n="home.founder.title">Why I'm Building MoonTale</h2>
+          <blockquote data-i18n="home.founder.quote">
             “As a student and athlete, I've seen how powerful consistent habits can be. MoonTale started
             from a simple question: how can we help children look forward to reading every night while
             making language learning feel natural, emotional, and fun? I'm building MoonTale to help
@@ -357,9 +393,9 @@
             loading="lazy"
           />
           <div>
-            <p class="eyebrow">Build it with us</p>
-            <h2 class="serif" id="join-title">Help shape MoonTale.</h2>
-            <p>
+            <p class="eyebrow" data-i18n="home.join.eyebrow">Build it with us</p>
+            <h2 class="serif" id="join-title" data-i18n="home.join.title">Help shape MoonTale.</h2>
+            <p data-i18n="home.join.body">
               MoonTale is in early development. Join the waitlist to receive updates, test the first
               version, and help build a better way for children to learn through bedtime stories.
             </p>
@@ -369,14 +405,16 @@
               method="POST"
             >
               <label class="field">
-                <span>Parent email</span>
+                <span data-i18n="common.parentEmail">Parent email</span>
                 <input type="email" name="email" required autocomplete="email" placeholder="you@example.com" />
               </label>
               <input type="hidden" name="source" value="homepage" />
               <input type="hidden" name="_subject" value="MoonTale Homepage Waitlist" />
-              <button class="button button-primary button-waitlist" type="submit">Join the Waitlist</button>
+              <button class="button button-primary button-waitlist" type="submit" data-i18n="common.joinWaitlist">
+                Join the Waitlist
+              </button>
               <p class="waitlist-status" role="status" aria-live="polite"></p>
-              <p class="microcopy">Early access updates only. Unsubscribe anytime.</p>
+              <p class="microcopy" data-i18n="common.waitlistMicrocopy">Early access updates only. Unsubscribe anytime.</p>
             </form>
           </div>
         </div>
@@ -384,13 +422,13 @@
     </main>
 
     <footer class="site-footer shell">
-      <a class="brand serif" href="#top" aria-label="MoonTale home">
+      <a class="brand serif" href="#top" aria-label="MoonTale home" data-i18n-aria-label="common.homeLabel">
         <span class="brand-moon" aria-hidden="true">☾</span>
         <span>MoonTale</span>
       </a>
-      <p>© 2026 MoonTale. Language learning through stories families love.</p>
-      <a class="text-link" href="mailto:contact@moontaleapp.com">Email</a>
+      <p data-i18n="home.footer.tagline">© 2026 MoonTale. Language learning through stories families love.</p>
+      <a class="text-link" href="mailto:contact@moontaleapp.com" data-i18n="common.email">Email</a>
     </footer>
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
   </body>
 </html>
