@@ -13,6 +13,13 @@
     fr: "French",
     de: "German",
   };
+  const LANGUAGE_CODE_BY_NAME = {
+    English: "en",
+    Polish: "pl",
+    Spanish: "es",
+    French: "fr",
+    German: "de",
+  };
 
   const translations = {
     en: {
@@ -1279,6 +1286,10 @@
     return SUPPORTED_LANGUAGES.includes(language);
   }
 
+  function languageCodeFromName(languageName) {
+    return LANGUAGE_CODE_BY_NAME[languageName] || null;
+  }
+
   function getCurrentLanguage() {
     try {
       const storedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY);
@@ -1390,7 +1401,7 @@
     writeCurrentLanguage(language);
     updateTranslatedContent();
     if (document.body.dataset.page === "story") {
-      renderStoryPage();
+      renderStoryPage({ useProfileLanguage: false });
     }
   }
 
@@ -1639,6 +1650,8 @@
     if (currentLanguageField) {
       currentLanguageField.addEventListener("change", () => {
         currentLanguageField.dataset.userChanged = "true";
+        const selectedWebsiteLanguage = languageCodeFromName(currentLanguageField.value);
+        if (selectedWebsiteLanguage) setWebsiteLanguage(selectedWebsiteLanguage);
       });
     }
 
@@ -1749,8 +1762,14 @@
     }));
   }
 
-  function generateStory(profile) {
-    const language = getCurrentLanguage();
+  function resolveProfileLanguage(profile) {
+    if (profile && isSupportedLanguage(profile.websiteLanguage)) return profile.websiteLanguage;
+    if (profile && languageCodeFromName(profile.currentLanguage)) return languageCodeFromName(profile.currentLanguage);
+    return null;
+  }
+
+  function generateStory(profile, selectedLanguage) {
+    const language = isSupportedLanguage(selectedLanguage) ? selectedLanguage : resolveProfileLanguage(profile) || getCurrentLanguage();
     const childName = cleanProfileText(profile.childName, translateFor(language, "story.defaults.childName"));
     const interest = cleanProfileText(profile.interest, translateFor(language, "story.defaults.interest"));
     const targetLanguage = normalizeCanonicalLanguage(profile.targetLanguage);
@@ -1823,7 +1842,7 @@
     }
   }
 
-  function renderStoryPage() {
+  function renderStoryPage(options) {
     const storyContent = document.querySelector("#story-content");
     if (!storyContent) return;
 
@@ -1833,7 +1852,13 @@
       return;
     }
 
-    const story = generateStory(profile);
+    const profileLanguage = resolveProfileLanguage(profile);
+    if ((!options || options.useProfileLanguage !== false) && profileLanguage) {
+      writeCurrentLanguage(profileLanguage);
+      updateTranslatedContent();
+    }
+
+    const story = generateStory(profile, getCurrentLanguage());
     const storyTitle = document.querySelector("#story-title");
     const readingTime = document.querySelector("#story-reading-time");
     const storyLanguage = document.querySelector("#story-language");
@@ -1882,6 +1907,6 @@
 
     const page = document.body.dataset.page;
     if (page === "builder") initializeBuilderPage();
-    if (page === "story") renderStoryPage();
+    if (page === "story") renderStoryPage({ useProfileLanguage: true });
   });
 })();
