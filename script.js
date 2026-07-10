@@ -23,10 +23,10 @@
 
   const translations = {
     en: {
-      "meta.home.title": "MoonTale - Language learning through bedtime stories",
-      "meta.home.description": "MoonTale turns bedtime into a personalized language-learning adventure for children and their families.",
-      "meta.builder.title": "Create a Story - MoonTale",
-      "meta.builder.description": "Create a personalized MoonTale bedtime story for your child.",
+      "meta.home.title": "MoonTale | Personalized Bedtime Stories for Kids & Language Learning",
+      "meta.home.description": "Create personalized bedtime stories for children that make reading, imagination, and language learning part of a calm nightly routine. Try MoonTale for free.",
+      "meta.builder.title": "Create a Free Personalized Bedtime Story for Your Child | MoonTale",
+      "meta.builder.description": "Create a free personalized bedtime story for your child with MoonTale. Choose their age, interests, story mood, and language learning goal.",
       "meta.story.title": "Your Bedtime Story - MoonTale",
       "meta.story.description": "Read your personalized MoonTale bedtime story preview.",
       "common.skipContent": "Skip to content",
