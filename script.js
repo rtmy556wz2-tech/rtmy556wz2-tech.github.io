@@ -29,6 +29,8 @@
       "meta.builder.description": "Create a free personalized bedtime story for your child with MoonTale. Choose their age, interests, story mood, and language learning goal.",
       "meta.story.title": "Your Bedtime Story - MoonTale",
       "meta.story.description": "Read your personalized MoonTale bedtime story preview.",
+      "meta.personalizedStories.title": "Personalized Bedtime Stories for Kids | MoonTale",
+      "meta.personalizedStories.description": "Create personalized bedtime stories for kids based on their age, interests, and language goals. Make bedtime calmer, more imaginative, and more meaningful with MoonTale.",
       "common.skipContent": "Skip to content",
       "common.mainNavigation": "Main navigation",
       "common.homeLabel": "MoonTale home",
