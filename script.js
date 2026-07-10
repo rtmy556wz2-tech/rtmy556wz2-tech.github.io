@@ -59,7 +59,7 @@
       "option.goal.Kindness": "Kindness",
       "home.header.cta": "Get Early Access",
       "home.hero.eyebrow": "Language learning, made magical",
-      "home.hero.title": "Help your child learn a new language through bedtime stories they love.",
+      "home.hero.title": "Personalized Bedtime Stories for Kids That Make Language Learning Feel Natural",
       "home.hero.intro": "Personalized bedtime stories designed around your child's interests, helping make language learning natural, reading exciting, and bedtime a moment of connection.",
       "home.hero.benefitsLabel": "MoonTale benefits",
       "home.hero.benefit1": "Builds reading habits",
