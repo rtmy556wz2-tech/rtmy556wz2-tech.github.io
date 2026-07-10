@@ -1287,21 +1287,46 @@
   }
 
   function languageCodeFromName(languageName) {
-    return LANGUAGE_CODE_BY_NAME[languageName] || null;
+    const normalizedName = String(languageName || "").trim().toLowerCase();
+    const languageEntry = Object.entries(LANGUAGE_CODE_BY_NAME).find(([name]) => name.toLowerCase() === normalizedName);
+    return languageEntry ? languageEntry[1] : null;
+  }
+
+  function normalizeLanguageCode(language) {
+    const languageValue = String(language || "").trim();
+    if (isSupportedLanguage(languageValue)) return languageValue;
+    return languageCodeFromName(languageValue);
+  }
+
+  function resolveStoryLanguage(profile, selectedLanguage) {
+    return (
+      normalizeLanguageCode(selectedLanguage) ||
+      normalizeLanguageCode(profile && profile.storyLanguage) ||
+      normalizeLanguageCode(profile && profile.websiteLanguage) ||
+      normalizeLanguageCode(profile && profile.currentLanguage) ||
+      DEFAULT_LANGUAGE
+    );
+  }
+
+  function languageNameFromCode(language) {
+    return LANGUAGE_NAME_BY_CODE[resolveStoryLanguage(null, language)] || LANGUAGE_NAME_BY_CODE[DEFAULT_LANGUAGE];
   }
 
   function getCurrentLanguage() {
     try {
       const storedLanguage = localStorage.getItem(LANGUAGE_STORAGE_KEY);
-      return isSupportedLanguage(storedLanguage) ? storedLanguage : DEFAULT_LANGUAGE;
+      return normalizeLanguageCode(storedLanguage) || DEFAULT_LANGUAGE;
     } catch (error) {
       return DEFAULT_LANGUAGE;
     }
   }
 
   function writeCurrentLanguage(language) {
+    const normalizedLanguage = normalizeLanguageCode(language);
+    if (!normalizedLanguage) return;
+
     try {
-      localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
+      localStorage.setItem(LANGUAGE_STORAGE_KEY, normalizedLanguage);
     } catch (error) {
       return;
     }
@@ -1360,12 +1385,13 @@
   }
 
   function syncLanguageFormFields() {
+    const currentLanguage = getCurrentLanguage();
     const languageField = document.querySelector("#website-language-field");
-    if (languageField) languageField.value = getCurrentLanguage();
+    if (languageField) languageField.value = currentLanguage;
 
     const currentLanguageField = document.querySelector("select[name='currentLanguage']");
-    if (currentLanguageField && !currentLanguageField.dataset.userChanged && !currentLanguageField.value) {
-      currentLanguageField.value = LANGUAGE_NAME_BY_CODE[getCurrentLanguage()];
+    if (currentLanguageField) {
+      currentLanguageField.value = languageNameFromCode(currentLanguage);
     }
   }
 
@@ -1397,8 +1423,10 @@
   }
 
   function setWebsiteLanguage(language) {
-    if (!isSupportedLanguage(language)) return;
-    writeCurrentLanguage(language);
+    const selectedLanguage = normalizeLanguageCode(language);
+    if (!selectedLanguage) return;
+
+    writeCurrentLanguage(selectedLanguage);
     updateTranslatedContent();
     if (document.body.dataset.page === "story") {
       renderStoryPage({ useProfileLanguage: false });
@@ -1498,10 +1526,11 @@
 
   function getFormProfile(form) {
     const formData = new FormData(form);
+    const storyLanguage = getCurrentLanguage();
     return {
       childName: String(formData.get("childName") || "").trim(),
       childAge: formData.get("childAge"),
-      currentLanguage: formData.get("currentLanguage"),
+      currentLanguage: languageNameFromCode(storyLanguage),
       targetLanguage: formData.get("targetLanguage"),
       character: formData.get("character"),
       mood: formData.get("mood"),
@@ -1510,7 +1539,8 @@
       readingTime: formData.get("readingTime"),
       newWordsCount: formData.get("newWordsCount"),
       parentEmail: formData.get("email"),
-      websiteLanguage: getCurrentLanguage(),
+      storyLanguage,
+      websiteLanguage: storyLanguage,
     };
   }
 
@@ -1649,7 +1679,6 @@
 
     if (currentLanguageField) {
       currentLanguageField.addEventListener("change", () => {
-        currentLanguageField.dataset.userChanged = "true";
         const selectedWebsiteLanguage = languageCodeFromName(currentLanguageField.value);
         if (selectedWebsiteLanguage) setWebsiteLanguage(selectedWebsiteLanguage);
       });
@@ -1763,13 +1792,11 @@
   }
 
   function resolveProfileLanguage(profile) {
-    if (profile && isSupportedLanguage(profile.websiteLanguage)) return profile.websiteLanguage;
-    if (profile && languageCodeFromName(profile.currentLanguage)) return languageCodeFromName(profile.currentLanguage);
-    return null;
+    return resolveStoryLanguage(profile);
   }
 
   function generateStory(profile, selectedLanguage) {
-    const language = isSupportedLanguage(selectedLanguage) ? selectedLanguage : resolveProfileLanguage(profile) || getCurrentLanguage();
+    const language = resolveStoryLanguage(profile, selectedLanguage);
     const childName = cleanProfileText(profile.childName, translateFor(language, "story.defaults.childName"));
     const interest = cleanProfileText(profile.interest, translateFor(language, "story.defaults.interest"));
     const targetLanguage = normalizeCanonicalLanguage(profile.targetLanguage);
@@ -1794,6 +1821,8 @@
     const wordsLabel = translateFor(language, newWordsKey, { count: vocabulary.length });
 
     return {
+      languageCode: language,
+      languageName: languageNameFromCode(language),
       title: translateFor(language, "story.generated.title", replacements),
       readingTime: translateFor(language, "story.readingTime", { minutes: profile.readingTime || "5" }),
       languageMeta: translateFor(language, "story.languageMeta", {
@@ -1815,6 +1844,7 @@
 
   window.MoonTaleStories = {
     generateStory,
+    resolveStoryLanguage,
   };
 
   function createStoryParagraph(text) {
@@ -1829,7 +1859,7 @@
       const nextStories = [
         {
           title: story.title,
-          language: getCurrentLanguage(),
+          language: story.languageCode || getCurrentLanguage(),
           targetLanguage: profile.targetLanguage,
           createdAt: new Date().toISOString(),
           profile,
