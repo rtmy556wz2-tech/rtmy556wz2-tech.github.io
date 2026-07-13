@@ -112,13 +112,27 @@ const storyOpenings = [
 
   "As {name} closed their eyes, the room filled with tiny floating lights. One by one they gathered together until they formed Milo, already holding tonight's magical storybook."
 ];
-
+const storyMissions = [
+  "{friendName} had lost the glow inside {object}, and only a kind helper could bring it back.",
+  "A tiny moon crystal had fallen somewhere in {place}, and Milo needed {name}'s help to find it.",
+  "The stars above {place} were blinking in the wrong order, and someone had to solve the pattern.",
+  "A sleepy cloud had wandered away from the moon, and the night sky could not rest until it came home.",
+  "A little door of moonlight appeared in {place}, but it would only open for someone brave and gentle.",
+  "The dream lantern had gone quiet, and Milo believed {name} could help it shine again.",
+  "A silver path appeared on the ground, leading towards a mystery hidden deep inside {place}.",
+  "One small star was too shy to sparkle, so Milo asked {name} to help it feel bright again.",
+  "A magical map began to glow, showing a secret route through {place}.",
+  "The moon had sent a message, but half the message was hidden among the stars."
+];
 function fillTemplate(template, values) {
   return template.replace(/\{(\w+)\}/g, (_, key) => values[key] || "");
 }
 
 function pickRandom(items) {
   return items[Math.floor(Math.random() * items.length)];
+}
+  function getFriendName(character) {
+  return character.friend.split(",")[0];
 }
   function safeText(value, fallback) {
     return String(value || fallback).replace(/[<>]/g, "").trim();
@@ -196,7 +210,12 @@ const words = getWordsForStory(
     const paragraphs = [
       `${fillTemplate(pickRandom(storyOpenings), { name })} “Tonight,” Milo whispered, “the moon needs a little help from someone who loves ${interest}.”`,
       `${mood.sky} Milo opened his storybook, and its pages became a silver doorway. Together, ${name} and Milo stepped through and arrived in ${character.place}, where they met ${character.friend}.`,
-     `${character.friend.split(",")[0]} was holding ${character.object}. It usually showed the way home, but tonight its light had faded. Milo pointed toward the sky and taught ${name} ${wordCount} special ${profile.targetLanguage || "Spanish"} words: ${words.map(word => `“${word.word}” meant ${word.meaning}`).join(", ")}. Each new word made the little object glow a little brighter.`,
+     `${fillTemplate(pickRandom(storyMissions), {
+  name,
+  friendName: getFriendName(character),
+  object: character.object,
+  place: character.place
+})} Milo pointed toward the sky and taught ${name} ${wordCount} special ${profile.targetLanguage || "Spanish"} words: ${words.map(word => `“${word.word}” meant ${word.meaning}`).join(", ")}. Each new word made the adventure glow a little brighter.`,
       `${mood.movement} Along the way, ${name} noticed something wonderful: the adventure was filled with ${interest}. It was as if the story had remembered exactly what made ${name}'s imagination wake up.`,
       `Soon they reached a fork in the path. One trail was bright but noisy. The other was dim, peaceful, and marked with a tiny crescent moon. ${name} thought about tonight's goal: ${String(profile.goal || "courage").toLowerCase()}. Then ${name} chose the quiet moon path and invited everyone to stay close.`,
     ];
