@@ -219,7 +219,7 @@ const words = getWordsForStory(
     }
 
     paragraphs.push(
-      `${mood.ending} The special words shone once more: ${words.map((item) => item.word).join(", ")}. Milo smiled. “You learned them because they became part of your adventure.”`,
+      `${mood.ending} ${window.MoonTaleStoryEngine.randomReward(profile.character)} The special words shone once more: ${words.map((item) => item.word).join(", ")}. Milo smiled. “You learned them because they became part of your adventure.”`,
       `Back in the bedroom, the storybook folded itself closed. Milo tucked ${character.object} safely into one of its painted pages and promised to return. ${name} snuggled beneath the blanket, feeling proud, peaceful, and ready for sleep.`,
     );
 
