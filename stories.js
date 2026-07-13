@@ -91,39 +91,12 @@
     "5": { label: "5 minute read", extraParagraphs: 1 },
     "8": { label: "8 minute read", extraParagraphs: 2 },
   };
-const storyOpenings = [
-  "Just as {name} was getting ready for bed, a warm pearl-coloured glow appeared beside the window. It was Milo the Moonbear, waving from inside his round glass helmet.",
-
-  "As {name} snuggled beneath the blanket, a tiny silver star drifted through the bedroom window. It floated gently until it landed in Milo's waiting paws.",
-
-  "The moon seemed brighter than usual that evening. A soft knock sounded on the window, and there stood Milo with a friendly smile and a glowing lantern.",
-
-  "A sleepy little owl landed on the windowsill carrying a shimmering envelope. Across the front, written in sparkling letters, was {name}'s name.",
-
-  "Just before the bedtime story began, tiny moonbeams danced across the bedroom walls. They twirled together until Milo stepped out of the light.",
-
-  "The room became wonderfully quiet. Then a gentle breeze carried silver stardust through the open window, and Milo appeared with an excited grin.",
-
-  "As the first stars began to sparkle outside, a tiny golden key floated gently onto {name}'s pillow. Milo appeared moments later, whispering, 'I think tonight's adventure has found us.'",
-
-  "A soft glow spread across the ceiling like moonlight on water. Milo looked up, smiled at {name}, and said, 'The Moon has a very special mission for us tonight.'",
-
-  "The bedtime clock had only just chimed when a little shooting star zipped across the room, leaving behind a trail of glitter. Milo hurried after it with a cheerful laugh.",
-
-  "As {name} closed their eyes, the room filled with tiny floating lights. One by one they gathered together until they formed Milo, already holding tonight's magical storybook."
-];
 
   
 function fillTemplate(template, values) {
   return template.replace(/\{(\w+)\}/g, (_, key) => values[key] || "");
 }
 
-function pickRandom(items) {
-  return items[Math.floor(Math.random() * items.length)];
-}
-  function getFriendName(character) {
-  return character.friend.split(",")[0];
-}
   function safeText(value, fallback) {
     return String(value || fallback).replace(/[<>]/g, "").trim();
   }
@@ -198,7 +171,7 @@ const words = getWordsForStory(
 
     const title = `${name} and the Moonlight Promise`;
     const paragraphs = [
-      `${fillTemplate(pickRandom(storyOpenings), { name })} “Tonight,” Milo whispered, “the moon needs a little help from someone who loves ${interest}.”`,
+     `${fillTemplate(window.MoonTaleStoryEngine.randomOpening(profile.character), { name })} “Tonight,” Milo whispered, “the moon needs a little help from someone who loves ${interest}.”`,
       `${mood.sky} Milo opened his storybook, and its pages became a silver doorway. Together, ${name} and Milo stepped through and arrived in ${character.place}, where they met ${character.friend}.`,
      `${window.MoonTaleStoryEngine.randomMission(profile.character)} Milo pointed toward the sky and taught ${name} ${wordCount} special ${profile.targetLanguage || "Spanish"} words: ${words.map(word => `“${word.word}” meant ${word.meaning}`).join(", ")}. Each new word made the adventure glow a little brighter.`,
      `${mood.movement} ${window.MoonTaleStoryEngine.randomObstacle(profile.character)} Along the way, ${name} noticed something wonderful: the adventure was filled with ${interest}. It was as if the story had remembered exactly what made ${name}'s imagination wake up.`,
