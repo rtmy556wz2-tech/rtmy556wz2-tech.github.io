@@ -112,18 +112,60 @@ const storyOpenings = [
 
   "As {name} closed their eyes, the room filled with tiny floating lights. One by one they gathered together until they formed Milo, already holding tonight's magical storybook."
 ];
-const storyMissions = [
-  "{friendName} had lost the glow inside {object}, and only a kind helper could bring it back.",
-  "A tiny moon crystal had fallen somewhere in {place}, and Milo needed {name}'s help to find it.",
-  "The stars above {place} were blinking in the wrong order, and someone had to solve the pattern.",
-  "A sleepy cloud had wandered away from the moon, and the night sky could not rest until it came home.",
-  "A little door of moonlight appeared in {place}, but it would only open for someone brave and gentle.",
-  "The dream lantern had gone quiet, and Milo believed {name} could help it shine again.",
-  "A silver path appeared on the ground, leading towards a mystery hidden deep inside {place}.",
-  "One small star was too shy to sparkle, so Milo asked {name} to help it feel bright again.",
-  "A magical map began to glow, showing a secret route through {place}.",
-  "The moon had sent a message, but half the message was hidden among the stars."
-];
+
+  const storyTemplates = {
+  Astronaut: {
+    missions: [
+      "Find the missing moon crystal.",
+      "Deliver a message to a lonely star.",
+      "Help a tiny comet find its family.",
+      "Repair the glowing star compass.",
+      "Guide a lost rocket home."
+    ],
+
+    obstacles: [
+      "A cloud maze blocked the way.",
+      "The stars had become mixed up.",
+      "A sleepy moon dragon guarded the path.",
+      "A bridge of moonlight disappeared.",
+      "A gentle space wind blew the map away."
+    ],
+
+    rewards: [
+      "The moon created a brand-new constellation.",
+      "Every star sparkled a little brighter.",
+      "Nova received a shiny explorer badge.",
+      "The whole sky glowed with silver light.",
+      "A tiny shooting star granted one special wish."
+    ]
+  },
+
+  Dinosaur: {
+    missions: [
+      "Find the lost dinosaur egg.",
+      "Help a baby dinosaur find its parents.",
+      "Save the glowing fern forest.",
+      "Follow ancient footprints.",
+      "Wake the sleeping volcano safely."
+    ],
+
+    obstacles: [
+      "A roaring river blocked the path.",
+      "Tall ferns hid the clues.",
+      "Friendly dinosaurs needed help crossing a bridge.",
+      "A cave became too dark to explore.",
+      "A giant footprint led everyone in circles."
+    ],
+
+    rewards: [
+      "The dinosaurs celebrated with a moon picnic.",
+      "A rainbow appeared above the valley.",
+      "Pip discovered a sparkling fossil.",
+      "The forest sang a happy song.",
+      "A baby dinosaur gave {name} a glowing leaf."
+    ]
+  }
+};
 function fillTemplate(template, values) {
   return template.replace(/\{(\w+)\}/g, (_, key) => values[key] || "");
 }
@@ -133,6 +175,9 @@ function pickRandom(items) {
 }
   function getFriendName(character) {
   return character.friend.split(",")[0];
+}
+  function getStoryTemplate(characterName) {
+  return storyTemplates[characterName] || storyTemplates.Astronaut;
 }
   function safeText(value, fallback) {
     return String(value || fallback).replace(/[<>]/g, "").trim();
@@ -210,7 +255,7 @@ const words = getWordsForStory(
     const paragraphs = [
       `${fillTemplate(pickRandom(storyOpenings), { name })} “Tonight,” Milo whispered, “the moon needs a little help from someone who loves ${interest}.”`,
       `${mood.sky} Milo opened his storybook, and its pages became a silver doorway. Together, ${name} and Milo stepped through and arrived in ${character.place}, where they met ${character.friend}.`,
-     `${fillTemplate(pickRandom(storyMissions), {
+     `${fillTemplate(pickRandom(getStoryTemplate(profile.character).missions), {
   name,
   friendName: getFriendName(character),
   object: character.object,
@@ -219,6 +264,7 @@ const words = getWordsForStory(
       `${mood.movement} Along the way, ${name} noticed something wonderful: the adventure was filled with ${interest}. It was as if the story had remembered exactly what made ${name}'s imagination wake up.`,
       `Soon they reached a fork in the path. One trail was bright but noisy. The other was dim, peaceful, and marked with a tiny crescent moon. ${name} thought about tonight's goal: ${String(profile.goal || "courage").toLowerCase()}. Then ${name} chose the quiet moon path and invited everyone to stay close.`,
     ];
+   
 
     if (length.extraParagraphs >= 1) {
       paragraphs.push(
