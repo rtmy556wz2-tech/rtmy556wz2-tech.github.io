@@ -201,7 +201,7 @@ const words = getWordsForStory(
       `${fillTemplate(pickRandom(storyOpenings), { name })} “Tonight,” Milo whispered, “the moon needs a little help from someone who loves ${interest}.”`,
       `${mood.sky} Milo opened his storybook, and its pages became a silver doorway. Together, ${name} and Milo stepped through and arrived in ${character.place}, where they met ${character.friend}.`,
      `${window.MoonTaleStoryEngine.randomMission(profile.character)} Milo pointed toward the sky and taught ${name} ${wordCount} special ${profile.targetLanguage || "Spanish"} words: ${words.map(word => `“${word.word}” meant ${word.meaning}`).join(", ")}. Each new word made the adventure glow a little brighter.`,
-      `${mood.movement} Along the way, ${name} noticed something wonderful: the adventure was filled with ${interest}. It was as if the story had remembered exactly what made ${name}'s imagination wake up.`,
+     `${mood.movement} ${window.MoonTaleStoryEngine.randomObstacle(profile.character)} Along the way, ${name} noticed something wonderful: the adventure was filled with ${interest}. It was as if the story had remembered exactly what made ${name}'s imagination wake up.`,
       `Soon they reached a fork in the path. One trail was bright but noisy. The other was dim, peaceful, and marked with a tiny crescent moon. ${name} thought about tonight's goal: ${String(profile.goal || "courage").toLowerCase()}. Then ${name} chose the quiet moon path and invited everyone to stay close.`,
     ];
    
