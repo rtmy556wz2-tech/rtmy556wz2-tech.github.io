@@ -2,10 +2,13 @@
   "name": "moontale",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "description": "MoonTale creates personalized bedtime stories for children, combining reading, imagination and gentle language exposure.",
   "scripts": {
-    "format": "prettier --write \"**/*.{html,css,js,json,md,yml,yaml}\"",
-    "format:check": "prettier --check \"**/*.{html,css,js,json,md,yml,yaml}\""
+    "test": "node --test tests/*.mjs",
+    "test:watch": "node --test --watch tests/*.mjs",
+    "format": "prettier --write \"**/*.{html,css,js,mjs,json,md,yml,yaml}\"",
+    "format:check": "prettier --check \"**/*.{html,css,js,mjs,json,md,yml,yaml}\""
   },
   "devDependencies": {
     "prettier": "^3.6.2"

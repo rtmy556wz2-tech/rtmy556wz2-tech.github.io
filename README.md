@@ -35,20 +35,35 @@ Live website: https://moontaleapp.com
 - Formspree for form submissions
 - Google Analytics, currently loaded with Google tag ID `G-716GP23C93`
 
-MoonTale does not require a build step to run in production. The development tooling in `package.json` is optional and exists only for formatting checks.
+MoonTale does not require a build step to run in production. The development tooling in `package.json` is optional and exists only for formatting checks and lightweight logic tests.
+The JavaScript is organized as browser ES modules, with page-specific entry points under `assets/scripts/pages/`.
 
 ## Repository Structure
 
 ```text
 .
 ├── assets/
-│   └── milo-moonbear.png
+│   ├── milo-moonbear.png
+│   └── scripts/
+│       ├── core/
+│       ├── pages/
+│       └── services/
+├── data/
+│   ├── story-content.js
+│   └── vocabulary.js
+├── locales/
+│   ├── en.js
+│   ├── pl.js
+│   ├── es.js
+│   ├── fr.js
+│   └── de.js
+├── tests/
+│   └── moontale.test.mjs
 ├── index.html
 ├── personalized-bedtime-stories-for-kids.html
 ├── story-builder.html
 ├── story.html
 ├── styles.css
-├── script.js
 ├── robots.txt
 ├── sitemap.xml
 ├── CNAME
@@ -82,6 +97,7 @@ Optional formatting tools:
 
 ```bash
 npm install
+npm test
 npm run format:check
 npm run format
 ```
@@ -126,7 +142,8 @@ See `CONTRIBUTING.md` for more detailed guidelines.
 ## Known Limitations
 
 - Story generation currently runs in the browser using local templates and browser storage.
-- There is no automated test suite yet.
+- Interface language, narrative language, and learning language are resolved separately. Invalid or missing learning-language values fall back to Spanish after validation, and the fallback is exposed in story metadata.
+- Automated tests cover language resolution, translation fallback, safe storage parsing, vocabulary selection, and story generation.
 - Form submissions depend on the configured Formspree endpoint.
 - Language support is limited to the languages listed above.
 - The prototype should not be treated as medical, developmental, or educational advice.
