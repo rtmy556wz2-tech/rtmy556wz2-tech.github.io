@@ -1006,17 +1006,31 @@ blockquote {
 
 .homepage-waitlist-form {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) max-content;
   align-items: end;
-  gap: 12px;
+  gap: 12px 14px;
   max-width: 620px;
   margin-top: 25px;
 }
 
-.homepage-waitlist-form .button {
-  min-height: 56px;
+.homepage-waitlist-form .field {
+  min-width: 0;
 }
 
+.homepage-waitlist-form .field input {
+  min-width: 0;
+}
+
+.homepage-waitlist-form .button {
+  width: auto;
+  min-width: 180px;
+  min-height: 56px;
+  justify-self: start;
+  white-space: nowrap;
+}
+
+.homepage-waitlist-form .form-helper,
+.homepage-waitlist-form .compact-consent,
 .homepage-waitlist-form .waitlist-status,
 .homepage-waitlist-form .microcopy {
   grid-column: 1 / -1;
@@ -1347,6 +1361,12 @@ blockquote {
 
   .homepage-waitlist-form {
     grid-template-columns: 1fr;
+  }
+
+  .homepage-waitlist-form .button {
+    width: 100%;
+    min-width: 0;
+    justify-self: stretch;
   }
 
   .site-footer {
