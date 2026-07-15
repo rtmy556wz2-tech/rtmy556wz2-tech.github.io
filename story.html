@@ -10,16 +10,6 @@
     />
     <title>Your Bedtime Story - MoonTale</title>
     <link rel="stylesheet" href="./styles.css" />
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-716GP23C93"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-716GP23C93");
-    </script>
   </head>
   <body class="app-page story-page" data-page="story">
     <a class="skip-link" href="#main" data-i18n="story.skip">Skip to story</a>
@@ -111,7 +101,29 @@
           <p class="eyebrow" data-i18n="story.actions.eyebrow">Make tonight your own</p>
           <h2 class="serif" data-i18n="story.actions.title">Try another magical combination.</h2>
         </div>
-        <a class="button button-secondary" href="./story-builder.html" data-i18n="story.actions.button">Create Another Story</a>
+        <div class="story-action-links">
+          <a class="button button-secondary" href="./story-builder.html" data-i18n="story.actions.button">Create Another Story</a>
+          <p class="microcopy">
+            Concerned about a story? <a href="./legal/legal-notice/">Report inappropriate output</a> or review
+            <a href="./legal/privacy/">privacy and deletion options</a>.
+          </p>
+          <div class="browser-data-panel" data-browser-data-panel>
+            <p>
+              This deletes MoonTale story profiles and saved story previews from this browser and device only. It does
+              not delete waitlist or contact information previously submitted to MoonTale. To request deletion of that
+              information, email <a href="mailto:contact@moontaleapp.com">contact@moontaleapp.com</a>.
+            </p>
+            <button
+              class="button button-danger"
+              type="button"
+              data-delete-browser-data
+              data-delete-redirect="./story-builder.html"
+            >
+              Delete MoonTale stories and profile
+            </button>
+            <p class="status-message" role="status" aria-live="polite" data-browser-data-status></p>
+          </div>
+        </div>
       </section>
 
       <section class="prototype-waitlist" aria-labelledby="waitlist-title">
@@ -133,11 +145,17 @@
             action="https://formspree.io/f/xdavpbyd"
             method="POST"
           >
+            <p class="form-helper">
+              For parents and legal guardians. MoonTale sends early access updates only, and you can unsubscribe anytime.
+            </p>
             <label class="field">
               <span data-i18n="common.parentEmail">Parent email</span>
               <input type="email" name="email" required id="waitlist-email" autocomplete="email" placeholder="you@example.com" />
             </label>
-            <input type="hidden" name="_subject" value="MoonTale MVP Waitlist" />
+            <label class="consent-row compact-consent">
+              <input name="adultWaitlistConfirm" type="checkbox" required />
+              <span>I confirm I am at least 18 and am joining as a parent, legal guardian, or authorised adult.</span>
+            </label>
             <input type="hidden" name="source" value="story-preview" />
             <button class="button button-primary button-waitlist" type="submit" data-i18n="common.joinWaitlist">
               Join the Waitlist
@@ -156,6 +174,14 @@
         <span class="brand-moon" aria-hidden="true">☾</span><span>MoonTale</span>
       </a>
       <p data-i18n="story.footer.tagline">A personalized learning and bedtime companion for children.</p>
+      <nav class="legal-footer-links" aria-label="Legal links">
+        <a href="./legal/privacy/">Privacy Policy</a>
+        <a href="./legal/terms/">Terms</a>
+        <a href="./legal/cookies/">Cookies</a>
+        <a href="./legal/ip-infringement/">IP Policy</a>
+        <a href="./legal/legal-notice/">Legal Notice</a>
+        <button type="button" class="text-link cookie-settings-link" data-cookie-settings>Cookie Settings</button>
+      </nav>
     </footer>
 
     <script type="module" src="./assets/scripts/pages/story.js"></script>

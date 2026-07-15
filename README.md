@@ -7,6 +7,7 @@ MoonTale creates personalized bedtime stories for children, combining reading, i
 MoonTale is an early-stage web prototype. It is currently used for active user testing and validation, and is deployed as a static website through GitHub Pages.
 
 Live website: https://moontaleapp.com
+Sole public contact email: contact@moontaleapp.com
 
 ## Main Features
 
@@ -32,11 +33,26 @@ Live website: https://moontaleapp.com
 - CSS
 - Vanilla JavaScript
 - GitHub Pages
-- Formspree for form submissions
-- Google Analytics, currently loaded with Google tag ID `G-716GP23C93`
+- Formspree for voluntary waitlist/product-update email submissions
+- Google Analytics tag ID `G-716GP23C93`, loaded only after optional analytics consent
+- Local browser story generation from predefined templates and vocabulary
+
+No external AI provider is currently connected. MoonTale has no user accounts, payments, subscriptions, public profiles, comments, messaging or public user-generated-content system.
 
 MoonTale does not require a build step to run in production. The development tooling in `package.json` is optional and exists only for formatting checks and lightweight logic tests.
 The JavaScript is organized as browser ES modules, with page-specific entry points under `assets/scripts/pages/`.
+
+## Privacy And Data Flow
+
+- Story settings and generated story previews are stored in browser localStorage under `moontaleStoryProfile` and `moontaleSavedStories`.
+- Interface language is stored under `moontaleLanguage`.
+- Cookie choice is stored under `moontaleCookieConsent`.
+- The story builder does not require an email address.
+- Formspree receives only a minimal waitlist/product-update payload after adult opt-in: `email`, `source`, `adultConfirmation`, `marketingConsent`, `consentTextVersion`, and `submissionDate`.
+- Child nickname, age, interests, story settings and generated story text are not sent to Formspree.
+- Google Analytics is blocked until optional analytics consent is accepted.
+- Browser-only story/profile data can be removed with the “Delete MoonTale stories and profile” control.
+- MoonTale is adult-directed for parents, legal guardians or otherwise authorised caregivers.
 
 ## Repository Structure
 
@@ -49,8 +65,18 @@ The JavaScript is organized as browser ES modules, with page-specific entry poin
 │       ├── pages/
 │       └── services/
 ├── data/
+│   ├── legal-config.js
 │   ├── story-content.js
 │   └── vocabulary.js
+├── docs/
+│   └── legal-launch-checklist.md
+├── legal/
+│   ├── cookies/
+│   ├── ip-infringement/
+│   ├── legal-notice/
+│   ├── privacy/
+│   ├── terms/
+│   └── index.html
 ├── locales/
 │   ├── en.js
 │   ├── pl.js
@@ -58,6 +84,7 @@ The JavaScript is organized as browser ES modules, with page-specific entry poin
 │   ├── fr.js
 │   └── de.js
 ├── tests/
+│   ├── legal-static.test.mjs
 │   └── moontale.test.mjs
 ├── index.html
 ├── personalized-bedtime-stories-for-kids.html
@@ -115,8 +142,12 @@ Test the main user flow before publishing changes:
 5. Fill in the story builder form and create a story.
 6. Confirm `story.html` opens and displays the generated story.
 7. Confirm the generated story follows the selected current language.
-8. Confirm the waitlist forms still point to the existing Formspree endpoint.
-9. Confirm `robots.txt` and `sitemap.xml` are reachable from the site root.
+8. Confirm story creation works without an email address.
+9. Confirm Formspree receives only the minimal waitlist/product-update payload when the adult opts in.
+10. Confirm the cookie banner appears for a fresh visitor, optional analytics does not load before consent, and the Cookie Settings button reopens the banner.
+11. Confirm the “Delete MoonTale stories and profile” control removes only browser story/profile data.
+12. Confirm the legal footer links open the Privacy Policy, Terms, Cookie Policy, Legal Notice, and IP Infringement Policy.
+13. Confirm `robots.txt` and `sitemap.xml` are reachable from the site root.
 
 ## Contribution Workflow
 
@@ -145,6 +176,8 @@ See `CONTRIBUTING.md` for more detailed guidelines.
 - Interface language, narrative language, and learning language are resolved separately. Invalid or missing learning-language values fall back to Spanish after validation, and the fallback is exposed in story metadata.
 - Automated tests cover language resolution, translation fallback, safe storage parsing, vocabulary selection, and story generation.
 - Form submissions depend on the configured Formspree endpoint.
+- Google Analytics dashboard retention and data-sharing settings must be verified outside the repository.
+- Legal review is still needed before direct child interaction, payments, school use, native apps or new providers are added.
 - Language support is limited to the languages listed above.
 - The prototype should not be treated as medical, developmental, or educational advice.
 

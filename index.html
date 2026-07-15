@@ -18,16 +18,6 @@
     <meta property="og:url" content="https://moontaleapp.com/" />
     <meta property="og:type" content="website" />
     <link rel="stylesheet" href="styles.css" />
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-716GP23C93"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-716GP23C93");
-    </script>
   </head>
   <body data-page="home">
     <a class="skip-link" href="#main" data-i18n="common.skipContent">Skip to content</a>
@@ -412,15 +402,21 @@
               action="https://formspree.io/f/xdavpbyd"
               method="POST"
             >
+              <p class="form-helper">
+                For parents and legal guardians. MoonTale sends early access updates only, and you can unsubscribe anytime.
+              </p>
               <label class="field">
                 <span data-i18n="common.parentEmail">Parent email</span>
                 <input type="email" name="email" required autocomplete="email" placeholder="you@example.com" />
               </label>
               <input type="hidden" name="source" value="homepage" />
-              <input type="hidden" name="_subject" value="MoonTale Homepage Waitlist" />
               <button class="button button-primary button-waitlist" type="submit" data-i18n="common.joinWaitlist">
                 Join the Waitlist
               </button>
+              <label class="consent-row compact-consent">
+                <input name="adultWaitlistConfirm" type="checkbox" required />
+                <span>I confirm I am at least 18 and am joining as a parent, legal guardian, or authorised adult.</span>
+              </label>
               <p class="waitlist-status" role="status" aria-live="polite"></p>
               <p class="microcopy" data-i18n="common.waitlistMicrocopy">Early access updates only. Unsubscribe anytime.</p>
             </form>
@@ -482,6 +478,14 @@
       </a>
       <p data-i18n="home.footer.tagline">© 2026 MoonTale. Language learning through stories families love.</p>
       <a class="text-link" href="mailto:contact@moontaleapp.com" data-i18n="common.email">Email</a>
+      <nav class="legal-footer-links" aria-label="Legal links">
+        <a href="./legal/privacy/">Privacy Policy</a>
+        <a href="./legal/terms/">Terms</a>
+        <a href="./legal/cookies/">Cookies</a>
+        <a href="./legal/ip-infringement/">IP Policy</a>
+        <a href="./legal/legal-notice/">Legal Notice</a>
+        <button type="button" class="text-link cookie-settings-link" data-cookie-settings>Cookie Settings</button>
+      </nav>
     </footer>
     <script type="module" src="./assets/scripts/pages/home.js"></script>
   </body>
