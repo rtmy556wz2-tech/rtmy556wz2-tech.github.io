@@ -3,6 +3,7 @@ import { initializeBrowserDataDeletionControls } from "../core/browser-data.js";
 import { initializeCookieConsent } from "../core/cookie-consent.js";
 import { createStoryParagraph, initializeRevealElements } from "../core/dom.js";
 import { initializeLanguageSelectors, updateTranslatedContent } from "../core/i18n.js";
+import { initializeSiteNavigation } from "../core/navigation.js";
 import { readStoredProfile, saveGeneratedStory, writeCurrentLanguage } from "../core/storage.js";
 import { initializeFormspreeForms } from "../services/formspree.js";
 import { generateStory } from "../services/story-generator.js";
@@ -69,6 +70,7 @@ function renderStoryPage(options = {}) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  initializeSiteNavigation();
   initializeCookieConsent();
   initializeLanguageSelectors({
     onLanguageChange: () => renderStoryPage({ useProfileLanguage: false, save: false }),

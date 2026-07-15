@@ -9,6 +9,7 @@ import {
   translate,
   updateTranslatedContent,
 } from "../core/i18n.js";
+import { initializeSiteNavigation } from "../core/navigation.js";
 import { readStoredProfile, writeStoredProfile } from "../core/storage.js";
 import { trackStoryBuilderStart, trackStoryGenerated, trackWaitlistSubmission } from "../core/analytics.js";
 import { buildMinimalWaitlistPayload, postMinimalWaitlistToFormspree } from "../services/formspree.js";
@@ -174,6 +175,7 @@ function initializeBuilderPage() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  initializeSiteNavigation();
   initializeCookieConsent();
   initializeLanguageSelectors();
   updateTranslatedContent();

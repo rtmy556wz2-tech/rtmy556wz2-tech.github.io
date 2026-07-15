@@ -5,13 +5,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="MoonTale legal notice and contact information." />
     <title>Legal Notice | MoonTale</title>
-    <link rel="stylesheet" href="../../styles.css" />
+    <link rel="stylesheet" href="../../styles.css?v=20260715-nav" />
   </head>
   <body class="legal-page" data-page="legal">
     <a class="skip-link" href="#main">Skip to content</a>
-    <header class="site-header shell" aria-label="Main navigation">
-      <a class="brand serif" href="../../index.html" aria-label="MoonTale home"><span class="brand-moon" aria-hidden="true">☾</span><span>MoonTale</span></a>
-      <div class="header-actions"><a class="text-link" href="../../story-builder.html">Create a Story</a><a class="text-link" href="../../legal/">Legal</a></div>
+    <header class="site-header shell" aria-label="Main navigation" data-i18n-aria-label="common.mainNavigation" data-site-header>
+      <a class="brand serif" href="../../index.html#top" aria-label="MoonTale home" data-i18n-aria-label="common.homeLabel">
+        <span class="brand-moon" aria-hidden="true">☾</span>
+        <span>MoonTale</span>
+      </a>
+
+      <nav class="primary-nav" aria-label="Primary navigation" data-i18n-aria-label="nav.primaryLabel">
+        <ul class="primary-nav-list">
+
+          <li><a class="primary-nav-link" href="../../story-builder.html" data-nav-link data-nav-page="builder" data-i18n="nav.createStory">Create a Story</a></li>
+          <li><a class="primary-nav-link" href="../../index.html#how-it-works" data-nav-link data-nav-section="how-it-works" data-i18n="nav.howItWorks">How It Works</a></li>
+          <li><a class="primary-nav-link" href="../../index.html#language-learning" data-nav-link data-nav-section="language-learning" data-i18n="nav.languageLearning">Language Learning</a></li>
+          <li><a class="primary-nav-link" href="../../index.html#about" data-nav-link data-nav-section="about" data-i18n="nav.about">About MoonTale</a></li>
+          <li class="primary-nav-item nav-dropdown" data-nav-dropdown>
+            <button
+              class="primary-nav-button"
+              type="button"
+              aria-expanded="false"
+              aria-controls="legal-menu"
+              data-legal-menu-button
+              data-nav-legal-trigger
+            >
+              <span data-i18n="nav.legal">Legal</span>
+              <span class="dropdown-arrow" aria-hidden="true"></span>
+            </button>
+            <ul class="legal-dropdown" id="legal-menu" data-legal-menu>
+
+              <li><a href="../../legal/" data-nav-link data-i18n="nav.legalCenter">Legal Center</a></li>
+              <li><a href="../../legal/privacy/" data-nav-link data-i18n="nav.privacyPolicy">Privacy Policy</a></li>
+              <li><a href="../../legal/terms/" data-nav-link data-i18n="nav.termsOfUse">Terms of Use</a></li>
+              <li><a href="../../legal/cookies/" data-nav-link data-i18n="nav.cookiePolicy">Cookie Policy</a></li>
+              <li><a href="../../legal/ip-infringement/" data-nav-link data-i18n="nav.ipPolicy">Intellectual Property Policy</a></li>
+              <li><a href="../../legal/legal-notice/" data-nav-link data-i18n="nav.legalNotice">Legal Notice</a></li>
+            </ul>
+          </li>
+          <li><a class="primary-nav-link" href="../../index.html#contact" data-nav-link data-nav-section="contact" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button
+          class="mobile-nav-toggle"
+          type="button"
+          aria-label="Open navigation menu"
+          aria-expanded="false"
+          aria-controls="mobile-navigation"
+          data-i18n-aria-label="nav.openMenu"
+          data-mobile-menu-toggle
+        >
+          <span aria-hidden="true"></span>
+        </button>
+      </div>
+
+      <div class="mobile-nav-overlay" data-mobile-menu-overlay hidden></div>
+      <aside class="mobile-nav-drawer" id="mobile-navigation" aria-label="Mobile navigation" data-i18n-aria-label="nav.mobileLabel" data-mobile-menu hidden>
+        <div class="mobile-nav-header">
+          <p class="mobile-nav-title" data-i18n="nav.menu">Menu</p>
+          <button class="mobile-nav-close" type="button" aria-label="Close navigation menu" data-i18n-aria-label="nav.closeMenu" data-mobile-menu-close>×</button>
+        </div>
+        <nav aria-label="Mobile navigation" data-i18n-aria-label="nav.mobileLabel">
+          <ul class="mobile-nav-list">
+
+          <li><a class="mobile-nav-link" href="../../story-builder.html" data-nav-link data-nav-page="builder" data-i18n="nav.createStory">Create a Story</a></li>
+          <li><a class="mobile-nav-link" href="../../index.html#how-it-works" data-nav-link data-nav-section="how-it-works" data-i18n="nav.howItWorks">How It Works</a></li>
+          <li><a class="mobile-nav-link" href="../../index.html#language-learning" data-nav-link data-nav-section="language-learning" data-i18n="nav.languageLearning">Language Learning</a></li>
+          <li><a class="mobile-nav-link" href="../../index.html#about" data-nav-link data-nav-section="about" data-i18n="nav.about">About MoonTale</a></li>
+            <li>
+              <button
+                class="mobile-legal-button"
+                type="button"
+                aria-expanded="false"
+                aria-controls="mobile-legal-menu"
+                data-mobile-legal-button
+                data-nav-legal-trigger
+              >
+                <span data-i18n="nav.legal">Legal</span>
+                <span class="dropdown-arrow" aria-hidden="true"></span>
+              </button>
+              <ul class="mobile-legal-list" id="mobile-legal-menu" data-mobile-legal-panel hidden>
+
+              <li><a href="../../legal/" data-nav-link data-i18n="nav.legalCenter">Legal Center</a></li>
+              <li><a href="../../legal/privacy/" data-nav-link data-i18n="nav.privacyPolicy">Privacy Policy</a></li>
+              <li><a href="../../legal/terms/" data-nav-link data-i18n="nav.termsOfUse">Terms of Use</a></li>
+              <li><a href="../../legal/cookies/" data-nav-link data-i18n="nav.cookiePolicy">Cookie Policy</a></li>
+              <li><a href="../../legal/ip-infringement/" data-nav-link data-i18n="nav.ipPolicy">Intellectual Property Policy</a></li>
+              <li><a href="../../legal/legal-notice/" data-nav-link data-i18n="nav.legalNotice">Legal Notice</a></li>
+              </ul>
+            </li>
+            <li><a class="mobile-nav-link" href="../../index.html#contact" data-nav-link data-nav-section="contact" data-i18n="nav.contact">Contact</a></li>
+          </ul>
+        </nav>
+      </aside>
     </header>
     <main id="main" class="legal-main shell">
       <section class="legal-hero">

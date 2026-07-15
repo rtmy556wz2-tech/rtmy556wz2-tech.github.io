@@ -3,7 +3,6 @@ import { initializeCookieConsent } from "../core/cookie-consent.js";
 import { initializeRevealElements } from "../core/dom.js";
 import { initializeLanguageSelectors, updateTranslatedContent } from "../core/i18n.js";
 import { initializeSiteNavigation } from "../core/navigation.js";
-import { initializeFormspreeForms } from "../services/formspree.js";
 
 function initializeLandingPage(root = document) {
   root.querySelectorAll("[data-track='cta']").forEach((link) => {
@@ -18,5 +17,4 @@ document.addEventListener("DOMContentLoaded", () => {
   updateTranslatedContent();
   initializeRevealElements();
   initializeLandingPage();
-  initializeFormspreeForms();
 });
