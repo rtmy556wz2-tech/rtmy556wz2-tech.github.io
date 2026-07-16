@@ -69,7 +69,7 @@ const messages = {
   "home.hero.miloGreeting": "Hi, I'm Milo the Moonbear.",
   "home.hero.miloText": "I'll guide your child through magical bedtime adventures while discovering new words, ideas, and cultures.",
   "home.problem.eyebrow": "Built around real family life",
-  "home.problem.title": "The Problem we have solved",
+  "home.problem.title": "The Problem we have solved: ",
   "home.problem.lead": "Parents want reading, learning, and bedtime to feel better. Today, they often have to choose between products that solve only one piece of the puzzle.",
   "home.problem.parentsWant": "Parents want to",
   "home.problem.want1": "Help their children read more",
