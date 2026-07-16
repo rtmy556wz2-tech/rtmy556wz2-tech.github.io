@@ -5,7 +5,7 @@ import {
   PROFILE_STORAGE_KEY,
   SAVED_STORIES_KEY,
   normalizeLanguageCode,
-} from "./config.js";
+} from "./config.js?v=2";
 
 function getBrowserStorage(storage) {
   if (storage) return storage;
