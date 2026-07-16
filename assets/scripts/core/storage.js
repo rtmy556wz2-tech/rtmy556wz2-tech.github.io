@@ -1,11 +1,10 @@
-import {
-  DEFAULT_LANGUAGE,
-  LANGUAGE_STORAGE_KEY,
-  MAX_SAVED_STORIES,
-  PROFILE_STORAGE_KEY,
-  SAVED_STORIES_KEY,
-  normalizeLanguageCode,
-} from "./config.js?v=2";
+import { normalizeLanguageCode } from "./config.js";
+
+const DEFAULT_LANGUAGE = "en";
+const LANGUAGE_STORAGE_KEY = "moontaleLanguage";
+const PROFILE_STORAGE_KEY = "moontaleStoryProfile";
+const SAVED_STORIES_KEY = "moontaleSavedStories";
+const MAX_SAVED_STORIES = 10;
 
 function getBrowserStorage(storage) {
   if (storage) return storage;
