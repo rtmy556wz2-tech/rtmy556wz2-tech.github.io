@@ -214,3 +214,29 @@ const words = getWordsForStory(
     goals: goalDetails,
   };
 })();
+
+const banner = document.getElementById("cookie-banner");
+
+if (banner) {
+
+  const consent = localStorage.getItem("moontaleCookieConsent");
+
+  if (!consent) {
+    banner.hidden = false;
+  }
+
+  document
+    .getElementById("cookie-accept")
+    ?.addEventListener("click", () => {
+      localStorage.setItem("moontaleCookieConsent", "accepted");
+      banner.hidden = true;
+    });
+
+  document
+    .getElementById("cookie-reject")
+    ?.addEventListener("click", () => {
+      localStorage.setItem("moontaleCookieConsent", "rejected");
+      banner.hidden = true;
+    });
+
+}
